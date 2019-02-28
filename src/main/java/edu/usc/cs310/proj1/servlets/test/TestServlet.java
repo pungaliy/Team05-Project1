@@ -1,4 +1,4 @@
-package testServletPackage;
+package edu.usc.cs310.proj1.servlets.test;
 
 import java.io.IOException;
 import javax.servlet.ServletException;

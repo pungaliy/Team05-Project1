@@ -1,3 +1,4 @@
+package edu.usc.cs310.proj1.objects;
 public class Item {
 	public boolean isFavorite = false;
 	public boolean isDoNotExplore = false;

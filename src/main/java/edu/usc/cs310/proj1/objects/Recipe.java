@@ -1,3 +1,4 @@
+package edu.usc.cs310.proj1.objects;
 import java.util.ArrayList;
 
 public class Recipe extends Item {
