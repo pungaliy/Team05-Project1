@@ -1,5 +1,4 @@
 package edu.usc.cs310.proj1.objects;
-
 /**
  * @author karti
  *

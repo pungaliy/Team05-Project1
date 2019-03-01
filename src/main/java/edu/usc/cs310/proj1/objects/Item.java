@@ -3,14 +3,15 @@ public class Item {
 	public boolean isFavorite = false;
 	public boolean isDoNotExplore = false;
 	public boolean isToExplore = false;
-	private int uniqueID;
-	private double price;
-	private String websiteLink;
-	
-	public int getUniqueId() {
+	public String uniqueID;
+	public String price;
+	public double rating;
+	public String websiteLink;
+	public String name;
+	public String getUniqueId() {
 		return uniqueID;
 	}
-	public double getPrice () {
+	public String getPrice () {
 		return price;
 	}
 	public String getLink() {
