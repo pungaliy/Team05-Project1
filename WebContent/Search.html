@@ -31,21 +31,22 @@
 
     <div class="container-fluid text-center content">
         <div class="title">I'm Hungry</div>
-        <form action="" method="GET">
+        <div style="color:red" id="error"></div>
+        <form action="#" onsubmit="check()" method="GET">
             <div class="container mt-20">
                 <!-- change this -->
-                <form method="get" action="" id="searchForm">
+                <form method="get" action="ReturnResults" id="searchForm">
                     <div class="form-row">
                         <div class="col-10">
-                            <input type="text" class="form-control" placeholder="Search...." name="query" value="">
+                            <input type="text" class="form-control" placeholder="Search...." name="query" value="" id="query">
                         </div>
                         <div class="col-2">
-                            <input style="width: 100px;" type="number" placeholder="2" class="form-control" value="" name="num">
+                            <input style="width: 100px;" type="number" value="2" class="form-control" id="num" name="options" min="1" max="100">
                         </div>
                     </div>
                     <div class="form-row mt-20 ">
                         <div class="col-12">
-                            <button type="submit" form="searchForm" class="btn" id="searchBtn" style="color: deeppink"><strong>Feed Me!</strong></button>
+                            <button type="submit" class="btn" id="searchBtn" style="color: deeppink"><strong>Feed Me!</strong></button>
                         </div>
                     </div>
                 </form>
@@ -68,6 +69,20 @@
         function change() {
             btn.style.background = "url('../img/grumpy.gif') no-repeat";
             btn.style.backgroundSize = "100%";
+        }
+
+        function check() {
+            document.getElementById("error").innerHTML = "";
+            var query = document.getElementById("query").value;
+            var options = document.getElementById("num").value;
+            query = query.replace(/\s/g, "");
+
+            if (query === "" || !query) {
+                document.getElementById("error").innerHTML = "*Please enter a valid query";
+                return true;
+            }
+
+            return false;
         }
     </script>
 
