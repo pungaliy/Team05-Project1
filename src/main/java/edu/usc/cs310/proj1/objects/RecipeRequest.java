@@ -1,4 +1,4 @@
-package cs310team5project.cs310;
+package edu.usc.cs310.proj1.objects;
 
 import java.util.ArrayList;
 import java.util.List;
