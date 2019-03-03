@@ -11,11 +11,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
-
-import okhttp3.OkHttpClient;
-import okhttp3.Request.Builder;
-import okhttp3.RequestBody;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.omg.CORBA.Request;

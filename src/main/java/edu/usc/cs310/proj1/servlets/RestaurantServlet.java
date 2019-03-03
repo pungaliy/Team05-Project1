@@ -26,14 +26,14 @@ import edu.usc.cs310.proj1.objects.YelpRequest;
 /**
  * Servlet implementation class searchUser
  */
-@WebServlet("/ReturnResults")
-public class ReturnResults extends HttpServlet {
+@WebServlet("/searchUser")
+public class RestaurantServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReturnResults() {
+    public RestaurantServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -58,9 +58,8 @@ public class ReturnResults extends HttpServlet {
 		restaurantResults = y.restaurantResults;
 		
 		RecipeRequest r = new RecipeRequest(query, numOptions);
+		//r.request();
 		recipeResults = r.recipeResults;
-		
-		
 		
 		session.setAttribute("restaurantResults", restaurantResults);
 		session.setAttribute("recipeResults", recipeResults);

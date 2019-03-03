@@ -1,4 +1,4 @@
-package cs310team5project.cs310;
+package edu.usc.cs310.proj1.objects;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,24 +9,18 @@ import com.gargoylesoftware.htmlunit.html.HtmlAnchor;
 import com.gargoylesoftware.htmlunit.html.HtmlElement;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 
-public class RecipeRequest {
+public class ImagesRequest {
 	
-	public ArrayList<Recipe> recipeResults = new ArrayList<Recipe>();
-	
-	public ArrayList<String> recipeURLs = new ArrayList<String>();
-	public ArrayList<String> recipeNames = new ArrayList<String>();
-	public ArrayList<String> recipeImageURLs = new ArrayList<String>();
-	
+	public ArrayList<String> imageResultURLs = new ArrayList<String>();
+
 	String urlOfPrintable;
 	
 	String urlOfSearch;
 	String searchTerm;
 	Integer numResults;
 	
-	public RecipeRequest(String query, int options) {
+	public ImagesRequest(String query) {
 		searchTerm = query;
-		numResults = options;
-		this.request();
 	}
 	
 	private void request() {
@@ -34,7 +28,7 @@ public class RecipeRequest {
 		//first step is to grab numResults recipes to get from the search page
 		//based on https://www.allrecipes.com/search/results/?wt=chicken&sort=re
 		
-		urlOfSearch = "https://www.allrecipes.com/search/results/?wt=" + searchTerm + "&sort=re";
+		urlOfSearch = "https://www.google.com/search?q=" + searchTerm + "&source=lnms&tbm=isch&sa=X&ved=0ahUKEwi3zPbF5ebgAhUn34MKHQcRDwEQ_AUIDygC&biw=1440&bih=711";
 
 		WebClient client = new WebClient();  
 		client.getOptions().setCssEnabled(false);  
@@ -50,12 +44,12 @@ public class RecipeRequest {
 		
 		//from this page, we need to pull the following values
 		
-		List<HtmlElement> items = (List<HtmlElement>) page.getByXPath("//article[@class='fixed-recipe-card']"); 
+		List<HtmlElement> items = (List<HtmlElement>) page.getByXPath("//img"); 
 		
-		for (int i = 0; i < numResults; i++) {
+		for (int i = 0; i < 10; i++) {
 			
 			HtmlElement item = items.get(i);
-			HtmlAnchor itemAnchor = ((HtmlAnchor)item.getFirstByXPath(".//a"));
+			HtmlAnchor itemAnchor = ((HtmlAnchor)item.getFirstByXPath("//*[@id=\"NlmiHarYJuIZfM:\"]"));
 			
 			//load a new result item into our arraylists for later parsing
 			
@@ -69,7 +63,7 @@ public class RecipeRequest {
 			//<a href="https://www.allrecipes.com/recipe/228293/curry-stand-chicken-tikka-masala-sauce/"
 			//TO THIS WE SHOULD ADD "print" to get a simplified page to scrape
 			
-			recipeURLs.add(itemAnchor.getHrefAttribute() + "print");
+			imageResultURLs.add(itemAnchor.getHrefAttribute() + "print");
 		}
 		
 		
@@ -141,35 +135,8 @@ public class RecipeRequest {
 	}
 
 	public static void main (String args []) {
+		ImagesRequest ir = new ImagesRequest("carrot");
 		
-		Scanner scan = new Scanner(System.in);
-		
-		System.out.println("What would you like to search?");
-		String query = scan.nextLine();
-		System.out.println("How many search results?");
-		int options = scan.nextInt();
-		scan.nextLine();
-		RecipeRequest y = new RecipeRequest(query, options);
-		
-		y.request();
-		
-		System.out.println("");
-		
-		for (Recipe i : y.recipeResults) {
-			System.out.println(i.recipeName);
-			System.out.println("Image URL: " + i.imageLink);
-			System.out.println("Prep Time: " + i.prepTime);
-			System.out.println("Cook Time: " + i.cookTime);
-			System.out.println("Ingredients: ");
-			for (String j : i.ingredients) {
-				System.out.println(j);
-			}
-			System.out.println("Instructions: ");
-			for (String j : i.instructions) {
-				System.out.println(j);
-			}
-			System.out.println("");
-		}
 		
 	}
 
