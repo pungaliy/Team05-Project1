@@ -26,7 +26,7 @@ import edu.usc.cs310.proj1.objects.YelpRequest;
 /**
  * Servlet implementation class searchUser
  */
-@WebServlet("/searchUser")
+@WebServlet("/recipes")
 public class RecipeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
