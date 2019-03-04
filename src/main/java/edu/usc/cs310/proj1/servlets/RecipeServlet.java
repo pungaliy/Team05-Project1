@@ -1,14 +1,7 @@
 package edu.usc.cs310.proj1.servlets;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
-import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -19,9 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import edu.usc.cs310.proj1.objects.Recipe;
-import edu.usc.cs310.proj1.objects.RecipeRequest;
 import edu.usc.cs310.proj1.objects.Restaurant;
-import edu.usc.cs310.proj1.objects.YelpRequest;
 
 /**
  * Servlet implementation class searchUser

@@ -2,10 +2,8 @@ package edu.usc.cs310.proj1.objects;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 import com.gargoylesoftware.htmlunit.WebClient;
-import com.gargoylesoftware.htmlunit.html.HtmlAnchor;
 import com.gargoylesoftware.htmlunit.html.HtmlElement;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 

@@ -1,14 +1,7 @@
 package edu.usc.cs310.proj1.servlets;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
-import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -44,7 +37,8 @@ public class ReturnResults extends HttpServlet {
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+//		RequestDispatcher dispatch2 = request.getRequestDispatcher("/Results.html");
+//		dispatch2.forward(request, response);
 		HttpSession session = request.getSession();
 				
 		String query = request.getParameter("query");
