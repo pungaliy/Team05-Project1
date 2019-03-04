@@ -42,7 +42,7 @@
 	    <scope>provided</scope>
 	</dependency>
 	  
-	  <dependency>  
+	 <dependency>  
 	    <groupId>net.sourceforge.htmlunit</groupId>
 	    <artifactId>htmlunit</artifactId>
 	    <version>2.19</version>
@@ -54,6 +54,15 @@
 	    <artifactId>json</artifactId>
 	    <version>20180813</version>
 	</dependency>
+	
+	 <!-- https://mvnrepository.com/artifact/junit/junit -->
+	<dependency>  
+	    <groupId>junit</groupId>
+	    <artifactId>junit</artifactId>
+	    <version>4.12</version>
+	    <scope>test</scope>
+	</dependency>
+	
 
   </dependencies>
 

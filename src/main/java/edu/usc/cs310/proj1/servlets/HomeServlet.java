@@ -2,6 +2,7 @@ package edu.usc.cs310.proj1.servlets;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -27,9 +28,9 @@ public class HomeServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
+		RequestDispatcher dispatch = request.getRequestDispatcher("/Search.html");
+		dispatch.forward(request,  response);
 		HttpSession session = request.getSession();
 	}
 }
