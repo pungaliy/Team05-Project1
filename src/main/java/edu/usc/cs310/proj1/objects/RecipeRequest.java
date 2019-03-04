@@ -37,7 +37,7 @@ public class RecipeRequest {
 		urlOfSearch = "https://www.allrecipes.com/search/results/?wt=" + searchTerm + "&sort=re";
 
 		WebClient client = new WebClient();  
-		client.getOptions().setCssEnabled(false);  
+		client.getOptions().setCssEnabled(false); 
 		client.getOptions().setJavaScriptEnabled(false);
 		
 		HtmlPage page = null;

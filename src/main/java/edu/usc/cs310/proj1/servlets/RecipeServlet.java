@@ -46,20 +46,13 @@ public class RecipeServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 				
-		String query = request.getParameter("query");
+		String ID = request.getParameter("query");
 		String options = request.getParameter("options");	
 		int numOptions = Integer.parseInt(options);
 		
 		ArrayList<Restaurant> restaurantResults = new ArrayList<Restaurant>();
 		ArrayList<Recipe> recipeResults = new ArrayList<Recipe>();
 		ArrayList<String> imageResults = new ArrayList<String>();
-		
-		YelpRequest y = new YelpRequest(query, numOptions);
-		restaurantResults = y.restaurantResults;
-		
-		RecipeRequest r = new RecipeRequest(query, numOptions);
-		//r.request();
-		recipeResults = r.recipeResults;
 		
 		session.setAttribute("restaurantResults", restaurantResults);
 		session.setAttribute("recipeResults", recipeResults);

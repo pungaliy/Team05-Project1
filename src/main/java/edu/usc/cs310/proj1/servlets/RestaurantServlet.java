@@ -46,25 +46,19 @@ public class RestaurantServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 				
-		String query = request.getParameter("query");
-		String options = request.getParameter("options");	
-		int numOptions = Integer.parseInt(options);
+		String ID = request.getParameter("ID");
 		
-		ArrayList<Restaurant> restaurantResults = new ArrayList<Restaurant>();
-		ArrayList<Recipe> recipeResults = new ArrayList<Recipe>();
-		ArrayList<String> imageResults = new ArrayList<String>();
 		
-		YelpRequest y = new YelpRequest(query, numOptions);
-		restaurantResults = y.restaurantResults;
+		ArrayList<Restaurant> restaurants = (ArrayList<Restaurant>)session.getAttribute("restaurantResults");
+		Restaurant thisRestaurant = null;
 		
-		RecipeRequest r = new RecipeRequest(query, numOptions);
-		//r.request();
-		recipeResults = r.recipeResults;
-		
-		session.setAttribute("restaurantResults", restaurantResults);
-		session.setAttribute("recipeResults", recipeResults);
-		session.setAttribute("imageURLs", imageResults);
-		RequestDispatcher dispatch = request.getRequestDispatcher("/Results.html");
+		for(int i = 0; i < restaurants.size(); i++) {
+			//if(restaurants.get(i) == ID) {
+				thisRestaurant = restaurants.get(i);
+			//}
+		}
+		session.setAttribute("currentRestaurant", thisRestaurant);
+		RequestDispatcher dispatch = request.getRequestDispatcher("/Restaurant.html");
 		dispatch.forward(request,  response);
 	}
 }
