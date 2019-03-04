@@ -112,11 +112,16 @@ public class YelpRequest {
 			r.uniqueID = res.getString("id");
 			if (res.has("price")) {
 				r.price = res.getString("price");			
+			} else {
+				r.price = "$$"; //init to basic $$ length
 			}
 			r.address = parseAddress(res.getJSONObject("location"));
+			r.googleMapsLink = "https://www.google.com/maps/dir/?api=1&origin=Tommy Trojan&destination="+r.address;
 			if (res.has("rating")) {
 				r.rating = res.getDouble("rating");			
-			}			
+			} else {
+				r.rating = 3.0; //basic restaurant rating
+			}
 			r.phoneNumber = res.getString("phone");
 			r.distance = res.getDouble("distance");
 			this.restaurantResults.add(r);
