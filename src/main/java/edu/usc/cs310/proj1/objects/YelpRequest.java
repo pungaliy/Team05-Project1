@@ -1,15 +1,23 @@
 package edu.usc.cs310.proj1.objects;
-
+import java.awt.PageAttributes.MediaType;
 import java.io.BufferedReader;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
+
+import okhttp3.OkHttpClient;
+import okhttp3.Request.Builder;
+import okhttp3.RequestBody;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.omg.CORBA.Request;
 
 /*   -----README-----
 
@@ -52,10 +60,33 @@ public class YelpRequest {
 		this.term = query;
 		this.limit = numItems;
 		this.isCategory = isCategory;
+		try {
+			this.request();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	public YelpRequest(String query, int numItems) {
 		this.term = query;
+		cleanQuery();
 		this.limit = numItems;
+		try {
+			this.request();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public void cleanQuery() {
+		Scanner scan = new Scanner(this.term);
+		String newq = "";
+		while(scan.hasNext()) {
+			newq +=scan.next();
+			newq+="+";
+		}
+		this.term = newq.substring(0, newq.length()-1);
+		scan.close();
 	}
 	public void request () throws IOException {
 		//set up
@@ -65,7 +96,7 @@ public class YelpRequest {
 		url = addParameter(url,"latitude",this.latitude + "");
 		url = addParameter(url,"limit",this.limit + "");
 		url = addParameter(url,"term",this.term);
-		
+		System.out.println(this.limit);
 		//establish connection
 		URL yelp = new URL(url);
 		HttpURLConnection conn = (HttpURLConnection) yelp.openConnection();
@@ -81,8 +112,9 @@ public class YelpRequest {
 					while ((inputLine = in.readLine()) != null) {
 					    content.append(inputLine);
 					}
-		
-					addToList(content.toString());
+					if (content.toString().length()>0) {
+						addToList(content.toString());
+					}
 					in.close();		
 			}else {
 				//debug info
@@ -148,7 +180,6 @@ public class YelpRequest {
 			scan.nextLine();
 			YelpRequest y = new YelpRequest(query, options);
 			try {
-				y.request();
 				System.out.println("[1]normal or [2]pretty print? [type 1 for normal]");
 				String choice = scan.nextLine();
 				System.out.println(y.restaurantResults.size() + " results shown:");
@@ -161,10 +192,7 @@ public class YelpRequest {
 						System.out.println(y.restaurantResults.get(i).prettyPrint());
 					}
 				}
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			} catch(Exception e) {e.printStackTrace();}
 
 		}
 	}
