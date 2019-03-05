@@ -26,14 +26,13 @@
 
     <script>
     	
-    	var restaurant;
     	var recipe;
     	var url;
     	var user;
     
         function getResults() {
 
-            restaurant = JSON.parse('<%= session.getAttribute("restaurantResults") %>');
+            
             var tmp = '<%= session.getAttribute("recipeResults") %>';
          // preserve newlines, etc - use valid JSON
             tmp = tmp.replace(/\\n/g, "\\n")  
@@ -50,7 +49,6 @@
             //url = JSON.parse('<%= session.getAttribute("imageURLs") %>');
             user = JSON.parse('<%= session.getAttribute("user") %>');
 
-            console.log(restaurant);
             //console.log(url);
             console.log(recipe);
             
@@ -64,10 +62,7 @@
                 setAngel(ran, i);
             }
             
-            //set restaurantt
-            for (res in restaurant){
-            	
-            }
+            
 
         }
 
@@ -93,61 +88,7 @@
             return;
         }
 	    
-	function test(){
-            
-            var top = document.getElementById('restList');
-            var head = document.createElement('h2');
-            head.classList.add('text-center');
-            var u = document.createElement('u');
-            u.innerHTML = "Restaurant";
-            head.appendChild(u);
-            
-            var div1 = document.createElement('div');
-            div1.className = "alt box";
-            
-            var div2 = document.createElement('div');
-            div2.classList.add("container");
-            
-            var div3 = document.createElement('div');
-            div2.classList.add("row");
-            
-            var div4 = document.createElement('div');
-            div2.classList.add("col-11");
-            
-            var div5 = document.createElement('div');
-            var h1 = document.createElement('h3');
-            h1.style.cssText = 'float: left;margin-right: 70px;';
-            h1.innerHTML = "STRING HERE"
-            var h2 = document.createElement('h4');
-            h2.innerHTML = "STAR HERE" + "&#9734";
-            div5.appendChild(h1);
-            div5.appendChild(h2);
-            
-            var div6 = document.createElement('div');
-            div6.classList.add("mt50");
-            var h3 =  document.createElement('h4');
-            h3.style.cssText = 'float: left;margin-right: 70px;';
-            h3.innerHTML = "Prep Time: " + "PREP HERE";
-            var clear = document.createElement('div');
-            clear.style.clear = "both";
-            div6.appendChild(h3);
-            div6.appendChild(clear);
-            
-            div4.appendChild(div5);
-            div4.appendChild(div6);
-            
-            var div7 = document.createElement('div');
-            div7.className = " col-1 mt50";
-            var dollar = document.createElement('h3');
-            dollar.innerHTML = "DOLLAR";
-            
-            div3.appendChild(div4);
-            div3.appendChild(div7);
-            
-            div2.appendChild(div3);
-            div1.appendChild(div2);
-            
-        }
+	
 
     </script>
 
@@ -208,62 +149,14 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-12 col-md-6">
-                <h2 class="text-center"><u>Restaurant</u></h2>
-                <!-- restaurant -->
+            <div class="col-12 col-md-6" id="restList">
                 
-                
-          <!-- 
-          
-           -->
-                
-                <div class="alt box">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-11">
-                                <div>
-                                    <h3 style="float: left;margin-right: 70px;">The Habit Burger Grill</h3>
-                                    <h4>5 &#9734;</h4>
-                                </div>
-                                <div class="mt50">
-                                    <h4 style="float: left;margin-right: 70px;">Prep Time: 5 mins</h4>
-                                    <div style="clear:both"></div>
-                                </div>
-                            </div>
-                            <div class="col-1 mt50">
-                                <h3>$$</h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                
-                <!-- end of restaurant -->
-                <div class="box">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-11">
-                                <div>
-                                    <h3 style="float: left;margin-right: 70px;">The Habit Burger Grill</h3>
-                                    <h4>5 &#9734;</h4>
-                                </div>
-                                <div class="mt50">
-                                    <h4 style="float: left;margin-right: 70px;">Prep Time: 5 mins</h4>
-                                    <div style="clear:both"></div>
-                                </div>
-                            </div>
-                            <div class="col-1 mt50">
-                                <h3>$$</h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
 
 
             <!-- recipe -->
 
-            <div class="col-12 col-md-6">
+            <div class="col-12 col-md-6" id="recList">
                 <h2 class="text-center"><u>Recipe</u></h2>
                 <div class="box">
                     <div class="container">
@@ -309,6 +202,97 @@
             </div>
         </div>
     </div>
+    
+    <script>
+    	
+    	var restList = document.getElementById('restList');
+		var recList = document.getElementById('recList');
+    	
+    	
+    	function create(){
+    		console.log("1");
+    		
+            //set restaurantt
+            var restaurant = JSON.parse('<%= session.getAttribute("restaurantResults") %>');
+          
+            for (let num = 0; num < restaurant.length; num++){
+            	var res = restaurant[num];
+            	createRestaurant(res.name, res.rating, res.distance.toFixed(3), res.price, num);
+            }
+    	}
+    	
+function createRestaurant(name, star, dist, price, num ){
+            
+            var head = document.createElement('h2');
+            head.classList.add('text-center');
+            var u = document.createElement('u');
+            u.innerHTML = "Restaurant";
+            head.appendChild(u);
+            
+            var div1 = document.createElement('div');
+            if(num % 2 == 0){
+            	div1.className = "alt box";
+            }
+            else{
+            	div1.className = "box";
+            }
+            
+            var div2 = document.createElement('div');
+            div2.classList.add("container");
+            
+            var div3 = document.createElement('div');
+            div2.classList.add("row");
+            
+            var div4 = document.createElement('div');
+            div2.classList.add("col-10");
+            
+            var div5 = document.createElement('div');
+            var h1 = document.createElement('h3');
+            h1.style.cssText = 'float: left;margin-right: 20px;';
+            h1.innerHTML = name;
+            var h2 = document.createElement('h4');
+            h2.innerHTML = star + "&#9734";
+            div5.appendChild(h1);
+            div5.appendChild(h2);
+            
+            var div6 = document.createElement('div');
+            div6.classList.add("mt50");
+            var h3 =  document.createElement('h4');
+            //h3.style.cssText = 'float: left;margin-right: 20px;';
+            h3.innerHTML = "Distance: " + dist + " m";
+            //var clear = document.createElement('div');
+            //clear.style.clear = "both";
+            div6.appendChild(h3);
+            //div6.appendChild(clear);
+            
+            div4.appendChild(div5);
+            div4.appendChild(div6);
+            
+            var div7 = document.createElement('div');
+            div7.className = " col-2 mt50";
+            var dollar = document.createElement('h3');
+            if(price == null){
+            	dollar.innerHTML = "$";
+            }
+            else{
+            	dollar.innerHTML = price;
+            }
+            div7.appendChild(dollar);
+            
+            div3.appendChild(div4);
+            div3.appendChild(div7);
+            
+            div2.appendChild(div3);
+            div1.appendChild(div2);
+            restList.appendChild(div1);
+            console.log(restList.innerHTML);
+            
+        }
+    
+    
+create();
+    
+    </script>
 
 </body>
 
