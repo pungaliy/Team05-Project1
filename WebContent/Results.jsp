@@ -92,6 +92,62 @@
 
             return;
         }
+	    
+	function test(){
+            
+            var top = document.getElementById('restList');
+            var head = document.createElement('h2');
+            head.classList.add('text-center');
+            var u = document.createElement('u');
+            u.innerHTML = "Restaurant";
+            head.appendChild(u);
+            
+            var div1 = document.createElement('div');
+            div1.className = "alt box";
+            
+            var div2 = document.createElement('div');
+            div2.classList.add("container");
+            
+            var div3 = document.createElement('div');
+            div2.classList.add("row");
+            
+            var div4 = document.createElement('div');
+            div2.classList.add("col-11");
+            
+            var div5 = document.createElement('div');
+            var h1 = document.createElement('h3');
+            h1.style.cssText = 'float: left;margin-right: 70px;';
+            h1.innerHTML = "STRING HERE"
+            var h2 = document.createElement('h4');
+            h2.innerHTML = "STAR HERE" + "&#9734";
+            div5.appendChild(h1);
+            div5.appendChild(h2);
+            
+            var div6 = document.createElement('div');
+            div6.classList.add("mt50");
+            var h3 =  document.createElement('h4');
+            h3.style.cssText = 'float: left;margin-right: 70px;';
+            h3.innerHTML = "Prep Time: " + "PREP HERE";
+            var clear = document.createElement('div');
+            clear.style.clear = "both";
+            div6.appendChild(h3);
+            div6.appendChild(clear);
+            
+            div4.appendChild(div5);
+            div4.appendChild(div6);
+            
+            var div7 = document.createElement('div');
+            div7.className = " col-1 mt50";
+            var dollar = document.createElement('h3');
+            dollar.innerHTML = "DOLLAR";
+            
+            div3.appendChild(div4);
+            div3.appendChild(div7);
+            
+            div2.appendChild(div3);
+            div1.appendChild(div2);
+            
+        }
 
     </script>
 
