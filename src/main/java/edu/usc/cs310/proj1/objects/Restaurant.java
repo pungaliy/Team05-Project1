@@ -4,6 +4,7 @@ public class Restaurant extends Item{
 	public String phoneNumber;
 	public String googleMapsLink;
 	public double distance;
+	
 	public String prettyPrint() {
 		String s = "name: " + name;
 		s+="\n";

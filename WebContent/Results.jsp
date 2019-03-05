@@ -33,16 +33,27 @@
     
         function getResults() {
 
-            restaurant = '<%= session.getAttribute("restaurantResults") %>';
-            recipe = '<%= session.getAttribute("recipeResults") %>';
-            url = '<%= session.getAttribute("imageURLs") %>';
-            user = '<%= session.getAttribute("user") %>';
+            restaurant = JSON.parse('<%= session.getAttribute("restaurantResults") %>');
+            var tmp = '<%= session.getAttribute("recipeResults") %>';
+         // preserve newlines, etc - use valid JSON
+            tmp = tmp.replace(/\\n/g, "\\n")  
+                           .replace(/\\'/g, "\\'")
+                           .replace(/\\"/g, '\\"')
+                           .replace(/\\&/g, "\\&")
+                           .replace(/\\r/g, "\\r")
+                           .replace(/\\t/g, "\\t")
+                           .replace(/\\b/g, "\\b")
+                           .replace(/\\f/g, "\\f");
+            // remove non-printable and other non-valid JSON chars
+            tmp = tmp.replace(/[\u0000-\u0019]+/g,""); 
+            var recipe = JSON.parse(tmp);
+            //url = JSON.parse('<%= session.getAttribute("imageURLs") %>');
+            user = JSON.parse('<%= session.getAttribute("user") %>');
 
             console.log(restaurant);
+            //console.log(url);
             console.log(recipe);
-            console.log(url);
-            console.log(user);
-        
+            
             var min = 0;
             var max = 8;
             var ran = 0
@@ -51,6 +62,11 @@
             for (let i = 1; i < 11; i++) {
                 ran = Math.floor(Math.random() * (+max - +min)) + +min;
                 setAngel(ran, i);
+            }
+            
+            //set restaurantt
+            for (res in restaurant){
+            	
             }
 
         }
