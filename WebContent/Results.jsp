@@ -37,8 +37,8 @@
             
             url = JSON.parse('<%= session.getAttribute("imageURLs") %>');
             user = JSON.parse('<%= session.getAttribute("user") %>');
-
-            console.log(url);
+            console.log(user);
+            
             var min = 0;
             var max = 8;
             var ran = 0
@@ -174,6 +174,9 @@
             // remove non-printable and other non-valid JSON chars
             tmp = tmp.replace(/[\u0000-\u0019]+/g,""); 
             var recipe = JSON.parse(tmp);
+            
+            console.log(restaurant);
+            console.log(recipe);
           
             var head = document.createElement('h2');
             head.classList.add('text-center');
@@ -193,7 +196,7 @@
             
             for (let num = 0; num < restaurant.length; num++){
             	var res = restaurant[num];
-            	createRestaurant(res.name, res.rating, res.distance.toFixed(3), res.price, num);
+            	createRestaurant(res.name, res.rating, res.distance.toFixed(3), res.price, res.uniqueID, num);
             }
             
             for (let num = 0; num < recipe.length; num++){
@@ -228,7 +231,12 @@ function createRecipe(name, star, prep, cook, price, num){
             var div5 = document.createElement('div');
             var h1 = document.createElement('h3');
             h1.innerHTML = name;
-            div5.appendChild(h1);
+            
+            var link = document.createElement('a');
+            link.href = "/Recipe.jsp?id=" + num;
+            link.appendChild(h1);
+            
+            div5.appendChild(link);
             
             var newDiv = document.createElement('div');
             var h2 = document.createElement('h4');
@@ -278,7 +286,7 @@ function createRecipe(name, star, prep, cook, price, num){
             
         }
         
-        function createRestaurant(name, star, dist, price, num){
+        function createRestaurant(name, star, dist, price, id, num){
         	
         	var div1 = document.createElement('div');
             if(num % 2 == 0){
@@ -301,8 +309,11 @@ function createRecipe(name, star, prep, cook, price, num){
             var h1 = document.createElement('h3');
             h1.innerHTML = name;
             
+            var link = document.createElement('a');
+            link.href = "/Restaurant.jsp?id=" + id;
+            link.appendChild(h1);
             
-            div5.appendChild(h1);
+            div5.appendChild(link);
           
             
             var newDiv = document.createElement('div');

@@ -15,15 +15,11 @@
 
     <!-- bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-
-    <!-- fav icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
 
     <!-- style  -->
     <link href="./css/main.css?version=5" rel="stylesheet">
-
-
+   
 
 </head>
 
@@ -32,33 +28,21 @@
     <div class="container-fluid">
         <div class="row ">
             <div class="col-10">
-                <div class="listTitle" style="margin-bottom: 50px;">Classic Burger Recipe</div>
+                <div class="listTitle" style="margin-bottom: 50px;" id="title"></div>
                 <!-- content -->
-                <img src="img/hamburgers.jpg" width="200">
+                <img id="image" src="" width="200">
                 <div style="font-size: 30px;">
-                    <div class="mt-20">
-                        Prep Time: 15 minutes
+                    <div class="mt-20" id="prep">
+                        
                     </div>
-                    <div class="mt-20">
-                        Cook Time: 10 minutes
+                    <div class="mt-20" id="cook">
+              
                     </div>
-                    <div class="mt-20">
-                        <u>Ingredients:</u>
-                        <ul>
-                            <li>2 buns</li>
-                            <li>1 burger patty</li>
-                            <li>1 lettuce</li>
-                            <li>1 tomato</li>
-                        </ul>
+                    <div class="mt-20" id="ingredients">
+
                     </div>
-                    <div class="mt-20">
-                        <u>Instructions:</u>
-                        <ol>
-                            <li>2 buns</li>
-                            <li>1 burger patty</li>
-                            <li>1 lettuce</li>
-                            <li>1 tomato</li>
-                        </ol>
+                    <div class="mt-20" id="instructions">
+ 
                     </div>
                 </div>
 
@@ -95,6 +79,60 @@
 
 
     </div>
+    
+    
+        <script>
+    var link = window.location.href;
+	var url = new URL(link);
+	var id = url.searchParams.get("id");
+	console.log(id)
+	
+	var tmp = '<%= session.getAttribute("recipeResults") %>';
+    // preserve newlines, etc - use valid JSON
+    tmp = tmp.replace(/\\n/g, "\\n")  
+                   .replace(/\\'/g, "\\'")
+                   .replace(/\\"/g, '\\"')
+                   .replace(/\\&/g, "\\&")
+                   .replace(/\\r/g, "\\r")
+                   .replace(/\\t/g, "\\t")
+                   .replace(/\\b/g, "\\b")
+                   .replace(/\\f/g, "\\f");
+    // remove non-printable and other non-valid JSON chars
+    tmp = tmp.replace(/[\u0000-\u0019]+/g,""); 
+    var recipe = JSON.parse(tmp);
+	var current = recipe[id];
+	console.log(current);
+	
+	document.getElementById('title').innerHTML = current.recipeName;
+
+	document.getElementById('prep').innerHTML = "Prep Time: " + current.prepTime;
+	document.getElementById('cook').innerHTML = "Cook Time: " + current.cookTime;
+	document.getElementById('image').src = current.imageLink;
+	var ingre = document.getElementById('ingredients');
+	var u = document.createElement('u');
+	u.innerHTML = "Ingredients: ";
+	ingre.appendChild(u);
+	var ul = document.createElement('ul');
+	for(var i = 0; i < current.ingredients.length; i++){
+		var li = document.createElement("li");
+		li.innerHTML = current.ingredients[i];
+		ingre.appendChild(li);
+	}
+	
+	var instr = document.getElementById('instructions');
+	var u2 = document.createElement('u');
+	u2.innerHTML = "Instructions:";
+	
+	instr.appendChild(u2);
+	var ul = document.createElement('ol');
+	for(var i = 0; i < current.instructions.length; i++){
+		var li = document.createElement("li");
+		li.innerHTML = current.instructions[i];
+		instr.appendChild(li);
+	}
+	
+    
+    </script>
 
 </body>
 
