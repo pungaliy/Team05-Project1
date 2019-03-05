@@ -1,6 +1,10 @@
 package edu.usc.cs310.proj1.servlets;
 
 import java.io.IOException;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -11,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import edu.usc.cs310.proj1.objects.ImagesRequest;
 import edu.usc.cs310.proj1.objects.Recipe;
 import edu.usc.cs310.proj1.objects.RecipeRequest;
 import edu.usc.cs310.proj1.objects.Restaurant;
@@ -37,8 +42,7 @@ public class ReturnResults extends HttpServlet {
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-//		RequestDispatcher dispatch2 = request.getRequestDispatcher("/Results.html");
-//		dispatch2.forward(request, response);
+
 		HttpSession session = request.getSession();
 				
 		String query = request.getParameter("query");
@@ -54,18 +58,29 @@ public class ReturnResults extends HttpServlet {
 		ArrayList<Recipe> recipeResults = new ArrayList<Recipe>();
 		ArrayList<String> imageResults = new ArrayList<String>();
 		
+		thisUser.query(query, numOptions, restaurantResults, recipeResults, imageResults);
+		
 		YelpRequest y = new YelpRequest(query, numOptions);
 		restaurantResults = y.restaurantResults;
 		
 		RecipeRequest r = new RecipeRequest(query, numOptions);
 		recipeResults = r.recipeResults;
 		
+		ImagesRequest ir = new ImagesRequest(query);
+		imageResults = ir.imageResultURLs;
 		
+		ObjectMapper mapper = new ObjectMapper();
+	      
+	    String restJson = mapper.writeValueAsString(restaurantResults);
+	    String recipeJson = mapper.writeValueAsString(recipeResults);
+	    String imageJSON = mapper.writeValueAsString(imageResults);
+	    String userJSON =  mapper.writeValueAsString(thisUser);
 		
-		session.setAttribute("restaurantResults", restaurantResults);
-		session.setAttribute("recipeResults", recipeResults);
-		session.setAttribute("imageURLs", imageResults);
-		RequestDispatcher dispatch = request.getRequestDispatcher("/Results.html");
+		session.setAttribute("restaurantResults", restJson);
+		session.setAttribute("recipeResults", recipeJson);
+		session.setAttribute("imageURLs", imageJSON);
+		session.setAttribute("user", userJSON);
+		RequestDispatcher dispatch = request.getRequestDispatcher("/Results.jsp");
 		dispatch.forward(request,  response);
 	}
 }

@@ -25,17 +25,24 @@
     <link href="./css/main.css?version=5" rel="stylesheet">
 
     <script>
+    	
+    	var restaurant;
+    	var recipe;
+    	var url;
+    	var user;
+    
         function getResults() {
 
-            var restaurant = '<%= session.getAttribute("restaurantResults") %>';
-            var recipe = '<%= session.getAttribute("recipeResults") %>';
-            var url = '<%= session.getAttribute("imageURLs") %>';
+            restaurant = '<%= session.getAttribute("restaurantResults") %>';
+            recipe = '<%= session.getAttribute("recipeResults") %>';
+            url = '<%= session.getAttribute("imageURLs") %>';
+            user = '<%= session.getAttribute("user") %>';
 
             console.log(restaurant);
             console.log(recipe);
             console.log(url);
-
-
+            console.log(user);
+        
             var min = 0;
             var max = 8;
             var ran = 0
@@ -77,7 +84,7 @@
 <body onload="getResults()">
 
     <div class="container-fluid">
-        <div class="row " style="padding-left: 100px;margin-top: 100px; margin-bottom: 100px;">
+        <div class="row text-center" style="padding-left: 100px;margin-top: 100px; margin-bottom: 100px;">
             <!-- image -->
             <div class="col-9">
                 <div class="container" id="collage" style="
@@ -132,6 +139,12 @@
             <div class="col-12 col-md-6">
                 <h2 class="text-center"><u>Restaurant</u></h2>
                 <!-- restaurant -->
+                
+                
+          <!-- 
+          
+           -->
+                
                 <div class="alt box">
                     <div class="container">
                         <div class="row">
@@ -151,6 +164,8 @@
                         </div>
                     </div>
                 </div>
+                
+                
                 <!-- end of restaurant -->
                 <div class="box">
                     <div class="container">
