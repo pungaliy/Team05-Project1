@@ -80,7 +80,7 @@ public class ReturnResults extends HttpServlet {
 		session.setAttribute("recipeResults", recipeJson);
 		//session.setAttribute("imageURLs", imageJSON);
 		session.setAttribute("user", userJSON);
-		RequestDispatcher dispatch = request.getRequestDispatcher("/Results.jsp");
+		RequestDispatcher dispatch = request.getRequestDispatcher("/Results.jsp?query=" + query);
 		dispatch.forward(request,  response);
 	}
 }

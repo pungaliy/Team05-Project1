@@ -26,32 +26,19 @@
 
     <script>
     	
-    	var recipe;
     	var url;
     	var user;
     
         function getResults() {
 
+            var q = getUrlVars["query"];
+            document.getElementById('title').innerHTML = "Search Results for '" + q + "'";
             
-            var tmp = '<%= session.getAttribute("recipeResults") %>';
-         // preserve newlines, etc - use valid JSON
-            tmp = tmp.replace(/\\n/g, "\\n")  
-                           .replace(/\\'/g, "\\'")
-                           .replace(/\\"/g, '\\"')
-                           .replace(/\\&/g, "\\&")
-                           .replace(/\\r/g, "\\r")
-                           .replace(/\\t/g, "\\t")
-                           .replace(/\\b/g, "\\b")
-                           .replace(/\\f/g, "\\f");
-            // remove non-printable and other non-valid JSON chars
-            tmp = tmp.replace(/[\u0000-\u0019]+/g,""); 
-            var recipe = JSON.parse(tmp);
+            
             //url = JSON.parse('<%= session.getAttribute("imageURLs") %>');
             user = JSON.parse('<%= session.getAttribute("user") %>');
 
             //console.log(url);
-            console.log(recipe);
-            
             var min = 0;
             var max = 8;
             var ran = 0
@@ -143,63 +130,23 @@
         </div>
         <div class="row">
             <div class="col-12 text-center">
-                <h1>
+                <h1 id="title">
                     Search Results for 'Hamburger'
                 </h1>
             </div>
         </div>
         <div class="row">
+        	<!--  restaurant -->
             <div class="col-12 col-md-6" id="restList">
                 
             </div>
 
-
             <!-- recipe -->
 
             <div class="col-12 col-md-6" id="recList">
-                <h2 class="text-center"><u>Recipe</u></h2>
-                <div class="box">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-11">
-                                <div>
-                                    <h3 style="float: left;margin-right: 70px;">The Habit Burger Grill</h3>
-                                    <h4>5 &#9734;</h4>
-                                </div>
-                                <div class="mt50">
-                                    <h4 style="float: left;margin-right: 20px;">Prep Time: 5 mins</h4>
-                                    <h4>Cook Time: 10 mins</h4>
-                                    <div style="clear:both"></div>
-                                </div>
-                            </div>
-                            <div class="col-1 mt-20">
-                                <h3>$$</h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- end of recipe -->
-                <div class="alt box">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-11">
-                                <div>
-                                    <h3 style="float: left;margin-right: 70px;">The Habit Burger Grill</h3>
-                                    <h4>5 &#9734;</h4>
-                                </div>
-                                <div class="mt50">
-                                    <h4 style="float: left;margin-right: 20px;">Prep Time: 5 mins</h4>
-                                    <h4>Cook Time: 10 mins</h4>
-                                    <div style="clear:both"></div>
-                                </div>
-                            </div>
-                            <div class="col-1 mt-20">
-                                <h3>$$</h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+      
             </div>
+            
         </div>
     </div>
     
@@ -208,28 +155,127 @@
     	var restList = document.getElementById('restList');
 		var recList = document.getElementById('recList');
     	
-    	
     	function create(){
-    		console.log("1");
+    	
     		
             //set restaurantt
             var restaurant = JSON.parse('<%= session.getAttribute("restaurantResults") %>');
+            var tmp = '<%= session.getAttribute("recipeResults") %>';
+            // preserve newlines, etc - use valid JSON
+            tmp = tmp.replace(/\\n/g, "\\n")  
+                           .replace(/\\'/g, "\\'")
+                           .replace(/\\"/g, '\\"')
+                           .replace(/\\&/g, "\\&")
+                           .replace(/\\r/g, "\\r")
+                           .replace(/\\t/g, "\\t")
+                           .replace(/\\b/g, "\\b")
+                           .replace(/\\f/g, "\\f");
+            // remove non-printable and other non-valid JSON chars
+            tmp = tmp.replace(/[\u0000-\u0019]+/g,""); 
+            var recipe = JSON.parse(tmp);
           
-            for (let num = 0; num < restaurant.length; num++){
-            	var res = restaurant[num];
-            	createRestaurant(res.name, res.rating, res.distance.toFixed(3), res.price, num);
-            }
-    	}
-    	
-function createRestaurant(name, star, dist, price, num ){
-            
             var head = document.createElement('h2');
             head.classList.add('text-center');
             var u = document.createElement('u');
             u.innerHTML = "Restaurant";
             head.appendChild(u);
             
+            restList.appendChild(head);
+            
+            var head2 = document.createElement('h2');
+            head2.classList.add('text-center');
+            var u2 = document.createElement('u');
+            u2.innerHTML = "Recipe";
+            head2.appendChild(u2);
+            
+            recList.appendChild(head2);
+            
+            for (let num = 0; num < restaurant.length; num++){
+            	var res = restaurant[num];
+            	createRestaurant(res.name, res.rating, res.distance.toFixed(3), res.price, num);
+            }
+            
+            for (let num = 0; num < recipe.length; num++){
+            	var rec = recipe[num];
+            	createRecipe(rec.recipeName, rec.rating, rec.prepTime, rec.cookTime, rec.price, num);
+            }
+            console.log(recList.innerHTML);
+            
+    	}
+    	
+function createRecipe(name, star, prep, cook, price, num){
+            
             var div1 = document.createElement('div');
+            if(num % 2 == 0){
+            	div1.className = "box";
+            }
+            else{
+            	div1.className = "alt box";
+            }
+            
+            var div2 = document.createElement('div');
+            div2.classList.add("container");
+            
+            var div3 = document.createElement('div');
+            div3.classList.add("row");
+            
+            var div4 = document.createElement('div');
+            div4.classList.add("col-10");
+            
+            var div5 = document.createElement('div');
+            var h1 = document.createElement('h3');
+            h1.style.cssText = 'float: left;margin-right: 20px;';
+            h1.innerHTML = name;
+            var h2 = document.createElement('h4');
+            if(star == 0){
+            	h2.innerHTML = "no rating";
+            }
+            else{
+            	h2.innerHTML = star + "&#9734";
+            }
+            div5.appendChild(h1);
+            div5.appendChild(h2);
+            
+            var div6 = document.createElement('div');
+            div6.classList.add("mt50");
+            var h3 =  document.createElement('h4');
+            h3.innerHTML = "Prep Time: " + prep;
+            h3.style.cssText = "float: left; margin-right: 20px;";
+            var h4 =  document.createElement('h4');
+            h4.innerHTML = "Cook Time: " + cook;
+            var clear = document.createElement('div');
+            clear.cssText = "clear: both";
+            div6.appendChild(h3);
+            div6.appendChild(h4);
+            div6.appendChild(clear);
+          
+            
+            div4.appendChild(div5);
+            div4.appendChild(div6);
+            
+            var div7 = document.createElement('div');
+            div7.className = " col-2 mt50";
+            var dollar = document.createElement('h3');
+            if(price == null){
+            	dollar.innerHTML = "$";
+            }
+            else{
+            	dollar.innerHTML = price;
+            }
+            div7.appendChild(dollar);
+            
+            div3.appendChild(div4);
+            div3.appendChild(div7);
+            
+            div2.appendChild(div3);
+            div1.appendChild(div2);
+            recList.appendChild(div1);
+            
+        }
+        
+        function createRestaurant(name, star, dist, price, num){
+        	
+        	var div1 = document.createElement('div');
             if(num % 2 == 0){
             	div1.className = "alt box";
             }
@@ -241,10 +287,10 @@ function createRestaurant(name, star, dist, price, num ){
             div2.classList.add("container");
             
             var div3 = document.createElement('div');
-            div2.classList.add("row");
+            div3.classList.add("row");
             
             var div4 = document.createElement('div');
-            div2.classList.add("col-10");
+            div4.classList.add("col-10");
             
             var div5 = document.createElement('div');
             var h1 = document.createElement('h3');
@@ -258,12 +304,9 @@ function createRestaurant(name, star, dist, price, num ){
             var div6 = document.createElement('div');
             div6.classList.add("mt50");
             var h3 =  document.createElement('h4');
-            //h3.style.cssText = 'float: left;margin-right: 20px;';
             h3.innerHTML = "Distance: " + dist + " m";
-            //var clear = document.createElement('div');
-            //clear.style.clear = "both";
             div6.appendChild(h3);
-            //div6.appendChild(clear);
+          
             
             div4.appendChild(div5);
             div4.appendChild(div6);
@@ -285,8 +328,7 @@ function createRestaurant(name, star, dist, price, num ){
             div2.appendChild(div3);
             div1.appendChild(div2);
             restList.appendChild(div1);
-            console.log(restList.innerHTML);
-            
+        	
         }
     
     
