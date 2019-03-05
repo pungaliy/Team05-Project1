@@ -31,45 +31,47 @@
     
         function getResults() {
 
-            var q = getUrlVars["query"];
+            var q = '<%= session.getAttribute("query") %>';
             document.getElementById('title').innerHTML = "Search Results for '" + q + "'";
             
             
-            //url = JSON.parse('<%= session.getAttribute("imageURLs") %>');
+            url = JSON.parse('<%= session.getAttribute("imageURLs") %>');
             user = JSON.parse('<%= session.getAttribute("user") %>');
 
-            //console.log(url);
+            console.log(url);
             var min = 0;
             var max = 8;
             var ran = 0
 
             //set random angle to images
             for (let i = 1; i < 11; i++) {
+            	var image = document.getElementById(i);
+            	image.src = url[i - 1];
                 ran = Math.floor(Math.random() * (+max - +min)) + +min;
-                setAngel(ran, i);
+                setAngel(image, ran, i);
             }
             
             
 
         }
 
-        function setAngel(num, id) {
+        function setAngel(image, num, id) {
             if (num == 0) {
-                document.getElementById(id).classList.add("rt-45");
+                image.classList.add("rt-45");
             } else if (num == 1) {
-                document.getElementById(id).classList.add("rt-35");
+                image.classList.add("rt-35");
             } else if (num == 2) {
-                document.getElementById(id).classList.add("rt-25");
+                image.classList.add("rt-25");
             } else if (num == 3) {
-                document.getElementById(id).classList.add("rt-15");
+                image.classList.add("rt-15");
             } else if (num == 4) {
-                document.getElementById(id).classList.add("rt15");
+                image.classList.add("rt15");
             } else if (num == 5) {
-                document.getElementById(id).classList.add("rt25");
+                image.classList.add("rt25");
             } else if (num == 6) {
-                document.getElementById(id).classList.add("rt35");
+                image.classList.add("rt35");
             } else if (num == 7) {
-                document.getElementById(id).classList.add("rt45");
+                image.classList.add("rt45");
             }
 
             return;
@@ -92,18 +94,18 @@
 				    height: 40vh;
 				">
                     <div class="row">
-                        <img src="img/hamburgers.jpg" class="googleImage rt-25" id="1">
-                        <img src="img/hamburgers.jpg" class="googleImage rt-25" id="2">
-                        <img src="img/hamburgers.jpg" class="googleImage rt45" id="3">
-                        <img src="img/hamburgers.jpg" class="googleImage rt-35" id="4">
-                        <img src="img/hamburgers.jpg" class="googleImage rt45" id="5">
+                        <img src="" class="googleImage " id="1">
+                        <img src="" class="googleImage " id="2">
+                        <img src="" class="googleImage " id="3">
+                        <img src="" class="googleImage " id="4">
+                        <img src="" class="googleImage " id="5">
                     </div>
                     <div class="row">
-                        <img src="img/hamburgers.jpg" class="googleImage rt-15" id="6">
-                        <img src="img/hamburgers.jpg" class="googleImage rt35" id="7">
-                        <img src="img/hamburgers.jpg" class="googleImage rt-35" id="8">
-                        <img src="img/hamburgers.jpg" class="googleImage rt35" id="9">
-                        <img src="img/hamburgers.jpg" class="googleImage rt-15" id="10">
+                        <img src="" class="googleImage " id="6">
+                        <img src="" class="googleImage " id="7">
+                        <img src="" class="googleImage " id="8">
+                        <img src="" class="googleImage " id="9">
+                        <img src="" class="googleImage " id="10">
                     </div>
                 </div>
             </div>
@@ -131,7 +133,6 @@
         <div class="row">
             <div class="col-12 text-center">
                 <h1 id="title">
-                    Search Results for 'Hamburger'
                 </h1>
             </div>
         </div>
@@ -199,18 +200,20 @@
             	var rec = recipe[num];
             	createRecipe(rec.recipeName, rec.rating, rec.prepTime, rec.cookTime, rec.price, num);
             }
-            console.log(recList.innerHTML);
+          
             
     	}
+    	
+    	//delete box
     	
 function createRecipe(name, star, prep, cook, price, num){
             
             var div1 = document.createElement('div');
             if(num % 2 == 0){
-            	div1.className = "box";
+            	div1.className = "";
             }
             else{
-            	div1.className = "alt box";
+            	div1.className = "alt ";
             }
             
             var div2 = document.createElement('div');
@@ -220,12 +223,14 @@ function createRecipe(name, star, prep, cook, price, num){
             div3.classList.add("row");
             
             var div4 = document.createElement('div');
-            div4.classList.add("col-10");
+            div4.classList.add("col-11");
             
             var div5 = document.createElement('div');
             var h1 = document.createElement('h3');
-            h1.style.cssText = 'float: left;margin-right: 20px;';
             h1.innerHTML = name;
+            div5.appendChild(h1);
+            
+            var newDiv = document.createElement('div');
             var h2 = document.createElement('h4');
             if(star == 0){
             	h2.innerHTML = "no rating";
@@ -233,11 +238,10 @@ function createRecipe(name, star, prep, cook, price, num){
             else{
             	h2.innerHTML = star + "&#9734";
             }
-            div5.appendChild(h1);
-            div5.appendChild(h2);
+            newDiv.appendChild(h2);
+            
             
             var div6 = document.createElement('div');
-            div6.classList.add("mt50");
             var h3 =  document.createElement('h4');
             h3.innerHTML = "Prep Time: " + prep;
             h3.style.cssText = "float: left; margin-right: 20px;";
@@ -251,10 +255,11 @@ function createRecipe(name, star, prep, cook, price, num){
           
             
             div4.appendChild(div5);
+            div4.appendChild(newDiv);
             div4.appendChild(div6);
             
             var div7 = document.createElement('div');
-            div7.className = " col-2 mt50";
+            div7.className = " col-1 mt50";
             var dollar = document.createElement('h3');
             if(price == null){
             	dollar.innerHTML = "$";
@@ -277,10 +282,10 @@ function createRecipe(name, star, prep, cook, price, num){
         	
         	var div1 = document.createElement('div');
             if(num % 2 == 0){
-            	div1.className = "alt box";
+            	div1.className = "alt ";
             }
             else{
-            	div1.className = "box";
+            	div1.className = "";
             }
             
             var div2 = document.createElement('div');
@@ -294,21 +299,31 @@ function createRecipe(name, star, prep, cook, price, num){
             
             var div5 = document.createElement('div');
             var h1 = document.createElement('h3');
-            h1.style.cssText = 'float: left;margin-right: 20px;';
             h1.innerHTML = name;
-            var h2 = document.createElement('h4');
-            h2.innerHTML = star + "&#9734";
-            div5.appendChild(h1);
-            div5.appendChild(h2);
             
+            
+            div5.appendChild(h1);
+          
+            
+            var newDiv = document.createElement('div');
+            var h2 = document.createElement('h4');
+            if(star == 0){
+            	h2.innerHTML = "no rating";
+            }
+            else{
+            	h2.innerHTML = star + "&#9734";
+            }
+            newDiv.appendChild(h2);
+            
+           
             var div6 = document.createElement('div');
-            div6.classList.add("mt50");
             var h3 =  document.createElement('h4');
             h3.innerHTML = "Distance: " + dist + " m";
             div6.appendChild(h3);
           
             
             div4.appendChild(div5);
+            div4.appendChild(newDiv);
             div4.appendChild(div6);
             
             var div7 = document.createElement('div');

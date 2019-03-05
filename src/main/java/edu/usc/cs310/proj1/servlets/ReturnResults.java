@@ -66,19 +66,20 @@ public class ReturnResults extends HttpServlet {
 		RecipeRequest r = new RecipeRequest(query, numOptions);
 		recipeResults = r.recipeResults;
 		
-//		ImagesRequest ir = new ImagesRequest(query);
-//		imageResults = ir.imageResultURLs;
+		ImagesRequest ir = new ImagesRequest(query);
+		imageResults = ir.imageResultURLs;
 		
 		ObjectMapper mapper = new ObjectMapper();
 	      
 	    String restJson = mapper.writeValueAsString(restaurantResults);
 	    String recipeJson = mapper.writeValueAsString(recipeResults);
-	    //String imageJSON = mapper.writeValueAsString(imageResults);
+	    String imageJSON = mapper.writeValueAsString(imageResults);
 	    String userJSON =  mapper.writeValueAsString(thisUser);
 		
 		session.setAttribute("restaurantResults", restJson);
 		session.setAttribute("recipeResults", recipeJson);
-		//session.setAttribute("imageURLs", imageJSON);
+		session.setAttribute("query", query);
+		session.setAttribute("imageURLs", imageJSON);
 		session.setAttribute("user", userJSON);
 		RequestDispatcher dispatch = request.getRequestDispatcher("/Results.jsp?query=" + query);
 		dispatch.forward(request,  response);
