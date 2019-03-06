@@ -145,10 +145,20 @@ public class RecipeRequest {
 			items = (List<HtmlElement>) page.getByXPath("//ul");
 			
 			if (items.size() > 25) {
-				ingredients.add(items.get(25).asText());
-				ingredients.add(items.get(26).asText());
+				String listIngredientsOne = items.get(25).asText();
+				String listIngredientsTwo = items.get(26).asText();
+				String[] s = listIngredientsOne.split("\n");
+				String[] s2 = listIngredientsTwo.split("\n");
+				for (String o : s) {
+					ingredients.add(o);
+				}
+				for (String y : s2) {
+					ingredients.add(y);
+				}
+				
+				//ingredients.add(items.get(25).asText());
+				//ingredients.add(items.get(26).asText());
 			} else {
-				ingredients.add("");
 				ingredients.add("");
 			}
 			
@@ -156,7 +166,14 @@ public class RecipeRequest {
 			items = (List<HtmlElement>) page.getByXPath("//ol[@class='recipe-print__directions']");
 			//<ol class="recipe-print__directions">
 			for (HtmlElement j : items) {
-				instructions.add(j.asText());
+				String listI = j.asText();
+				String[] s = listI.split("\n");
+				
+				for (String o : s) {
+					instructions.add(o);
+				}
+				
+				//instructions.add(j.asText());
 			}
 			
 			//clean data before adding
