@@ -1,1 +1,25 @@
-<h2 class="text-center"><u>Recipe</u></h2><div class="box"><div class="container"><div class="row"><div class="col-10"><div><h3 style="float: left; margin-right: 20px;">Spaghetti Sauce with Ground Beef</h3><h4>no rating</h4></div><div class="mt50"><h4 style="float: left; margin-right: 20px;">Prep Time: 15 m</h4><h4>Cook Time: 1 h 10 m</h4><div></div></div></div><div class=" col-2 mt50"><h3>$</h3></div></div></div></div><div class="alt box"><div class="container"><div class="row"><div class="col-10"><div><h3 style="float: left; margin-right: 20px;">Ground Beef with Homemade Taco Seasoning Mix</h3><h4>no rating</h4></div><div class="mt50"><h4 style="float: left; margin-right: 20px;">Prep Time: 10 m</h4><h4>Cook Time: 15 m</h4><div></div></div></div><div class=" col-2 mt50"><h3>$</h3></div></div></div></div><div class="box"><div class="container"><div class="row"><div class="col-10"><div><h3 style="float: left; margin-right: 20px;">Ground Beef Vegetable Soup</h3><h4>no rating</h4></div><div class="mt50"><h4 style="float: left; margin-right: 20px;">Prep Time: 20 m</h4><h4>Cook Time: 1 h 15 m</h4><div></div></div></div><div class=" col-2 mt50"><h3>$</h3></div></div></div></div><div class="alt box"><div class="container"><div class="row"><div class="col-10"><div><h3 style="float: left; margin-right: 20px;">Slow Cooker Ground Beef Barbecue</h3><h4>no rating</h4></div><div class="mt50"><h4 style="float: left; margin-right: 20px;">Prep Time: 10 m</h4><h4>Cook Time: 6 h 15 m</h4><div></div></div></div><div class=" col-2 mt50"><h3>$</h3></div></div></div></div><div class="box"><div class="container"><div class="row"><div class="col-10"><div><h3 style="float: left; margin-right: 20px;">Ground Beef Enchiladas</h3><h4>no rating</h4></div><div class="mt50"><h4 style="float: left; margin-right: 20px;">Prep Time: 15 m</h4><h4>Cook Time: 40 m</h4><div></div></div></div><div class=" col-2 mt50"><h3>$</h3></div></div></div></div>
+<div class="row">
+<div class="col-10">
+<!-- -->
+<div class="box">
+RETURN HERE
+</div>
+<!-- -->
+</div>
+<div class="col-2 mt-20">
+<div>
+<button class="btn btn-primary wth">Remove</button>
+</div>
+<div class="mt-10">
+<div class="dropdown">
+<button class="btn btn-primary wth dropdown-toggle" data-toggle="dropdown">
+Move To...
+</button>
+<div class="dropdown-menu">
+<a class="dropdown-item" href="#">To Explore</a>
+<a class="dropdown-item" href="#">Do Not Show</a>
+</div>
+</div>
+</div>
+</div>
+</div>
