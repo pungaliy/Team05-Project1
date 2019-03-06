@@ -24,9 +24,10 @@ public class RecipeRequest {
 	Integer numResults;
 	
 	public RecipeRequest(String query, int options) {
+		
 		searchTerm = query;
 		
-		if (!searchTerm.matches("[a-zA-Z]+")) {
+		if (!searchTerm.matches("[a-zA-Z ]+")) {
 			searchTerm = ".";
 		}
 		
