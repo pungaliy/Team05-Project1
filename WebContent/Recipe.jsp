@@ -60,13 +60,13 @@
                 <div class="mt-20">
                     <button class="btn btn-secondary wth">Back to Results</button>
                 </div>
-                <form action="" method="get">
+                <form action="" onsubmit="return add();" method="get" id="myform">
                     <div class="mt-20">
-                        <select name="list" class="btn bg-secondary wth">
+                        <select name="list" class="btn bg-secondary wth" id="list">
                             <option value="nil" selected>_______________________</option>
-                            <option value="Favorite">Favorite List</option>
-                            <option value="ToExplore">To Explore List</option>
-                            <option value="DoNotShow">Do Not Show List</option>
+                            <option value="favorite">Favorite List</option>
+                            <option value="explore">To Explore List</option>
+                            <option value="not">Do Not Show List</option>
                         </select>
                     </div>
                     <div class="mt-20">
@@ -82,6 +82,37 @@
     
     
         <script>
+        
+      //adding
+    	function add(){
+    		console.log("adding");
+    		var list = document.getElementById("list").value;
+    		if(list == null || list == "nil"){
+    			return false;
+    		}
+    		else{
+    			var xhttp = new XMLHttpRequest();
+    			xhttp.onreadystatechange = function(){
+    				if(this.readyState == 4 && this.status == 200){
+    					console.log("return");
+    					user = JSON.parse('<%= session.getAttribute("user") %>');
+    		            console.log(user);
+    				}
+    			}
+    			xhttp.open("POST", "AddToServlet?id=" + id + "&item=r&list=" + list, true);
+        		xhttp.send();
+    		}
+    		
+    		return false;
+    		
+    	}
+      
+    	var form = document.getElementById("myform"); 
+    	function handleForm(event) { 
+    		event.preventDefault(); 
+    	} 
+    	form.addEventListener('submit', handleForm);
+      
     var link = window.location.href;
 	var url = new URL(link);
 	var id = url.searchParams.get("id");

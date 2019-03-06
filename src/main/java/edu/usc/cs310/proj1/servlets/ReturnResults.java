@@ -50,7 +50,6 @@ public class ReturnResults extends HttpServlet {
 		int numOptions = Integer.parseInt(options);
 		
 		User thisUser = new User();
-        session.setAttribute("User", thisUser);
         //User u = (User) request.getSession().getAttribute("User");
 		
 		
@@ -69,12 +68,22 @@ public class ReturnResults extends HttpServlet {
 		ImagesRequest ir = new ImagesRequest(query);
 		imageResults = ir.imageResultURLs;
 		
+		thisUser.addRestaurant(restaurantResults.get(0), "favorite");
+		
 		ObjectMapper mapper = new ObjectMapper();
+		
+		session.setAttribute("resList", restaurantResults);
+		session.setAttribute("recList", recipeResults);
+		session.setAttribute("imgList", imageResults);
+		session.setAttribute("userObj", thisUser);
 	      
 	    String restJson = mapper.writeValueAsString(restaurantResults);
 	    String recipeJson = mapper.writeValueAsString(recipeResults);
 	    String imageJSON = mapper.writeValueAsString(imageResults);
+	   
 	    String userJSON =  mapper.writeValueAsString(thisUser);
+	    
+	    
 		
 		session.setAttribute("restaurantResults", restJson);
 		session.setAttribute("recipeResults", recipeJson);

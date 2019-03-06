@@ -22,6 +22,14 @@
 
     <!-- style  -->
     <link href="./css/main.css?version=5" rel="stylesheet">
+    
+    <script>
+    	console.log('<%= session.getAttribute("favRes") %>');
+	    var restaurant = JSON.parse('<%= session.getAttribute("favRes") %>');
+	    console.log(restaurant);
+    
+    
+    </script>
 
 
 

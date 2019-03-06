@@ -111,13 +111,13 @@
             </div>
             <!-- navbar -->
             <div class="col-3" style="padding-top: 50px;">
-                <form action="" method="get">
+                <form action="/ToList"  method="get">
                     <div class="mt-20">
-                        <select name="list" class="btn bg-secondary wth">
+                        <select name="list" class="btn bg-secondary wth" id="list">
                             <option value="nil" selected>_______________________</option>
-                            <option value="Favorite">Favorite List</option>
-                            <option value="ToExplore">To Explore List</option>
-                            <option value="DoNotShow">Do Not Show List</option>
+                            <option value="favorite">Favorite List</option>
+                            <option value="explore">To Explore List</option>
+                            <option value="not">Do Not Show List</option>
                         </select>
                     </div>
                     <div class="mt-20">

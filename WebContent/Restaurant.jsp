@@ -54,18 +54,19 @@
 
             <div col="col-2">
                 <div class="mt-20">
-                    <button class="btn btn-secondary wth">Printable View</button>
+                    <button class="btn btn-secondary wth" onclick="print();">Printable View</button>
                 </div>
                 <div class="mt-20">
-                    <button class="btn btn-secondary wth">Back to Results</button>
+                	<!-- might need to change this -->
+                    <a href="javascript:history.go(-1)"><button class="btn btn-secondary wth">Back to Results</button></a>
                 </div>
-                <form action="" method="get">
+                <form action="" onsubmit="return add();" method="get">
                     <div class="mt-20">
-                        <select name="list" class="btn bg-secondary wth">
+                        <select name="list" class="btn bg-secondary wth" id="list">
                             <option value="nil" selected>_______________________</option>
-                            <option value="Favorite">Favorite List</option>
-                            <option value="ToExplore">To Explore List</option>
-                            <option value="DoNotShow">Do Not Show List</option>
+                            <option value="favorite">Favorite List</option>
+                            <option value="explore">To Explore List</option>
+                            <option value="not">Do Not Show List</option>
                         </select>
                     </div>
                     <div class="mt-20">
@@ -80,27 +81,71 @@
     </div>
     
     <script>
+    
+    var link = window.location.href;
+	var url = new URL(link);
+	var id = url.searchParams.get("id");
+	console.log(id)
 	
-		var link = window.location.href;
-		var url = new URL(link);
-		var id = url.searchParams.get("id");
-		console.log(id)
-		
-		var restaurant = JSON.parse('<%= session.getAttribute("restaurantResults") %>');
-		var current;
-		for(var i = 0; i < restaurant.length; i++){
-			if(restaurant[i].uniqueID == id){
-				current = restaurant[i];
-			}
+	var restaurant = JSON.parse('<%= session.getAttribute("restaurantResults") %>');
+	var current;
+	for(var i = 0; i < restaurant.length; i++){
+		if(restaurant[i].uniqueID == id){
+			current = restaurant[i];
 		}
-		console.log(current);
+	}
+	console.log(current);
+	
+	document.getElementById('title').innerHTML = current.name;
+	document.getElementById('phone').innerHTML = current.phoneNumber;
+	document.getElementById('link').href = current.websiteLink;
+	document.getElementById('link').innerHTML = current.websiteLink;
+	document.getElementById('address').href = current.googleMapsLink;
+	document.getElementById('address').innerHTML = current.address;
+    
+    	//printable view
+   		function print(){
+   			window.print();
+   		}
+    	
+    	//adding
+    	function add(){
+    		console.log("adding");
+    		var list = document.getElementById("list").value;
+    		if(list == null || list == "nil"){
+    			return false;
+    		}
+    		else{
+    			var xhttp = new XMLHttpRequest();
+    			xhttp.onreadystatechange = function(){
+    				if(this.readyState == 4 && this.status == 200){
+    					console.log("return");
+    					user = JSON.parse('<%= session.getAttribute("user") %>');
+    					var check = '<%= session.getAttribute("check") %>';
+    					var ina = '<%= session.getAttribute("in") %>';
+    					var list = '<%= session.getAttribute("list") %>';
+    					var a = '<%= session.getAttribute("a") %>';
+    					console.log('<%= session.getAttribute("id") %>');
+    					console.log('<%= session.getAttribute("item") %>');
+    					console.log('<%= session.getAttribute("list") %>');
+    					
+    					console.log(a);
+    					console.log(list);
+    					console.log(ina);
+    					console.log(check);
+    		            console.log(user);
+    				}
+    			}
+    			xhttp.open("POST", "AddToServlet?id=" + id + "&item=Restaurant&list=" + list, true);
+        		xhttp.send();
+    		}
+    		
+    		return false;
+    		
+    	}
+
+	
 		
-		document.getElementById('title').innerHTML = current.name;
-		document.getElementById('phone').innerHTML = current.phoneNumber;
-		document.getElementById('link').href = current.websiteLink;
-		document.getElementById('link').innerHTML = current.websiteLink;
-		document.getElementById('address').href = current.googleMapsLink;
-		document.getElementById('address').innerHTML = current.address;
 
 	
 	</script>
