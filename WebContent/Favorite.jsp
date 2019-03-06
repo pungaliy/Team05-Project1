@@ -72,7 +72,7 @@
     
     <script>
     
-    function mv(list2, itemType, name){
+    function mv(list2, itemType, index){
     	
     	console.log("moving");
     	var xhttp = new XMLHttpRequest();
@@ -82,16 +82,17 @@
 				var user = JSON.parse(removeToken('<%= session.getAttribute("user") %>'));
 				
 	            console.log(user);
+	            location.reload();
 			}
 		}
-		xhttp.open("POST", "MoveListServlet?list1=" + "favorite" + "&list2=" + list2 + "&itemType=" + itemType + "&name=" + name, true);
+		xhttp.open("POST", "MoveListServlet?list1=favorite&list2=" + list2 + "&itemType=" + itemType + "&index=" + index, true);
 		xhttp.send();
     	
 		return false;
     
     }
     
-	function rm(itemType, name){
+	function rm(itemType, index){
     	
     	console.log("remove");
     	var xhttp = new XMLHttpRequest();
@@ -99,12 +100,20 @@
 			if(this.readyState == 4 && this.status == 200){
 				console.log("return");
 				var user = JSON.parse(removeToken('<%= session.getAttribute("user") %>'));
-				var check = '<%= session.getAttribute("user") %>';
+				var check = '<%= session.getAttribute("check") %>';
+				var type = '<%= session.getAttribute("type") %>';
+				var list = '<%= session.getAttribute("list") %>';
+				var index = '<%= session.getAttribute("index") %>';
+				console.log(type);
+				console.log(list);
+				console.log(index);
 				console.log(check);
 	            console.log(user);
+	            location.reload();
 			}
 		}
-		xhttp.open("POST", "RemoveListServlet?list1=" + "favorite" + "&itemType=" + itemType + "&name=" + name, true);
+		//changethis
+		xhttp.open("POST", "RemoveListServlet?list=favorite&itemType=" + itemType + "&index=" + index, true);
 		xhttp.send();
     	
 		return false;
@@ -146,10 +155,10 @@
 	    	    "<div class=\"row\"><div class=\"col-10\"><!-- --><div class=\"" + alt + "\">"
 	    	    +
 	    	    createRestaurant(res.name, res.rating, res.distance.toFixed(3), res.price, res.uniqueID, num)
-	    	    + "</div><!-- --></div><div class=\"col-2 mt-20\"><div><button class=\"btn btn-primary wth\" onclick=\"rm(\'restaurant\',\'"+res.name+"\')\">Remove</button>"
+	    	    + "</div><!-- --></div><div class=\"col-2 mt-20\"><div><button class=\"btn btn-primary wth\" onclick=\"rm(\'restaurant\',\'"+ i +"\')\">Remove</button>"
     	    + "</div><div class=\"mt-10\"><div class=\"dropdown\"><button class=\"btn btn-primary wth dropdown-toggle\" data-toggle=\"dropdown\">"
-			+ "Move To...</button><div class=\"dropdown-menu\"><button class=\"dropdown-item\" onclick=\"mv(\'explore\',\'restaurant\',\'"+ res.name +"\');\">To Explore</button>"
-			+ "<button class=\"dropdown-item\" onclick=\"mv(\'not\',\'restaurant\',\'"+ res.name +"\');\"> Do Not Show </button></div></div></div></div></div>";
+			+ "Move To...</button><div class=\"dropdown-menu\"><button class=\"dropdown-item\" onclick=\"mv(\'explore\',\'restaurant\',\'"+ i +"\');\">To Explore</button>"
+			+ "<button class=\"dropdown-item\" onclick=\"mv(\'not\',\'restaurant\',\'"+ i +"\');\"> Do Not Show </button></div></div></div></div></div>";
 				num += 1;
 	    }
 	    
@@ -163,10 +172,10 @@
 	    	}
 	    	li.innerHTML += "<div class=\"row\"><div class=\"col-10\"><!-- --><div class=\"" + alt + "\">"
     	    + createRecipe(rec.recipeName, rec.rating, rec.prepTime, rec.cookTime, rec.price, num)
-    	    + "</div><!-- --></div><div class=\"col-2 mt-20\"><div><button class=\"btn btn-primary wth\">Remove</button>"
+    	    + "</div><!-- --></div><div class=\"col-2 mt-20\"><div><button class=\"btn btn-primary wth\" onclick=\"rm(\'recipe\',\'"+ i +"\')\">Remove</button>"
     	    + "</div><div class=\"mt-10\"><div class=\"dropdown\"><button class=\"btn btn-primary wth dropdown-toggle\" data-toggle=\"dropdown\">"
-			+ "Move To...</button><div class=\"dropdown-menu\"><a class=\"dropdown-item\" href=\"ToExplore.jsp\">To Explore</a>"
-			+ "<a class=\"dropdown-item\" href=\"DoNotShow.jsp\"> " + "Do Not Show" + " </a></div></div></div></div></div>";
+			+ "Move To...</button><div class=\"dropdown-menu\"><button class=\"dropdown-item\" onclick=\"mv(\'explore\',\'recipe\',\'"+ i +"\');\">To Explore</button>"
+			+ "<button class=\"dropdown-item\" onclick=\"mv(\'not\',\'recipe\',\'"+ i +"\');\"> Do Not Show</button></div></div></div></div></div>";
 			num += 1;
 	    }
 	    

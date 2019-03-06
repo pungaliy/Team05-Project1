@@ -80,7 +80,7 @@ public class ReturnResults extends HttpServlet {
 		imageResults.add("#");
 		
 		thisUser.addRestaurant(restaurantResults.get(0), "favorite");
-		//thisUser.addRecipe(recipeResults.get(0), "favorite");
+		thisUser.addRecipe(recipeResults.get(0), "favorite");
 		
 		ObjectMapper mapper = new ObjectMapper();
 		

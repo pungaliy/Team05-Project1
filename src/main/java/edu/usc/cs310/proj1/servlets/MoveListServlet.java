@@ -50,15 +50,15 @@ public class MoveListServlet extends HttpServlet {
 		String list1 = request.getParameter("list1");
 		String list2 = request.getParameter("list2");
 		String type = request.getParameter("itemType");
-		String name = request.getParameter("name");
+		int index = Integer.parseInt(request.getParameter("index"));
 		
         User u = (User) request.getSession().getAttribute("userObj");
         
         if(type.equals("restaurant")) {
-        	u.moveRestaurant(list1, list2, name);
+        	u.moveRestaurant(list1, list2, index);
         }
         else if(type.equals("recipe")) {
-        	u.moveRecipe(list1, list2, name);
+        	u.moveRecipe(list1, list2, index);
         }
         
         session.setAttribute("userObj", u);

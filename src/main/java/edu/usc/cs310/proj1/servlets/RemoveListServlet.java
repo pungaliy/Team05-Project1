@@ -42,16 +42,21 @@ public class RemoveListServlet extends HttpServlet {
 				
 		String list1 = request.getParameter("list");
 		String type = request.getParameter("itemType");
-		String name = request.getParameter("name");
+		session.setAttribute("type", type);
+		session.setAttribute("list", list1);
 		
-        User thisUser = (User) request.getSession().getAttribute("userObj");
+		int index = Integer.parseInt(request.getParameter("index"));
+		session.setAttribute("index", index);
+		
+        User thisUser = (User) session.getAttribute("userObj");
         
         if(type.equals("restaurant")) {
         	session.setAttribute("check", "a");
-        	thisUser.removeRestaurant(list1, name);
+        	thisUser.removeRestaurant(list1, index);
         }
         else if(type.equals("recipe")) {
-        	thisUser.removeRecipe(list1, name);
+        	session.setAttribute("check", "b");
+        	thisUser.removeRecipe(list1, index);
         }
 
 		session.setAttribute("userObj", thisUser);
