@@ -54,9 +54,23 @@ public class RecipeRequest {
 		  e.printStackTrace();
 		}
 		
+		//we want to first check if <article class="grid-col--fixed-tiles hub-card"> exists
+		
+		List<HtmlElement> items = (List<HtmlElement>) page.getByXPath("//article[@class='grid-col--fixed-tiles hub-card']");
+		
+		if (items.size() > 0) {
+			HtmlElement item = items.get(0);
+			HtmlAnchor itemAnchor = ((HtmlAnchor)item.getFirstByXPath(".//a"));
+			try {
+				page = client.getPage("https://allrecipes.com" + itemAnchor.getHrefAttribute());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
 		//from this page, we need to pull the following values
 		
-		List<HtmlElement> items = (List<HtmlElement>) page.getByXPath("//article[@class='fixed-recipe-card']"); 
+		items = (List<HtmlElement>) page.getByXPath("//article[@class='fixed-recipe-card']"); 
 		
 		if (items.size() < numResults) {
 			numResults = items.size();
@@ -187,6 +201,8 @@ public class RecipeRequest {
 				f = f.replaceAll("\"","\\\\\"");
 			}
 			
+			recipeName = recipeName.replaceAll("\'", "\\\\'");
+			recipeName = recipeName.replaceAll("\"","\\\\\"");
 			
 			recipeResults.add(new Recipe(recipeName, imageLink, prepTime, cookTime, ingredients, instructions));
 		}
