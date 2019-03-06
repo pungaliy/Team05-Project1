@@ -25,6 +25,9 @@
     <link href="./css/main.css?version=5" rel="stylesheet">
 
     <script>
+    
+    	var enter = '<%= session.getAttribute("enter") %>';
+    	console.log(enter);
     	
     	var url;
     	var user;
@@ -140,7 +143,7 @@
                 </form>
 
                 <div class="mt-20">
-                    <button class="btn btn-secondary wth">Return to Search</button>
+                    <button class="btn btn-secondary wth" onclick="toSearch();">Return to Search</button>
                 </div>
             </div>
         </div>

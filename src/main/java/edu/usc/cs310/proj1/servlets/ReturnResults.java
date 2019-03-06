@@ -51,57 +51,60 @@ public class ReturnResults extends HttpServlet {
 		
 		User thisUser = new User();
         //User u = (User) request.getSession().getAttribute("User");
+		session.setAttribute("enter", "out");
 		
+		if(session.getAttribute("query") == null || !session.getAttribute("query").equals(query)) {
+			session.setAttribute("enter", "in");
 		
-		ArrayList<Restaurant> restaurantResults = new ArrayList<Restaurant>();
-		ArrayList<Recipe> recipeResults = new ArrayList<Recipe>();
-		ArrayList<String> imageResults = new ArrayList<String>();
+			ArrayList<Restaurant> restaurantResults = new ArrayList<Restaurant>();
+			ArrayList<Recipe> recipeResults = new ArrayList<Recipe>();
+			ArrayList<String> imageResults = new ArrayList<String>();
+			
+			thisUser.query(query, numOptions, restaurantResults, recipeResults, imageResults);
+			
+			YelpRequest y = new YelpRequest(query, numOptions);
+			restaurantResults = y.restaurantResults;
+			
+			RecipeRequest r = new RecipeRequest(query, numOptions);
+			recipeResults = r.recipeResults;
+			
+			//ImagesRequest ir = new ImagesRequest(query);
+			//imageResults = ir.imageResultURLs;
+			
+			imageResults.add("#");
+			imageResults.add("#");
+			imageResults.add("#");
+			imageResults.add("#");
+			imageResults.add("#");
+			imageResults.add("#");
+			imageResults.add("#");
+			imageResults.add("#");
+			imageResults.add("#");
+			imageResults.add("#");
+			
+			thisUser.addRestaurant(restaurantResults.get(0), "favorite");
+			thisUser.addRecipe(recipeResults.get(0), "favorite");
+			
+			ObjectMapper mapper = new ObjectMapper();
+			
+			session.setAttribute("resList", restaurantResults);
+			session.setAttribute("recList", recipeResults);
+			session.setAttribute("imgList", imageResults);
+			session.setAttribute("userObj", thisUser);
+		      
+		    String restJson = mapper.writeValueAsString(restaurantResults);
+		    String recipeJson = mapper.writeValueAsString(recipeResults);
+		    String imageJSON = mapper.writeValueAsString(imageResults);
+		   
+		    String userJSON =  mapper.writeValueAsString(thisUser);
+			
+			session.setAttribute("restaurantResults", restJson);
+			session.setAttribute("recipeResults", recipeJson);
+			session.setAttribute("query", query);
+			session.setAttribute("imageURLs", imageJSON);
+			session.setAttribute("user", userJSON);
+		}
 		
-		thisUser.query(query, numOptions, restaurantResults, recipeResults, imageResults);
-		
-		YelpRequest y = new YelpRequest(query, numOptions);
-		restaurantResults = y.restaurantResults;
-		
-		RecipeRequest r = new RecipeRequest(query, numOptions);
-		recipeResults = r.recipeResults;
-		
-		//ImagesRequest ir = new ImagesRequest(query);
-		//imageResults = ir.imageResultURLs;
-		
-		imageResults.add("#");
-		imageResults.add("#");
-		imageResults.add("#");
-		imageResults.add("#");
-		imageResults.add("#");
-		imageResults.add("#");
-		imageResults.add("#");
-		imageResults.add("#");
-		imageResults.add("#");
-		imageResults.add("#");
-		
-		thisUser.addRestaurant(restaurantResults.get(0), "favorite");
-		thisUser.addRecipe(recipeResults.get(0), "favorite");
-		
-		ObjectMapper mapper = new ObjectMapper();
-		
-		session.setAttribute("resList", restaurantResults);
-		session.setAttribute("recList", recipeResults);
-		session.setAttribute("imgList", imageResults);
-		session.setAttribute("userObj", thisUser);
-	      
-	    String restJson = mapper.writeValueAsString(restaurantResults);
-	    String recipeJson = mapper.writeValueAsString(recipeResults);
-	    String imageJSON = mapper.writeValueAsString(imageResults);
-	   
-	    String userJSON =  mapper.writeValueAsString(thisUser);
-	    
-	    
-		
-		session.setAttribute("restaurantResults", restJson);
-		session.setAttribute("recipeResults", recipeJson);
-		session.setAttribute("query", query);
-		session.setAttribute("imageURLs", imageJSON);
-		session.setAttribute("user", userJSON);
 		RequestDispatcher dispatch = request.getRequestDispatcher("/Results.jsp?query=" + query);
 		dispatch.forward(request,  response);
 	}
