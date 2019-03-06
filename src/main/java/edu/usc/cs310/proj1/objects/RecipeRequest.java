@@ -25,7 +25,13 @@ public class RecipeRequest {
 	
 	public RecipeRequest(String query, int options) {
 		searchTerm = query;
+		
+		if (!searchTerm.matches("[a-zA-Z]+")) {
+			searchTerm = ".";
+		}
+		
 		numResults = options;
+		
 		this.request();
 	}
 	
@@ -52,6 +58,10 @@ public class RecipeRequest {
 		
 		List<HtmlElement> items = (List<HtmlElement>) page.getByXPath("//article[@class='fixed-recipe-card']"); 
 		
+		if (items.size() < numResults) {
+			numResults = items.size();
+		}
+		
 		for (int i = 0; i < numResults; i++) {
 			
 			HtmlElement item = items.get(i);
@@ -71,8 +81,6 @@ public class RecipeRequest {
 			
 			recipeURLs.add(itemAnchor.getHrefAttribute() + "print");
 		}
-		
-		
 		
 		//from this page, we need to pull the following values
 	
@@ -111,22 +119,38 @@ public class RecipeRequest {
 			
 			//prep time
 			items = (List<HtmlElement>) page.getByXPath("//time");
-			prepTime = items.get(0).asText();
-			//cook time
-			cookTime = items.get(1).asText();
+			
+			if (items.size() > 1) {
+				prepTime = items.get(0).asText();
+				//cook time
+				cookTime = items.get(1).asText();
+			} else {
+				prepTime = "";
+				cookTime = "";
+			}
 			
 			//image URL
 			
 			//img class="recipe-print__recipe-img"
 			items = (List<HtmlElement>) page.getByXPath("//img[@class='recipe-print__recipe-img']");
-			imageLink = items.get(0).getAttribute("src");
+			
+			if (items.size() > 0) {
+				imageLink = items.get(0).getAttribute("src");
+			} else {
+				imageLink = "";
+			}
 			
 			
 			//ingredients
 			items = (List<HtmlElement>) page.getByXPath("//ul");
 			
-			ingredients.add(items.get(25).asText());
-			ingredients.add(items.get(26).asText());
+			if (items.size() > 25) {
+				ingredients.add(items.get(25).asText());
+				ingredients.add(items.get(26).asText());
+			} else {
+				ingredients.add("");
+				ingredients.add("");
+			}
 			
 			//instructions
 			items = (List<HtmlElement>) page.getByXPath("//ol[@class='recipe-print__directions']");
@@ -134,6 +158,18 @@ public class RecipeRequest {
 			for (HtmlElement j : items) {
 				instructions.add(j.asText());
 			}
+			
+			//clean data before adding
+			for (String f : ingredients) {
+				f = f.replaceAll("\'", "\\\\'");
+				f = f.replaceAll("\"","\\\\\"");
+			}
+			
+			for (String f : instructions) {
+				f = f.replaceAll("\'", "\\\\'");
+				f = f.replaceAll("\"","\\\\\"");
+			}
+			
 			
 			recipeResults.add(new Recipe(recipeName, imageLink, prepTime, cookTime, ingredients, instructions));
 		}
@@ -150,8 +186,6 @@ public class RecipeRequest {
 		int options = scan.nextInt();
 		scan.nextLine();
 		RecipeRequest y = new RecipeRequest(query, options);
-		
-		y.request();
 		
 		System.out.println("");
 		
