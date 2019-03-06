@@ -95,7 +95,19 @@
     			xhttp.onreadystatechange = function(){
     				if(this.readyState == 4 && this.status == 200){
     					console.log("return");
-    					user = JSON.parse('<%= session.getAttribute("user") %>');
+    					var tmp = '<%= session.getAttribute("user") %>';
+    		            // preserve newlines, etc - use valid JSON
+    		            tmp = tmp.replace(/\\n/g, "\\n")  
+    		                           .replace(/\\'/g, "\\'")
+    		                           .replace(/\\"/g, '\\"')
+    		                           .replace(/\\&/g, "\\&")
+    		                           .replace(/\\r/g, "\\r")
+    		                           .replace(/\\t/g, "\\t")
+    		                           .replace(/\\b/g, "\\b")
+    		                           .replace(/\\f/g, "\\f");
+    		            // remove non-printable and other non-valid JSON chars
+    		            tmp = tmp.replace(/[\u0000-\u0019]+/g,""); 
+    		            var user = JSON.parse(tmp);
     		            console.log(user);
     				}
     			}
@@ -162,6 +174,7 @@
 		instr.appendChild(li);
 	}
 	
+
     
     </script>
 

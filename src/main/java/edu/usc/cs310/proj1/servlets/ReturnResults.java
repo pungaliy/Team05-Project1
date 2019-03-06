@@ -68,7 +68,7 @@ public class ReturnResults extends HttpServlet {
 		ImagesRequest ir = new ImagesRequest(query);
 		imageResults = ir.imageResultURLs;
 		
-		thisUser.addRestaurant(restaurantResults.get(0), "favorite");
+		//thisUser.addRestaurant(restaurantResults.get(0), "favorite");
 		
 		ObjectMapper mapper = new ObjectMapper();
 		

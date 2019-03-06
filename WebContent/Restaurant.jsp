@@ -120,19 +120,8 @@
     			xhttp.onreadystatechange = function(){
     				if(this.readyState == 4 && this.status == 200){
     					console.log("return");
-    					user = JSON.parse('<%= session.getAttribute("user") %>');
-    					var check = '<%= session.getAttribute("check") %>';
-    					var ina = '<%= session.getAttribute("in") %>';
-    					var list = '<%= session.getAttribute("list") %>';
-    					var a = '<%= session.getAttribute("a") %>';
-    					console.log('<%= session.getAttribute("id") %>');
-    					console.log('<%= session.getAttribute("item") %>');
-    					console.log('<%= session.getAttribute("list") %>');
+    					var user = JSON.parse(removeToken('<%= session.getAttribute("user") %>'));
     					
-    					console.log(a);
-    					console.log(list);
-    					console.log(ina);
-    					console.log(check);
     		            console.log(user);
     				}
     			}
@@ -144,9 +133,21 @@
     		
     	}
 
+    	function removeToken(tmp){
+    		tmp = tmp.replace(/\\n/g, "\\n")  
+            .replace(/\\'/g, "\\'")
+            .replace(/\\"/g, '\\"')
+            .replace(/\\&/g, "\\&")
+            .replace(/\\r/g, "\\r")
+            .replace(/\\t/g, "\\t")
+            .replace(/\\b/g, "\\b")
+            .replace(/\\f/g, "\\f");
+			// remove non-printable and other non-valid JSON chars
+			return tmp.replace(/[\u0000-\u0019]+/g,""); 
+    	}
 	
 		
-
+	
 	
 	</script>
 
