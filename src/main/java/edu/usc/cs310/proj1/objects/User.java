@@ -66,15 +66,15 @@ public class User {
 	
 	
 	public boolean moveRecipe(String firstList, String endList, String name) {
-		if(firstList == "favorite") {
+		if(firstList.equals("favorite")) {
 			for(Recipe r: favoriteRecipe) {
-				if(r.recipeName == name) {
+				if(r.recipeName.equals(name)) {
 					r.isFavorite = false;
-					if(endList == "explore") {
+					if(endList.equals("explore")) {
 						exploreRecipe.add(r);
 						r.isToExplore = true;
 					}
-					else if(endList == "not") {
+					else if(endList.equals("not")) {
 						notRecipe.add(r);
 						r.isDoNotExplore = true;
 					}
@@ -83,15 +83,15 @@ public class User {
 				}
 			}
 		}
-		else if(firstList == "explore") {
+		else if(firstList.equals("explore")) {
 			for(Recipe r: exploreRecipe) {
-				if(r.recipeName == name) {
+				if(r.recipeName.equals(name)) {
 					r.isToExplore = false;
-					if(endList == "favorite") {
+					if(endList.equals("favorite")) {
 						favoriteRecipe.add(r);
 						r.isFavorite = true;
 					}
-					else if(endList == "not") {
+					else if(endList.equals("not")) {
 						notRecipe.add(r);
 						r.isDoNotExplore = true;
 					}
@@ -100,15 +100,15 @@ public class User {
 				}
 			}
 		}
-		else if(firstList == "not") {
+		else if(firstList.equals("not")) {
 			for(Recipe r: notRecipe) {
-				if(r.recipeName == name) {
+				if(r.recipeName.equals(name)) {
 					r.isDoNotExplore = false;
-					if(endList == "explore") {
+					if(endList.equals("explore")) {
 						exploreRecipe.add(r);
 						r.isToExplore = true;
 					}
-					else if(endList == "favorite") {
+					else if(endList.equals("favorite")) {
 						favoriteRecipe.add(r);
 						r.isFavorite = true;
 					}
@@ -121,15 +121,15 @@ public class User {
 	}
 	
 	public boolean moveRestaurant(String firstList, String endList, String name) {
-		if(firstList == "favorite") {
+		if(firstList.equals("favorite")) {
 			for(Restaurant r: favoriteRestaurant) {
-				if(r.thisName == name) {
+				if(r.thisName.equals(name)) {
 					r.isFavorite = false;
-					if(endList == "explore") {
+					if(endList.equals("explore")) {
 						exploreRestaurant.add(r);
 						r.isToExplore = true;
 					}
-					else if(endList == "not") {
+					else if(endList.equals("not")) {
 						notRestaurant.add(r);
 						r.isDoNotExplore = true;
 					}
@@ -138,15 +138,15 @@ public class User {
 				}
 			}
 		}
-		else if(firstList == "explore") {
+		else if(firstList.equals("explore")) {
 			for(Restaurant r: exploreRestaurant) {
-				if(r.thisName == name) {
+				if(r.thisName.equals(name)) {
 					r.isToExplore = false;
-					if(endList == "favorite") {
+					if(endList.equals("favorite")) {
 						favoriteRestaurant.add(r);
 						r.isFavorite = true;
 					}
-					else if(endList == "not") {
+					else if(endList.equals("not")) {
 						notRestaurant.add(r);
 						r.isDoNotExplore = true;
 					}
@@ -155,15 +155,15 @@ public class User {
 				}
 			}
 		}
-		else if(firstList == "not") {
+		else if(firstList.equals("not")) {
 			for(Restaurant r: notRestaurant) {
-				if(r.thisName == name) {
+				if(r.thisName.equals(name)) {
 					r.isDoNotExplore = false;
-					if(endList == "explore") {
+					if(endList.equals("explore")) {
 						exploreRestaurant.add(r);
 						r.isToExplore = true;
 					}
-					else if(endList == "favorite") {
+					else if(endList.equals("favorite")) {
 						favoriteRestaurant.add(r);
 						r.isFavorite = true;
 					}
@@ -173,6 +173,60 @@ public class User {
 			}
 		}
 		return false;
+	}
+	
+	public void removeRestaurant(String list, String name) {
+		if(list.equals("favorite")) {
+			for(Restaurant r: favoriteRestaurant) {
+				if(r.thisName.equals(name)) {
+					r.isFavorite = false;
+					favoriteRestaurant.remove(r);
+				}
+			}
+		}
+		else if(list.equals("explore")) {
+			for(Restaurant r: exploreRestaurant) {
+				if(r.thisName.equals(name)) {
+					r.isToExplore = false;
+					exploreRestaurant.remove(r);
+				}
+			}
+		}
+		else if(list.equals("not")) {
+			for(Restaurant r: notRestaurant) {
+				if(r.thisName.equals(name)) {
+					r.isDoNotExplore = false;
+					notRestaurant.remove(r);
+				}
+			}
+		}
+	}
+	
+	public void removeRecipe(String list, String name) {
+		if(list.equals("favorite")) {
+			for(Recipe r: favoriteRecipe) {
+				if(r.recipeName.equals(name)) {
+					r.isFavorite = false;
+					favoriteRecipe.remove(r);
+				}
+			}
+		}
+		else if(list.equals("explore")) {
+			for(Recipe r: exploreRecipe) {
+				if(r.recipeName.equals(name)) {
+					r.isToExplore = false;
+					exploreRestaurant.remove(r);
+				}
+			}
+		}
+		else if(list.equals("not")) {
+			for(Recipe r: notRecipe) {
+				if(r.recipeName.equals(name)) {
+					r.isDoNotExplore = false;
+					notRestaurant.remove(r);
+				}
+			}
+		}
 	}
 	
 
