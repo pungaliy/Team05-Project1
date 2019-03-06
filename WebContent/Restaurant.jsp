@@ -18,6 +18,13 @@
 
     <!-- style  -->
     <link href="./css/main.css?version=5" rel="stylesheet">
+    
+    <script>
+    	function toResult(){
+    		window.location.href = "/Results.jsp";
+    	}
+    	
+    </script>
 
 
 </head>
@@ -58,7 +65,7 @@
                 </div>
                 <div class="mt-20">
                 	<!-- might need to change this -->
-                    <a href="javascript:history.go(-1)"><button class="btn btn-secondary wth">Back to Results</button></a>
+                    <a href="javascript:history.go(-1)"><button class="btn btn-secondary wth" onclick="toResult();">Back to Results</button></a>
                 </div>
                 <form action="" onsubmit="return add();" method="get">
                     <div class="mt-20">

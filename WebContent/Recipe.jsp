@@ -19,6 +19,12 @@
 
     <!-- style  -->
     <link href="./css/main.css?version=5" rel="stylesheet">
+    
+    <script>
+    	function toResult(){
+    		window.location.href = "/Results.jsp";
+    	}
+    </script>
    
 
 </head>
@@ -58,7 +64,7 @@
                     <button class="btn btn-secondary wth">Printable View</button>
                 </div>
                 <div class="mt-20">
-                    <button class="btn btn-secondary wth">Back to Results</button>
+                    <button class="btn btn-secondary wth" onclick="toResult();">Back to Results</button>
                 </div>
                 <form action="" onsubmit="return add();" method="get" id="myform">
                     <div class="mt-20">

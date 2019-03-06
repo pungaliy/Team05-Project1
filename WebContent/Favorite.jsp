@@ -23,6 +23,16 @@
     <!-- style  -->
     <link href="./css/main.css?version=5" rel="stylesheet">
     
+    <script>
+    	function toSearch(){
+    		window.location.href = "/Search.html";
+    	}
+    	function toResult(){
+    		window.location.href = "/Results.jsp";
+    	}
+    
+    
+    </script>
     
 
 
@@ -60,10 +70,10 @@
                     </div>
                 </form>
                 <div class="mt-20">
-                    <button class="btn btn-secondary wth">Back to Results</button>
+                    <button class="btn btn-secondary wth" onclick="toResult();">Back to Results</button>
                 </div>
                 <div class="mt-20">
-                    <button class="btn btn-secondary wth">Return to Search</button>
+                    <button class="btn btn-secondary wth" onclick="toSearch();">Return to Search</button>
                 </div>
 
             </div>
