@@ -93,6 +93,10 @@
 
             return;
         }
+        
+        function toSearch(){
+        	window.location.href = "/Search.html";
+        }
 	    
 	
 

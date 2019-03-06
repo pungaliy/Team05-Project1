@@ -53,6 +53,7 @@ public class ReturnResults extends HttpServlet {
         //User u = (User) request.getSession().getAttribute("User");
 		session.setAttribute("enter", "out");
 		
+		//check if already search
 		if(session.getAttribute("query") == null || !session.getAttribute("query").equals(query)) {
 			session.setAttribute("enter", "in");
 		
