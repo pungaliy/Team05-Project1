@@ -47,6 +47,7 @@ public class RemoveListServlet extends HttpServlet {
         User thisUser = (User) request.getSession().getAttribute("userObj");
         
         if(type.equals("restaurant")) {
+        	session.setAttribute("check", "a");
         	thisUser.removeRestaurant(list1, name);
         }
         else if(type.equals("recipe")) {

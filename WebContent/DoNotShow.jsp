@@ -52,13 +52,13 @@
                 <!-- end of content-->
             </div>
             <div col="col-2">
-                <form action="" method="get">
+                <form action="/ToList" method="get">
                     <div class="mt-20">
                         <select name="list" class="btn bg-secondary wth">
                             <option value="nil" selected>_______________________</option>
-                            <option value="Favorite">Favorite List</option>
-                            <option value="ToExplore">To Explore List</option>
-                            <option value="DoNotShow">Do Not Show List</option>
+                            <option value="favorite">Favorite List</option>
+                            <option value="explore">To Explore List</option>
+                            <option value="not">Do Not Show List</option>
                         </select>
                     </div>
                     <div class="mt-20">
@@ -115,7 +115,7 @@
 	    	    createRestaurant(res.name, res.rating, res.distance.toFixed(3), res.price, res.uniqueID, num)
 	    	    + "</div><!-- --></div><div class=\"col-2 mt-20\"><div><button class=\"btn btn-primary wth\">Remove</button>"
     	    + "</div><div class=\"mt-10\"><div class=\"dropdown\"><button class=\"btn btn-primary wth dropdown-toggle\" data-toggle=\"dropdown\">"
-			+ "Move To...</button><div class=\"dropdown-menu\"><a class=\"dropdown-item\" href=\"ToExplore.jsp\">To Explore</a>" +
+			+ "Move To...</button><div class=\"dropdown-menu\"><a class=\"dropdown-item\" href=\"ToExplore.jsp\">To Explore</a>"
 			+ "<a class=\"dropdown-item\" href=\"DoNotShow.jsp\"> " + "Do Not Show" + " </a></div></div></div></div></div>";
 				num += 1;
 	    }
@@ -132,7 +132,7 @@
     	    + createRecipe(rec.recipeName, rec.rating, rec.prepTime, rec.cookTime, rec.price, num)
     	    + "</div><!-- --></div><div class=\"col-2 mt-20\"><div><button class=\"btn btn-primary wth\">Remove</button>"
     	    + "</div><div class=\"mt-10\"><div class=\"dropdown\"><button class=\"btn btn-primary wth dropdown-toggle\" data-toggle=\"dropdown\">"
-			+ "Move To...</button><div class=\"dropdown-menu\"><a class=\"dropdown-item\" href=\"ToExplore.jsp\">To Explore</a>" +
+			+ "Move To...</button><div class=\"dropdown-menu\"><a class=\"dropdown-item\" href=\"ToExplore.jsp\">To Explore</a>"
 			+ "<a class=\"dropdown-item\" href=\"DoNotShow.jsp\"> " + "Do Not Show" + " </a></div></div></div></div></div>";
 			num += 1;
 	    }
