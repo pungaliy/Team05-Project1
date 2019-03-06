@@ -28,6 +28,19 @@
     	
     	var url;
     	var user;
+    	
+    	function removeToken(tmp){
+    		tmp = tmp.replace(/\\n/g, "\\n")  
+            .replace(/\\'/g, "\\'")
+            .replace(/\\"/g, '\\"')
+            .replace(/\\&/g, "\\&")
+            .replace(/\\r/g, "\\r")
+            .replace(/\\t/g, "\\t")
+            .replace(/\\b/g, "\\b")
+            .replace(/\\f/g, "\\f");
+			// remove non-printable and other non-valid JSON chars
+			return tmp.replace(/[\u0000-\u0019]+/g,""); 
+    	}
     
         function getResults() {
 
@@ -36,8 +49,9 @@
             
             
             url = JSON.parse('<%= session.getAttribute("imageURLs") %>');
-            user = JSON.parse('<%= session.getAttribute("user") %>');
-            console.log(user);
+            
+            //user = JSON.parse(removeToken('<%= session.getAttribute("user") %>'));
+            //console.log(user);
             
             var min = 0;
             var max = 8;
@@ -161,22 +175,10 @@
     		
             //set restaurantt
             var restaurant = JSON.parse('<%= session.getAttribute("restaurantResults") %>');
-            var tmp = '<%= session.getAttribute("recipeResults") %>';
-            // preserve newlines, etc - use valid JSON
-            tmp = tmp.replace(/\\n/g, "\\n")  
-                           .replace(/\\'/g, "\\'")
-                           .replace(/\\"/g, '\\"')
-                           .replace(/\\&/g, "\\&")
-                           .replace(/\\r/g, "\\r")
-                           .replace(/\\t/g, "\\t")
-                           .replace(/\\b/g, "\\b")
-                           .replace(/\\f/g, "\\f");
-            // remove non-printable and other non-valid JSON chars
-            tmp = tmp.replace(/[\u0000-\u0019]+/g,""); 
-            var recipe = JSON.parse(tmp);
+            var recipe = JSON.parse(removeToken('<%= session.getAttribute("recipeResults") %>'));
             
-            console.log(restaurant);
-            console.log(recipe);
+            //console.log(restaurant);
+            //console.log(recipe);
           
             var head = document.createElement('h2');
             head.classList.add('text-center');

@@ -23,13 +23,7 @@
     <!-- style  -->
     <link href="./css/main.css?version=5" rel="stylesheet">
     
-    <script>
-    	console.log('<%= session.getAttribute("favRes") %>');
-	    var restaurant = JSON.parse('<%= session.getAttribute("favRes") %>');
-	    console.log(restaurant);
     
-    
-    </script>
 
 
 
@@ -40,151 +34,15 @@
     <div class="container-fluid">
         <div class="row ">
             <div class="col-10">
-                <div class="listTitle  text-center" style="margin-bottom: 150px;">Favorites List</div>
+                <div class="listTitle text-center" style="margin-bottom: 150px;">Favorites List</div>
                 <!-- content -->
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-10">
-                            <!-- -->
-                            <div class="alt box">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-10">
-                                            <div>
-                                                <h3>
-                                                    The Habit Burger Grill
-                                                </h3>
-                                            </div>
-                                            <div class="mt50">
-                                                <h4>Distance: 2km</h4>
-                                            </div>
-                                        </div>
-                                        <div class="col-2 mt50">
-                                            <h3>$5 - $9</h3>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- -->
-                        </div>
-                        <div class="col-2 mt-20">
-                            <div>
-                                <button class="btn btn-primary wth">Remove</button>
-                            </div>
-                            <div class="mt-10">
-                                <button class="btn btn-primary wth">Move To...</button>
-                            </div>
-                        </div>
-                    </div>
+                <div class="container-fluid" id="list">
+                
+                
+                    
 
-
-                    <div class="row">
-                        <div class="col-10">
-                            <!-- -->
-                            <div class="box">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-10">
-                                            <div>
-                                                <h3>
-                                                    The Habit Burger Grill
-                                                </h3>
-                                            </div>
-                                            <div class="mt50">
-                                                <h4>Distance: 2km</h4>
-                                            </div>
-                                        </div>
-                                        <div class="col-2 mt50">
-                                            <h3>$5 - $9</h3>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- -->
-                        </div>
-                        <div class="col-2 mt-20">
-                            <div>
-                                <button class="btn btn-primary wth">Remove</button>
-                            </div>
-                            <div class="mt-10">
-                                <button class="btn btn-primary wth">Move To...</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-10">
-                            <!-- -->
-                            <div class=" alt box">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-10">
-                                            <div>
-                                                <h3>
-                                                    The Habit Burger Grill
-                                                </h3>
-                                            </div>
-                                            <div class="mt50">
-                                                <h4 style="float: left;margin-right: 70px;">Prep Time: 5 mins</h4>
-                                                <h4>Cook Time: 10 mins</h4>
-                                                <div style="clear:both"></div>
-                                            </div>
-                                        </div>
-                                        <div class="col-2 mt-20">
-                                            <h3>$5 - $9</h3>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- -->
-                        </div>
-                        <div class="col-2 mt-20">
-                            <div>
-                                <button class="btn btn-primary wth">Remove</button>
-                            </div>
-                            <div class="mt-10">
-                                <button class="btn btn-primary wth">Move To...</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-10">
-                            <!-- -->
-                            <div class="box">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-10">
-                                            <div>
-                                                <h3>
-                                                    The Habit Burger Grill
-                                                </h3>
-                                            </div>
-                                            <div class="mt50">
-                                                <h4 style="float: left;margin-right: 70px;">Prep Time: 5 mins</h4>
-                                                <h4>Cook Time: 10 mins</h4>
-                                                <div style="clear:both"></div>
-                                            </div>
-                                        </div>
-                                        <div class="col-2 mt-20">
-                                            <h3>$5 - $9</h3>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- -->
-                        </div>
-                        <div class="col-2 mt-20">
-                            <div>
-                                <button class="btn btn-primary wth">Remove</button>
-                            </div>
-                            <div class="mt-10">
-                                <button class="btn btn-primary wth">Move To...</button>
-                            </div>
-                        </div>
-                    </div>
+                   
+                    
 
 
                 </div>
@@ -216,9 +74,217 @@
 
             </div>
         </div>
-
-
     </div>
+    
+    <script>
+    
+    function removeToken(tmp){
+		tmp = tmp.replace(/\\n/g, "\\n")  
+        .replace(/\\'/g, "\\'")
+        .replace(/\\"/g, '\\"')
+        .replace(/\\&/g, "\\&")
+        .replace(/\\r/g, "\\r")
+        .replace(/\\t/g, "\\t")
+        .replace(/\\b/g, "\\b")
+        .replace(/\\f/g, "\\f");
+		// remove non-printable and other non-valid JSON chars
+		return tmp.replace(/[\u0000-\u0019]+/g,""); 
+	}
+    
+    	console.log('<%= session.getAttribute("favRes") %>');
+	    var restaurant = JSON.parse('<%= session.getAttribute("favRes") %>');
+	    var recipe = JSON.parse(removeToken('<%= session.getAttribute("favRec") %>'));
+	    console.log(restaurant);
+	    console.log(recipe);
+	    
+	    var num = 0;
+	    var i;
+	    var li = document.getElementById('list');
+	    var alt = "alt";
+	    for(i = 0;i < restaurant.length; i++){
+	    	var res = restaurant[i];
+	    	if(num % 2 == 0){
+	    		alt = "alt";
+	    	}
+	    	else{
+	    		alt = "";
+	    	}
+	    	li.innerHTML += 
+	    	    "<div class=\"row\"><div class=\"col-10\"><!-- --><div class=\"" + alt + "\">"
+	    	    +
+	    	    createRestaurant(res.name, res.rating, res.distance.toFixed(3), res.price, res.uniqueID, num)
+	    	    + "</div><!-- --></div><div class=\"col-2 mt-20\"><div><button class=\"btn btn-primary wth\">Remove</button>"
+    	    + "</div><div class=\"mt-10\"><div class=\"dropdown\"><button class=\"btn btn-primary wth dropdown-toggle\" data-toggle=\"dropdown\">"
+			+ "Move To...</button><div class=\"dropdown-menu\"><a class=\"dropdown-item\" href=\"ToExplore.jsp\">To Explore</a>" +
+			+ "<a class=\"dropdown-item\" href=\"DoNotShow.jsp\"> " + "Do Not Show" + " </a></div></div></div></div></div>";
+				num += 1;
+	    }
+	    
+	    for(i = 0;i < recipe.length; i++){
+	    	var rec = recipe[i];
+	    	if(num % 2 == 0){
+	    		alt = "alt";
+	    	}
+	    	else{
+	    		alt = "";
+	    	}
+	    	li.innerHTML += "<div class=\"row\"><div class=\"col-10\"><!-- --><div class=\"" + alt + "\">"
+    	    + createRecipe(rec.recipeName, rec.rating, rec.prepTime, rec.cookTime, rec.price, num)
+    	    + "</div><!-- --></div><div class=\"col-2 mt-20\"><div><button class=\"btn btn-primary wth\">Remove</button>"
+    	    + "</div><div class=\"mt-10\"><div class=\"dropdown\"><button class=\"btn btn-primary wth dropdown-toggle\" data-toggle=\"dropdown\">"
+			+ "Move To...</button><div class=\"dropdown-menu\"><a class=\"dropdown-item\" href=\"ToExplore.jsp\">To Explore</a>" +
+			+ "<a class=\"dropdown-item\" href=\"DoNotShow.jsp\"> " + "Do Not Show" + " </a></div></div></div></div></div>";
+			num += 1;
+	    }
+	    
+	    
+	    
+function createRecipe(name, star, prep, cook, price, num){
+            
+            var div1 = document.createElement('div');
+            
+            
+            var div2 = document.createElement('div');
+            div2.classList.add("container");
+            
+            var div3 = document.createElement('div');
+            div3.classList.add("row");
+            
+            var div4 = document.createElement('div');
+            div4.classList.add("col-11");
+            
+            var div5 = document.createElement('div');
+            var h1 = document.createElement('h3');
+            h1.innerHTML = name;
+            
+            var link = document.createElement('a');
+            link.href = "/Recipe.jsp?id=" + num;
+            link.appendChild(h1);
+            
+            div5.appendChild(link);
+            
+            var newDiv = document.createElement('div');
+            var h2 = document.createElement('h4');
+            if(star == 0){
+            	h2.innerHTML = "no rating";
+            }
+            else{
+            	h2.innerHTML = star + "&#9734";
+            }
+            newDiv.appendChild(h2);
+            
+            
+            var div6 = document.createElement('div');
+            var h3 =  document.createElement('h4');
+            h3.innerHTML = "Prep Time: " + prep;
+            h3.style.cssText = "float: left; margin-right: 20px;";
+            var h4 =  document.createElement('h4');
+            h4.innerHTML = "Cook Time: " + cook;
+            var clear = document.createElement('div');
+            clear.cssText = "clear: both";
+            div6.appendChild(h3);
+            div6.appendChild(h4);
+            div6.appendChild(clear);
+          
+            
+            div4.appendChild(div5);
+            div4.appendChild(newDiv);
+            div4.appendChild(div6);
+            
+            var div7 = document.createElement('div');
+            div7.className = " col-1 mt50";
+            var dollar = document.createElement('h3');
+            if(price == null){
+            	dollar.innerHTML = "$";
+            }
+            else{
+            	dollar.innerHTML = price;
+            }
+            div7.appendChild(dollar);
+            
+            div3.appendChild(div4);
+            div3.appendChild(div7);
+            
+            div2.appendChild(div3);
+            div1.appendChild(div2);
+            //recList.appendChild(div1);
+            return div1.innerHTML;
+            
+        }
+        
+        function createRestaurant(name, star, dist, price, id, num){
+        	
+        	var div1 = document.createElement('div');
+            if(num % 2 == 0){
+            	div1.className = "alt ";
+            }
+            else{
+            	div1.className = "";
+            }
+            
+            var div2 = document.createElement('div');
+            div2.classList.add("container");
+            
+            var div3 = document.createElement('div');
+            div3.classList.add("row");
+            
+            var div4 = document.createElement('div');
+            div4.classList.add("col-10");
+            
+            var div5 = document.createElement('div');
+            var h1 = document.createElement('h3');
+            h1.innerHTML = name;
+            
+            var link = document.createElement('a');
+            link.href = "/Restaurant.jsp?id=" + id;
+            link.appendChild(h1);
+            
+            div5.appendChild(link);
+          
+            
+            var newDiv = document.createElement('div');
+            var h2 = document.createElement('h4');
+            if(star == 0){
+            	h2.innerHTML = "no rating";
+            }
+            else{
+            	h2.innerHTML = star + "&#9734";
+            }
+            newDiv.appendChild(h2);
+            
+           
+            var div6 = document.createElement('div');
+            var h3 =  document.createElement('h4');
+            h3.innerHTML = "Distance: " + dist + " m";
+            div6.appendChild(h3);
+          
+            
+            div4.appendChild(div5);
+            div4.appendChild(newDiv);
+            div4.appendChild(div6);
+            
+            var div7 = document.createElement('div');
+            div7.className = " col-2 mt50";
+            var dollar = document.createElement('h3');
+            if(price == null){
+            	dollar.innerHTML = "$";
+            }
+            else{
+            	dollar.innerHTML = price;
+            }
+            div7.appendChild(dollar);
+            
+            div3.appendChild(div4);
+            div3.appendChild(div7);
+            
+            div2.appendChild(div3);
+            div1.appendChild(div2);
+     		return div1.innerHTML;
+        	
+        }
+    
+    
+    </script>
 
 </body>
 
