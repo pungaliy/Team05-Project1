@@ -65,8 +65,114 @@ public class User {
 	}
 	
 	
-	public boolean moveTo(Item i, String list1, String list2) {
-		return true; //only if successfully transferred
+	public boolean moveRecipe(String firstList, String endList, String name) {
+		if(firstList == "favorite") {
+			for(Recipe r: favoriteRecipe) {
+				if(r.thisName == name) {
+					r.isFavorite = false;
+					if(endList == "explore") {
+						exploreRecipe.add(r);
+						r.isToExplore = true;
+					}
+					else if(endList == "not") {
+						notRecipe.add(r);
+						r.isDoNotExplore = true;
+					}
+					favoriteRecipe.remove(r);
+					return true;
+				}
+			}
+		}
+		else if(firstList == "explore") {
+			for(Recipe r: exploreRecipe) {
+				if(r.thisName == name) {
+					r.isToExplore = false;
+					if(endList == "favorite") {
+						favoriteRecipe.add(r);
+						r.isFavorite = true;
+					}
+					else if(endList == "not") {
+						notRecipe.add(r);
+						r.isDoNotExplore = true;
+					}
+					exploreRecipe.remove(r);
+					return true;
+				}
+			}
+		}
+		else if(firstList == "not") {
+			for(Recipe r: notRecipe) {
+				if(r.thisName == name) {
+					r.isDoNotExplore = false;
+					if(endList == "explore") {
+						exploreRecipe.add(r);
+						r.isToExplore = true;
+					}
+					else if(endList == "favorite") {
+						favoriteRecipe.add(r);
+						r.isFavorite = true;
+					}
+					notRecipe.remove(r);
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
+	public boolean moveRestaurant(String firstList, String endList, String name) {
+		if(firstList == "favorite") {
+			for(Restaurant r: favoriteRestaurant) {
+				if(r.thisName == name) {
+					r.isFavorite = false;
+					if(endList == "explore") {
+						exploreRestaurant.add(r);
+						r.isToExplore = true;
+					}
+					else if(endList == "not") {
+						notRestaurant.add(r);
+						r.isDoNotExplore = true;
+					}
+					favoriteRestaurant.remove(r);
+					return true;
+				}
+			}
+		}
+		else if(firstList == "explore") {
+			for(Restaurant r: exploreRestaurant) {
+				if(r.thisName == name) {
+					r.isToExplore = false;
+					if(endList == "favorite") {
+						favoriteRestaurant.add(r);
+						r.isFavorite = true;
+					}
+					else if(endList == "not") {
+						notRestaurant.add(r);
+						r.isDoNotExplore = true;
+					}
+					exploreRestaurant.remove(r);
+					return true;
+				}
+			}
+		}
+		else if(firstList == "not") {
+			for(Restaurant r: notRestaurant) {
+				if(r.thisName == name) {
+					r.isDoNotExplore = false;
+					if(endList == "explore") {
+						exploreRestaurant.add(r);
+						r.isToExplore = true;
+					}
+					else if(endList == "favorite") {
+						favoriteRestaurant.add(r);
+						r.isFavorite = true;
+					}
+					notRestaurant.remove(r);
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 	
 

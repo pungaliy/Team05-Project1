@@ -24,5 +24,16 @@ public class Recipe extends Item {
 			instructions[i] = instruction.get(i);
 		}
 	}
+<<<<<<< Updated upstream
+=======
+
+	public String recipeName;
+	public String imageLink;
+	public String prepTime;
+	public String cookTime;
+	public String thisName;
+	public ArrayList<String> ingredients;
+	public ArrayList<String> instructions;
+>>>>>>> Stashed changes
 	
 }
