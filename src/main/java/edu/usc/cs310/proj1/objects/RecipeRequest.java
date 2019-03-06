@@ -114,6 +114,8 @@ public class RecipeRequest {
 			items = (List<HtmlElement>) page.getByXPath("//title");
 			
 			recipeName = items.get(0).asText();
+			recipeName = recipeName.replaceAll("\'", "\\\\'");
+			recipeName = recipeName.replaceAll("\"","\\\\\"");
 			String[] split = recipeName.split("Printer");
 			recipeName = split[0].substring(0, split[0].length()-3);
 			

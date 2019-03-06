@@ -34,7 +34,7 @@
     <div class="container-fluid">
         <div class="row ">
             <div class="col-10">
-                <div class="listTitle text-center" style="margin-bottom: 150px;">Favorites List</div>
+                <div class="listTitle text-center" style="margin-bottom: 150px;">To Explore List</div>
                 <!-- content -->
                 <div class="container-fluid" id="list">
                 
@@ -85,8 +85,9 @@
 		return tmp.replace(/[\u0000-\u0019]+/g,""); 
 	}
     
-	    var restaurant = JSON.parse('<%= session.getAttribute("favRes") %>');
-	    var recipe = JSON.parse(removeToken('<%= session.getAttribute("favRec") %>'));
+    	
+	    var restaurant = JSON.parse('<%= session.getAttribute("expRes") %>');
+	    var recipe = JSON.parse(removeToken('<%= session.getAttribute("expRec") %>'));
 	    console.log(restaurant);
 	    console.log(recipe);
 	    

@@ -53,10 +53,18 @@ public class ToList extends HttpServlet {
 			dispatch.forward(request,  response);
 		}
 		else if(list.equals("explore")){
+			String expRes = gson.toJson(myuser.exploreRestaurant);
+			String expRec = gson.toJson(myuser.exploreRecipe);
+			session.setAttribute("expRes", expRes);
+			session.setAttribute("expRec", expRec);
 			RequestDispatcher dispatch = request.getRequestDispatcher("/ToExplore.jsp");
 			dispatch.forward(request,  response);	
 		}
 		else {
+			String notRes = gson.toJson(myuser.notRestaurant);
+			String notRec = gson.toJson(myuser.notRecipe);
+			session.setAttribute("notRes", notRes);
+			session.setAttribute("notRec", notRec);
 			RequestDispatcher dispatch = request.getRequestDispatcher("/DoNotShow.jsp");
 			dispatch.forward(request,  response);
 		}
