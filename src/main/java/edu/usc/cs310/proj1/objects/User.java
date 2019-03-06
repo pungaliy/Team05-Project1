@@ -68,7 +68,7 @@ public class User {
 	public boolean moveRecipe(String firstList, String endList, String name) {
 		if(firstList == "favorite") {
 			for(Recipe r: favoriteRecipe) {
-				if(r.thisName == name) {
+				if(r.recipeName == name) {
 					r.isFavorite = false;
 					if(endList == "explore") {
 						exploreRecipe.add(r);
@@ -85,7 +85,7 @@ public class User {
 		}
 		else if(firstList == "explore") {
 			for(Recipe r: exploreRecipe) {
-				if(r.thisName == name) {
+				if(r.recipeName == name) {
 					r.isToExplore = false;
 					if(endList == "favorite") {
 						favoriteRecipe.add(r);
@@ -102,7 +102,7 @@ public class User {
 		}
 		else if(firstList == "not") {
 			for(Recipe r: notRecipe) {
-				if(r.thisName == name) {
+				if(r.recipeName == name) {
 					r.isDoNotExplore = false;
 					if(endList == "explore") {
 						exploreRecipe.add(r);
