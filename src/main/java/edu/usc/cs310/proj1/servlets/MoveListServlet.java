@@ -50,6 +50,9 @@ public class MoveListServlet extends HttpServlet {
 		String type = request.getParameter("itemType");
 		int index = Integer.parseInt(request.getParameter("index"));
 		
+		ArrayList<Restaurant> resList = (ArrayList<Restaurant>) session.getAttribute("resList");
+		ArrayList<Recipe> recList = (ArrayList<Recipe>) session.getAttribute("resList");
+		
         User u = (User) request.getSession().getAttribute("userObj");
         
         if(type.equals("restaurant")) {

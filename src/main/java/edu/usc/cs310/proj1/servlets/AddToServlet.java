@@ -71,16 +71,26 @@ public class AddToServlet extends HttpServlet {
 			session.setAttribute("check", rs);
 			thisUser.addRestaurant(rs, list);
 			
-			resList.remove(rs);
-			resList.add(0, rs);
+			if(list.equals("favorite")) {
+				resList.remove(rs);
+				resList.add(0, rs);
+			}
+			else if (list.equals("not")) {
+				resList.remove(rs);
+			}
 		}
 		else {
 			//ArrayList<Recipe> rec = (ArrayList<Recipe>) session.getAttribute("recList");
 			Recipe rc = recList.get(Integer.parseInt(id));
 			thisUser.addRecipe(rc, list);
 			
-			recList.remove(rc);
-			recList.add(0, rc);
+			if(list.equals("favorite")) {
+				recList.remove(rc);
+				recList.add(0, rc);
+			}
+			else if (list.equals("not")){
+				recList.remove(rc);
+			}
 		}
 		
 		
