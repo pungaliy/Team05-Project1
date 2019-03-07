@@ -126,7 +126,9 @@ public class User {
 					}
 					else if(endList.equals("not")) {
 						notRestaurant.add(r);
-						
+						//remove from resList
+						favoriteRestaurant.remove(index);
+						return false;
 					}
 					favoriteRestaurant.remove(index);
 					return true;

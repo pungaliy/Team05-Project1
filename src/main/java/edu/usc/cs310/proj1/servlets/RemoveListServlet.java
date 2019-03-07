@@ -48,13 +48,21 @@ public class RemoveListServlet extends HttpServlet {
 		session.setAttribute("index", index);
 		
         User thisUser = (User) session.getAttribute("userObj");
+        ArrayList<Restaurant> resList = (ArrayList<Restaurant>) session.getAttribute("resList");
+		ArrayList<Recipe> recList = (ArrayList<Recipe>) session.getAttribute("recList");
         
         if(type.equals("restaurant")) {
-        	session.setAttribute("check", "a");
+        	if(list1.equals("not")) {
+        		Restaurant rc  = thisUser.notRestaurant.get(index);
+        		resList.add(rc);
+        	}
         	thisUser.removeRestaurant(list1, index);
         }
         else if(type.equals("recipe")) {
-        	session.setAttribute("check", "b");
+        	if(list1.equals("not")) {
+        		Recipe rc  = thisUser.notRecipe.get(index);
+        		recList.add(rc);
+        	}
         	thisUser.removeRecipe(list1, index);
         }
 
@@ -62,8 +70,13 @@ public class RemoveListServlet extends HttpServlet {
 		
 		Gson gson = new Gson();
 		String userJSON = gson.toJson(thisUser);
+		String resJSON = gson.toJson(resList);
+		String recJSON = gson.toJson(recList);
+		session.setAttribute("restaurantResults", resJSON);
+	    session.setAttribute("recipeResults", recJSON);
 		
 	    session.setAttribute("user", userJSON);
-		
+		session.setAttribute("resList", resList);
+		session.setAttribute("recList", recList);
 	}
 }

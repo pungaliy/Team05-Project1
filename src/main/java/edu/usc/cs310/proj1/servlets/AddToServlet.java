@@ -77,6 +77,7 @@ public class AddToServlet extends HttpServlet {
 			}
 			else if (list.equals("not")) {
 				resList.remove(rs);
+				rs.isDoNotExplore = true;
 			}
 		}
 		else {
@@ -90,6 +91,7 @@ public class AddToServlet extends HttpServlet {
 			}
 			else if (list.equals("not")){
 				recList.remove(rc);
+				rc.isDoNotExplore = true;
 			}
 		}
 		

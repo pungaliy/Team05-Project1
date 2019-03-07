@@ -30,6 +30,18 @@
     	function toResult(){
     		window.location.href = "/Results.jsp";
     	}
+    	function check(){
+			console.log("checking");
+		var list = document.getElementById("list").value;
+		if(list == null || list == "nil"){
+			
+			return false;
+		}
+	
+		return true;
+		
+	
+}
     
     
     </script>
@@ -49,7 +61,7 @@
                 <!-- end of content-->
             </div>
             <div col="col-2">
-                <form action="/ToList" method="get">
+                <form action="/ToList" onsubmit="return check();" method="get">
                     <div class="mt-20">
                         <select name="list" class="btn bg-secondary wth">
                             <option value="nil" selected></option>

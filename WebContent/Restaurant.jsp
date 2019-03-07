@@ -33,10 +33,10 @@
 
     <div class="container-fluid">
         <div class="row ">
-            <div class="col-10">
+            <div class="col-8">
                 <div class="listTitle" style="margin-bottom: 50px;" id="title"></div>
               </div>
-               <div col="col-2">
+               <div col="col-4">
                 <div class="mt-20">
                     <a href="javascript:window.print();"><button class="btn btn-secondary wth" >Printable View</button></a>
                 </div>

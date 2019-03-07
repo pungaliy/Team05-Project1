@@ -85,6 +85,19 @@
         function toSearch(){
         	window.location.href = "/Search.html";
         }
+        
+		function check(){
+    		
+    		console.log("checking");
+    		var list = document.getElementById("list").value;
+    		if(list == null || list == "nil"){
+    			
+    			return false;
+    		}
+    	
+    		return true;
+    		
+    	}
 	    
 	
 
@@ -120,7 +133,7 @@
             </div>
             <!-- navbar -->
             <div class="col-12 col-sm-3" style="padding-top: 50px;">
-                <form action="/ToList"  method="get">
+                <form action="/ToList" onsubmit="return check();" method="get">
                     <div class="mt-20">
                         <select name="list" class="btn bg-secondary wth" id="list">
                             <option value="nil" selected></option>
@@ -202,6 +215,12 @@
             //console.log(thisUser);
             
             
+            //var num;
+            //for(res in restaurant){
+            
+            	//createRestaurant(res.name, res.rating, res.distance, res.price, res.uniqueID, num);
+            	//num += 1;
+            //}
          
             for (let num = 0; num < restaurant.length; num++){
             	var res = restaurant[num];
@@ -209,12 +228,15 @@
             		createRestaurant(res.name, res.rating, res.distance.toFixed(3), res.price, res.uniqueID, num);
             
             }
-            
-            var color = 0;
+            //num = 0
+            //for(rec in recipe){
+            	//createRecipe(rec.recipeName, rec.rating, rec.prepTime, rec.cookTime, rec.price, num);
+            	//num += 1;
+            //}
             for (let num = 0; num < recipe.length; num++){
-            	var rec = recipe[num];
             	
-            		createRecipe(rec.recipeName, rec.rating, rec.prepTime, rec.cookTime, rec.price, num);
+            	var rec = recipe[num];
+            	createRecipe(rec.recipeName, rec.rating, rec.prepTime, rec.cookTime, rec.price, num);
             
             }
           
