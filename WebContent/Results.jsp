@@ -41,7 +41,7 @@
             
             url = JSON.parse('<%= session.getAttribute("imageURLs") %>');
             
-            //user = JSON.parse(removeToken('<%= session.getAttribute("user") %>'));
+            //user = JSON.parse('<%= session.getAttribute("user") %>');
             //console.log(user);
             
             var min = 0;
