@@ -74,11 +74,7 @@ public class ReturnResults extends HttpServlet {
 			ImagesRequest ir = new ImagesRequest(query);
 			imageResults = ir.imageResultURLs;
 			
-			
-			
-			thisUser.addRestaurant(restaurantResults.get(0), "favorite");
-			thisUser.addRecipe(recipeResults.get(0), "favorite");
-			
+					
 			Gson gson = new Gson();
 			
 			
