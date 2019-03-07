@@ -5,6 +5,7 @@ import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.reflect.Array;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -259,7 +260,11 @@ public class YelpRequest {
 	}
 	public String parseAddress (JSONObject a) {
 		JSONArray add = a.getJSONArray("display_address");
-		return (add.get(0) + ", "+ add.get(1));
+		String s = "";
+		for(int n = 0; n < add.length(); n++) {
+			s += add.getString(n);
+		}
+		return s;
 	}
 	
 	public String addParameter (String URL, String param, String paramValue) {
