@@ -61,11 +61,11 @@
 
             <div col="col-2">
                 <div class="mt-20">
-                    <button class="btn btn-secondary wth" onclick="print();">Printable View</button>
+                    <a href="javascript:window.print();"><button class="btn btn-secondary wth" >Printable View</button></a>
                 </div>
                 <div class="mt-20">
                 	<!-- might need to change this -->
-                    <a href="javascript:history.go(-1)"><button class="btn btn-secondary wth" onclick="toResult();">Back to Results</button></a>
+                    <button class="btn btn-secondary wth" onclick="toResult();">Back to Results</button>
                 </div>
                 <form action="" onsubmit="return add();" method="get">
                     <div class="mt-20">
@@ -109,11 +109,6 @@
 	document.getElementById('link').innerHTML = current.websiteLink;
 	document.getElementById('address').href = current.googleMapsLink;
 	document.getElementById('address').innerHTML = current.address;
-    
-    	//printable view
-   		function print(){
-   			window.print();
-   		}
     	
     	//adding
     	function add(){

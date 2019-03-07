@@ -61,7 +61,7 @@
 
             <div col="col-2">
                 <div class="mt-20">
-                    <button class="btn btn-secondary wth" onclick="print();">Printable View</button>
+                    <a href="javascript:window.print();"><button class="btn btn-secondary wth" >Printable View</button></a>
                 </div>
                 <div class="mt-20">
                     <button class="btn btn-secondary wth" onclick="toResult();">Back to Results</button>
@@ -114,9 +114,6 @@
     		
     	}
       
-      function print(){
-    	  window.print();
-      }
       
     	var form = document.getElementById("myform"); 
     	function handleForm(event) { 
