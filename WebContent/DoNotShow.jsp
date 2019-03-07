@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Favorites</title>
+    <title>Do Not Show</title>
 
     <!-- maxcdn -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
@@ -60,10 +60,10 @@
                     </div>
                 </form>
                 <div class="mt-20">
-                    <button class="btn btn-secondary wth" onclick="toResult();">Back to Results</button>
+                    <button class="btn btn-secondary wth" onclick="toResult();">Results Page</button>
                 </div>
                 <div class="mt-20">
-                    <button class="btn btn-secondary wth" onclick="toSearch();">Return to Search</button>
+                    <button class="btn btn-secondary wth" onclick="toSearch();">Return to Search Page</button>
                 </div>
 
             </div>
