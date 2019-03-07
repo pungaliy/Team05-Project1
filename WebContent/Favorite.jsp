@@ -41,7 +41,7 @@
 		return true;
 		
 	
-}
+		}
     
     
     </script>
@@ -86,7 +86,7 @@
         </div>
         <div class="row" style="padding-top: 50px;">
         <!-- content -->
-                <div class="container-fluid" id="list">
+                <div class="container-fluid" id="listResult">
                 
 
                 </div>
@@ -143,15 +143,15 @@
     
     }
     
-    
+  
 	    var restaurant = JSON.parse('<%= session.getAttribute("favRes") %>');
 	    var recipe = JSON.parse('<%= session.getAttribute("favRec") %>');
-	    console.log(restaurant);
-	    console.log(recipe);
+	    console.log(restaurant.length);
+	    console.log(recipe.length);
 	    
 	    var num = 0;
 	    var i;
-	    var li = document.getElementById('list');
+	    var li = document.getElementById('listResult');
 	    var alt = "alt";
 	    for(i = 0;i < restaurant.length; i++){
 	    	var res = restaurant[i];
@@ -189,7 +189,8 @@
 			num += 1;
 	    }
 	    
-	    
+	    console.log(li.innerHTML);
+    
 	    
 function createRecipe(name, star, prep, cook, price, num){
             
