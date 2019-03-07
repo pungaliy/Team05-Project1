@@ -64,7 +64,7 @@
                     <a href="javascript:window.print();"><button class="btn btn-secondary wth" >Printable View</button></a>
                 </div>
                 <div class="mt-20">
-                    <button class="btn btn-secondary wth" onclick="toResult();">To Results</button>
+                    <button class="btn btn-secondary wth" onclick="toResult();">Results Page</button>
                 </div>
                 <form action="" onsubmit="return add();" method="get" id="myform">
                     <div class="mt-20">
