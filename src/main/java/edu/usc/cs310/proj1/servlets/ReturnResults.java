@@ -52,7 +52,8 @@ public class ReturnResults extends HttpServlet {
 		session.setAttribute("enter", "out");
 		
 		//check if already search
-		if(session.getAttribute("query") == null || !session.getAttribute("query").equals(query)) {
+		if(session.getAttribute("query") == null || !session.getAttribute("query").equals(query) ||
+				(session.getAttribute("query").equals(query) && (int)session.getAttribute("options") != numOptions)) {
 			 
 			//((session.getAttribute("options") != null) && (session.getAttribute("options") != options))
 			
@@ -97,7 +98,7 @@ public class ReturnResults extends HttpServlet {
 			session.setAttribute("query", query);
 			session.setAttribute("imageURLs", imageJSON);
 			session.setAttribute("user", userJSON);
-			session.setAttribute("options", options);
+			session.setAttribute("options", numOptions);
 		}
 		
 		RequestDispatcher dispatch = request.getRequestDispatcher("/Results.jsp?query=" + query);
