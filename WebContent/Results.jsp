@@ -95,9 +95,9 @@
 <body onload="getResults()">
 
     <div class="container-fluid">
-        <div class="row text-center" style="padding-left: 100px;margin-top: 100px; margin-bottom: 100px;">
+        <div class="row justify-content-center" style="padding-left: 100px;margin-top: 100px; margin-bottom: 100px;">
             <!-- image -->
-            <div class="col-9">
+            <div class="col-12 col-sm-9">
                 <div class="container" id="collage" style="
 				    width: 50vw;
 				    height: 40vh;
@@ -119,7 +119,7 @@
                 </div>
             </div>
             <!-- navbar -->
-            <div class="col-3" style="padding-top: 50px;">
+            <div class="col-12 col-sm-3" style="padding-top: 50px;">
                 <form action="/ToList"  method="get">
                     <div class="mt-20">
                         <select name="list" class="btn bg-secondary wth" id="list">
@@ -171,6 +171,7 @@
 
             //set restaurantt
             var restaurant = JSON.parse('<%= session.getAttribute("restaurantResults") %>');
+            //var json = '<%= session.getAttribute("recipeResults") %>'.to_json;
             var recipe = JSON.parse('<%= session.getAttribute("recipeResults") %>');
             
             console.log(restaurant);
@@ -263,17 +264,27 @@ function createRecipe(name, star, prep, cook, price, num){
             
             
             var div6 = document.createElement('div');
-            var h3 =  document.createElement('h4');
-            h3.innerHTML = "Prep Time: " + prep;
-            h3.style.cssText = "float: left; margin-right: 20px;";
-            var h4 =  document.createElement('h4');
-            h4.innerHTML = "Cook Time: " + cook;
-            var clear = document.createElement('div');
-            clear.cssText = "clear: both";
-            div6.appendChild(h3);
-            div6.appendChild(h4);
-            div6.appendChild(clear);
-          
+            div6.className = "container-fluid";
+            var rdiv = document.createElement('div');
+            rdiv.className = "row";
+            
+            var p = document.createElement('div');
+            p.className = "col-12 col-sm-6";
+            var h3 =  document.createElement('h6');
+            h3.innerHTML = "Prep Time: " + prep + "in";
+            p.appendChild(h3);
+            
+            var c = document.createElement('div');
+            c.className = "col-12 col-sm-6";
+            var h4 =  document.createElement('h6');
+            h4.innerHTML = "Cook Time: " + cook + "in";
+            c.appendChild(h4);
+           
+            
+            rdiv.appendChild(p);
+            rdiv.appendChild(c);
+            div6.appendChild(rdiv);
+         
             
             div4.appendChild(div5);
             div4.appendChild(newDiv);
@@ -342,7 +353,8 @@ function createRecipe(name, star, prep, cook, price, num){
            
             var div6 = document.createElement('div');
             var h3 =  document.createElement('h4');
-            h3.innerHTML = "Distance: " + dist + " m";
+            var f = parseFloat(dist);
+            h3.innerHTML = "Distance: " + Math.floor(f/10) + " min";
             div6.appendChild(h3);
           
             

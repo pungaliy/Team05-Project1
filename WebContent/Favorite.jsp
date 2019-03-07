@@ -45,14 +45,7 @@
         <div class="row ">
             <div class="col-10">
                 <div class="listTitle text-center" style="margin-bottom: 150px;">Favorites List</div>
-                <!-- content -->
-                <div class="container-fluid" id="list">
                 
-
-                </div>
-
-
-
                 <!-- end of content-->
             </div>
             <div col="col-2">
@@ -77,6 +70,13 @@
                 </div>
 
             </div>
+        </div>
+        <div class="row" style="padding-top: 50px;">
+        <!-- content -->
+                <div class="container-fluid" id="list">
+                
+
+                </div>
         </div>
     </div>
     
@@ -149,10 +149,10 @@
 	    		alt = "";
 	    	}
 	    	li.innerHTML += 
-	    	    "<div class=\"row\"><div class=\"col-10\"><!-- --><div class=\"" + alt + "\">"
+	    	    "<div class=\"row\"><div class=\"col-8\"><!-- --><div class=\"" + alt + "\">"
 	    	    +
 	    	    createRestaurant(res.name, res.rating, res.distance.toFixed(3), res.price, res.uniqueID, num)
-	    	    + "</div><!-- --></div><div class=\"col-2 mt-20\"><div><button class=\"btn btn-primary wth\" onclick=\"rm(\'restaurant\',\'"+ i +"\')\">Remove</button>"
+	    	    + "</div><!-- --></div><div class=\"col-4 mt-20\"><div><button class=\"btn btn-primary wth\" onclick=\"rm(\'restaurant\',\'"+ i +"\')\">Remove</button>"
     	    + "</div><div class=\"mt-10\"><div class=\"dropdown\"><button class=\"btn btn-primary wth dropdown-toggle\" data-toggle=\"dropdown\">"
 			+ "Move To...</button><div class=\"dropdown-menu\"><button class=\"dropdown-item\" onclick=\"mv(\'explore\',\'restaurant\',\'"+ i +"\');\">To Explore</button>"
 			+ "<button class=\"dropdown-item\" onclick=\"mv(\'not\',\'restaurant\',\'"+ i +"\');\"> Do Not Show </button></div></div></div></div></div>";
@@ -167,9 +167,9 @@
 	    	else{
 	    		alt = "";
 	    	}
-	    	li.innerHTML += "<div class=\"row\"><div class=\"col-10\"><!-- --><div class=\"" + alt + "\">"
+	    	li.innerHTML += "<div class=\"row\"><div class=\"col-12 col-sm-8\"><!-- --><div class=\"" + alt + "\">"
     	    + createRecipe(rec.recipeName, rec.rating, rec.prepTime, rec.cookTime, rec.price, num)
-    	    + "</div><!-- --></div><div class=\"col-2 mt-20\"><div><button class=\"btn btn-primary wth\" onclick=\"rm(\'recipe\',\'"+ i +"\')\">Remove</button>"
+    	    + "</div><!-- --></div><div class=\"col-12 col-sm-4 mt-20\"><div><button class=\"btn btn-primary wth\" onclick=\"rm(\'recipe\',\'"+ i +"\')\">Remove</button>"
     	    + "</div><div class=\"mt-10\"><div class=\"dropdown\"><button class=\"btn btn-primary wth dropdown-toggle\" data-toggle=\"dropdown\">"
 			+ "Move To...</button><div class=\"dropdown-menu\"><button class=\"dropdown-item\" onclick=\"mv(\'explore\',\'recipe\',\'"+ i +"\');\">To Explore</button>"
 			+ "<button class=\"dropdown-item\" onclick=\"mv(\'not\',\'recipe\',\'"+ i +"\');\"> Do Not Show</button></div></div></div></div></div>";

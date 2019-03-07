@@ -35,31 +35,8 @@
         <div class="row ">
             <div class="col-10">
                 <div class="listTitle" style="margin-bottom: 50px;" id="title"></div>
-                <!-- content -->
-                <img id="image" src="" width="200">
-                <div style="font-size: 30px;">
-                    <div class="mt-20" id="prep">
-                        
-                    </div>
-                    <div class="mt-20" id="cook">
-              
-                    </div>
-                    <div class="mt-20" id="ingredients">
-
-                    </div>
-                    <div class="mt-20" id="instructions">
- 
-                    </div>
-                </div>
-
-
-            </div>
-
-
-
-            <!-- end of content-->
-
-            <div col="col-2">
+               </div>
+               <div col="col-2">
                 <div class="mt-20">
                     <a href="javascript:window.print();"><button class="btn btn-secondary wth" >Printable View</button></a>
                 </div>
@@ -81,10 +58,34 @@
                 </form>
 
             </div>
-        </div>
+           </div>
+    
+      
+      <div class="row">
+      
+                <!-- content -->
+                <img id="image" src="" width="200">
+                <div style="font-size: 20px;">
+                    <div class="mt-20" id="prep">
+                        
+                    </div>
+                    <div class="mt-20" id="cook">
+              
+                    </div>
+                    <div class="mt-20" id="ingredients">
+
+                    </div>
+                    <div class="mt-20" id="instructions">
+ 
+                    </div>
+                </div>
 
 
-    </div>
+
+            <!-- end of content -->
+	</div>
+
+	</div>
     
     
         <script>

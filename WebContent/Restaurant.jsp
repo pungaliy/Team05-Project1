@@ -35,6 +35,33 @@
         <div class="row ">
             <div class="col-10">
                 <div class="listTitle" style="margin-bottom: 50px;" id="title"></div>
+              </div>
+               <div col="col-2">
+                <div class="mt-20">
+                    <a href="javascript:window.print();"><button class="btn btn-secondary wth" >Printable View</button></a>
+                </div>
+                <div class="mt-20">
+                	<!-- might need to change this -->
+                    <button class="btn btn-secondary wth" onclick="toResult();">Back to Results</button>
+                </div>
+                <form action="" onsubmit="return add();" method="get">
+                    <div class="mt-20">
+                        <select name="list" class="btn bg-secondary wth" id="list">
+                            <option value="nil" selected>_______________________</option>
+                            <option value="favorite">Favorite List</option>
+                            <option value="explore">To Explore List</option>
+                            <option value="not">Do Not Show List</option>
+                        </select>
+                    </div>
+                    <div class="mt-20">
+                        <button class="btn btn-secondary wth" type="submit">Add to List</button>
+                    </div>
+                </form>
+
+            </div>
+           </div>
+            
+            <div class="row">
                 <!-- content -->
                 <div style="font-size: 40px;">
                     <div class="mt-20" id="phone">
@@ -59,33 +86,9 @@
 
             <!-- end of content-->
 
-            <div col="col-2">
-                <div class="mt-20">
-                    <a href="javascript:window.print();"><button class="btn btn-secondary wth" >Printable View</button></a>
-                </div>
-                <div class="mt-20">
-                	<!-- might need to change this -->
-                    <button class="btn btn-secondary wth" onclick="toResult();">Back to Results</button>
-                </div>
-                <form action="" onsubmit="return add();" method="get">
-                    <div class="mt-20">
-                        <select name="list" class="btn bg-secondary wth" id="list">
-                            <option value="nil" selected>_______________________</option>
-                            <option value="favorite">Favorite List</option>
-                            <option value="explore">To Explore List</option>
-                            <option value="not">Do Not Show List</option>
-                        </select>
-                    </div>
-                    <div class="mt-20">
-                        <button class="btn btn-secondary wth" type="submit">Add to List</button>
-                    </div>
-                </form>
-
-            </div>
+           
         </div>
 
-
-    </div>
     
     <script>
     
