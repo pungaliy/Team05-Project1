@@ -1,15 +1,8 @@
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import org.junit.Test;
+import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
-import edu.usc.cs310.proj1.objects.Restaurant;
-import edu.usc.cs310.proj1.objects.YelpRequest;
-
-//import static org.junit;
-//import static org.junit.jupiter.api.Assertions.*;
-//
-//import org.junit.*;
-//import org.junit.jupiter.api.Test;
+import org.junit.*;
+import org.junit.jupiter.api.Test;
 
 /*
  * Tests to write:
@@ -35,19 +28,19 @@ source: https://www.vogella.com/tutorials/JUnit/article.html
 
 
 
-public class YelpRequestTest {
+class YelpRequestTest {
 	public int limit = 5;
 
 	//QUERY TESTS
 	@Test
-	public void failQuery() {
+	void failQuery() {
 		String query = "~)(*"; 
 		YelpRequest y = new YelpRequest(query,limit);
 		System.out.println(y.restaurantResults.size());
 		assertEquals(y.restaurantResults.size(),0);
 	}
 	@Test
-	public void goodQuery() {
+	void goodQuery() {
 		String query = "hamburgers"; 
 		YelpRequest y = new YelpRequest(query,limit);
 		System.out.println(y.restaurantResults);
@@ -55,7 +48,7 @@ public class YelpRequestTest {
 		assertEquals(y.restaurantResults.size(),limit);
 	}
 	@Test
-	public void spaceQuery() {
+	void spaceQuery() {
 		String query = "hamburger food"; 
 		YelpRequest y = new YelpRequest(query,limit);
 		System.out.println(y.restaurantResults.size());
@@ -63,7 +56,7 @@ public class YelpRequestTest {
 		assertEquals(y.restaurantResults.size(),limit);
 	}
 	@Test
-	public void cuisineQuery() {
+	void cuisineQuery() {
 		String query = "indian"; 
 		YelpRequest y = new YelpRequest(query,limit);
 		System.out.println(y.restaurantResults.size());
@@ -71,7 +64,7 @@ public class YelpRequestTest {
 		assertEquals(y.restaurantResults.size(),limit);		
 	}
 	@Test
-	public void restaurantQueryFull() {
+	void restaurantQueryFull() {
 		String query = "Starbucks"; 
 		YelpRequest y = new YelpRequest(query,limit);
 		System.out.println(y.restaurantResults.size());
@@ -79,17 +72,35 @@ public class YelpRequestTest {
 		assertEquals(y.restaurantResults.size(),limit);		
 	}	
 	@Test
-	public void restaurantQueryValid() {
+	void restaurantQueryValid() {
 		String query = "Starbucks"; 
 		YelpRequest y = new YelpRequest(query,limit);
-		System.out.println(y.restaurantResults.size());
-
+		System.out.println(y.restaurantResults.get(0).name);
+		//query should return Starbucks nearby 
 		assertEquals(y.restaurantResults.get(0).name,"Starbucks");	
 	}
+	@Test
+	void findWebsite() {
+		String query = "burger"; 
+		YelpRequest y = new YelpRequest(query,limit);
+		System.out.println(y.restaurantResults.size());
+		//query should return Starbucks nearby 
+		System.out.println(y.restaurantResults.get(0).websiteLink);
+		assertEquals(y.restaurantResults.get(0).websiteLink,"usctraditions.com");	
+	}
 	
+	@Test
+	void distanceCheck() {
+		String query = "burger"; 
+		YelpRequest y = new YelpRequest(query,limit);
+		System.out.println(y.restaurantResults.size());
+		//query should return Starbucks nearby 
+		System.out.println(y.restaurantResults.get(0).websiteLink);
+		assertEquals(y.restaurantResults.get(0).travelTime,"1 min");	
+	}
 	//Return Value Tests
 	@Test
-	public void fullPopulated () {
+	void fullPopulated () {
 		String query = "hamburger";
 		YelpRequest y = new YelpRequest(query,limit);
 		for(int i = 0; i < y.restaurantResults.size();i++) {
@@ -107,7 +118,7 @@ public class YelpRequestTest {
 	}
 	
 	@Test
-	public void caseSensitive () {
+	void caseSensitive () {
 		String query = "HamBurger";
 		YelpRequest y = new YelpRequest(query,limit);
 		for(int i = 0; i < y.restaurantResults.size();i++) {
