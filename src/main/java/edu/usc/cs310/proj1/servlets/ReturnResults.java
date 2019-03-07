@@ -83,6 +83,7 @@ public class ReturnResults extends HttpServlet {
 			//thisUser.addRestaurant(restaurantResults.get(0), "favorite");
 			//thisUser.addRecipe(recipeResults.get(0), "favorite");
 			
+
 			Gson gson = new Gson();
 			
 			
