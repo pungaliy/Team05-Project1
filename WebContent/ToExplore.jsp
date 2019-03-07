@@ -33,13 +33,13 @@
     	}
     	function check(){
 			console.log("checking");
-		var list = document.getElementById("list").value;
-		if(list == null || list == "nil" || list == "explore"){
+			var list = document.getElementById("list").value;
+			if(list == null || list == "nil" || list == "explore"){
 			
-			return false;
-		}
+				return false;
+			}
 	
-		return true;
+			return true;
 		
 	
 		}
@@ -59,10 +59,10 @@
                 <div class="listTitle text-center" style="margin-bottom: 150px;">To Explore List</div>
          
             </div>
-            <div col="col-2">
-                <form action="/ToList" onsubmit="return check();" method="get" id="list">
+            <div class="col-2">
+                <form action="/ToList" onsubmit="return check();" method="get">
                     <div class="mt-20">
-                        <select name="list" class="btn bg-secondary wth">
+                        <select name="list" class="btn bg-secondary wth" id="list">
                             <option value="nil" selected></option>
                             <option value="favorite">Favorite List</option>
                             <option value="explore">To Explore List</option>

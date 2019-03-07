@@ -59,10 +59,10 @@
             <div class="col-10">
                 <div class="listTitle text-center" style="margin-bottom: 150px;">Do Not Show List</div>
             </div>
-            <div col="col-2">
-                <form action="/ToList" onsubmit="return check();" method="get" id="list">
+            <div class="col-2">
+                <form action="/ToList" onsubmit="return check();" method="get" >
                     <div class="mt-20">
-                        <select name="list" class="btn bg-secondary wth">
+                        <select name="list" class="btn bg-secondary wth" id="list">
                             <option value="nil" selected></option>
                             <option value="favorite">Favorite List</option>
                             <option value="explore">To Explore List</option>

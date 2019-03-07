@@ -60,7 +60,7 @@
                 
                 <!-- end of content-->
             </div>
-            <div col="col-2">
+            <div class="col-2">
                 <form action="/ToList" onsubmit="return check();" method="get">
                     <div class="mt-20">
                         <select name="list" class="btn bg-secondary wth" id="list">
