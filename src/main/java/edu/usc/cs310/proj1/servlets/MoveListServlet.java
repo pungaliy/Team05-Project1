@@ -3,8 +3,6 @@ package edu.usc.cs310.proj1.servlets;
 
 import java.io.IOException;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
