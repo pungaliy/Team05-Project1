@@ -80,18 +80,18 @@ public class ReturnResults extends HttpServlet {
 //			imageResults = ir.imageResultURLs;
 
 
-			
-			imageRequest.add("https://assets.epicurious.com/photos/57c5c6d9cf9e9ad43de2d96e/6:4/w_620%2Ch_413/the-ultimate-hamburger.jpg");
-			imageRequest.add("https://www.thespruceeats.com/thmb/IVEwZUNTa5XGDFhGtbF8iFaxn3I=/960x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/Hamburger-Hot-Dog-58add5f03df78c345bdef6ff.jpg");
-			imageRequest.add("https://recipes-secure-graphics.grocerywebsite.com/0_GraphicsRecipes/4589_4k.jpg");
-			imageRequest.add("https://www.justataste.com/wp-content/uploads/2013/05/Homemade-Cheeseburger-Buns.jpg");
-			imageRequest.add("https://realfood.tesco.com/media/images/Burger-31LGH-a296a356-020c-4969-86e8-d8c26139f83f-0-1400x919.jpg");
-			imageRequest.add("http://www.recipe4living.com/assets/itemimages/400/400/3/default_0dacefd503f9d9812f1221e5b670e95b_dreamstimesmall_50289207.jpg");
-			imageRequest.add("https://amp.thisisinsider.com/images/5571cbb9ecad04ea3f1d2bad-480-248.jpg");
-			imageRequest.add("https://cdn.pixabay.com/photo/2017/12/09/23/04/bread-3008950_960_720.jpg");
-			imageRequest.add("https://as1.ftcdn.net/jpg/00/43/43/08/500_F_43430821_7k8NyDsH7mWQscufbxbrw8wKezDhAKv7.jpg");
-			imageRequest.add("https://media.istockphoto.com/photos/tasty-burgers-on-wooden-table-picture-id860251286");
-			
+			if(query.contentEquals("hamburger")) {
+				imageResults.add("https://assets.epicurious.com/photos/57c5c6d9cf9e9ad43de2d96e/6:4/w_620%2Ch_413/the-ultimate-hamburger.jpg");
+				imageResults.add("https://www.thespruceeats.com/thmb/IVEwZUNTa5XGDFhGtbF8iFaxn3I=/960x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/Hamburger-Hot-Dog-58add5f03df78c345bdef6ff.jpg");
+				imageResults.add("https://recipes-secure-graphics.grocerywebsite.com/0_GraphicsRecipes/4589_4k.jpg");
+				imageResults.add("https://www.justataste.com/wp-content/uploads/2013/05/Homemade-Cheeseburger-Buns.jpg");
+				imageResults.add("https://realfood.tesco.com/media/images/Burger-31LGH-a296a356-020c-4969-86e8-d8c26139f83f-0-1400x919.jpg");
+				imageResults.add("http://www.recipe4living.com/assets/itemimages/400/400/3/default_0dacefd503f9d9812f1221e5b670e95b_dreamstimesmall_50289207.jpg");
+				imageResults.add("https://amp.thisisinsider.com/images/5571cbb9ecad04ea3f1d2bad-480-248.jpg");
+				imageResults.add("https://cdn.pixabay.com/photo/2017/12/09/23/04/bread-3008950_960_720.jpg");
+				imageResults.add("https://as1.ftcdn.net/jpg/00/43/43/08/500_F_43430821_7k8NyDsH7mWQscufbxbrw8wKezDhAKv7.jpg");
+				imageResults.add("https://media.istockphoto.com/photos/tasty-burgers-on-wooden-table-picture-id860251286");
+			}			
 			
 			
 			//thisUser.addRestaurant(restaurantResults.get(0), "favorite");
