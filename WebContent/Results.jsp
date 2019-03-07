@@ -36,7 +36,7 @@
         function getResults() {
 
             var q = '<%= session.getAttribute("query") %>';
-            document.getElementById('title').innerHTML = "Results for '" + q + "'";
+            document.getElementById('title').innerHTML = "Results for " + q;
             
             
             url = JSON.parse('<%= session.getAttribute("imageURLs") %>');

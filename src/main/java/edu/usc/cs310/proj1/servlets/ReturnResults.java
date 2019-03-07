@@ -76,8 +76,8 @@ public class ReturnResults extends HttpServlet {
 			recipeResults = r.recipeResults;
 			
 
-			ImagesRequest ir = new ImagesRequest(query);
-			imageResults = ir.imageResultURLs;
+//			ImagesRequest ir = new ImagesRequest(query);
+//			imageResults = ir.imageResultURLs;
 
 
 			
