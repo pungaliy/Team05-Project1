@@ -203,7 +203,7 @@ public class YelpRequest {
 			r.phoneNumber = res.getString("phone");
 			r.distance = res.getDouble("distance");
 			try {
-				r.travelTime = getDistance("Tommy+Trojan",r.address);
+				r.travelTime = getDistance("Tommy+Trojan",r.address,r.distance);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -213,7 +213,7 @@ public class YelpRequest {
 		}
 
 	}
-	public String getDistance(String start, String end) throws IOException {
+	public String getDistance(String start, String end, double distance) throws IOException {
 		String travelTime = "UNKNOWN";
 		String endFixed = cleanString(end);
 		String origins = "origins=" + start +"&";
@@ -235,13 +235,17 @@ public class YelpRequest {
 					while ((inputLine = in.readLine()) != null) {
 					    content.append(inputLine);
 					}
+					System.out.println(content + url);
 					JSONObject jsonObj = new JSONObject(content.toString());
-					JSONArray l = jsonObj.getJSONArray("rows");
-					jsonObj = l.getJSONObject(0);
-					l = jsonObj.getJSONArray("elements");
-					JSONObject element = l.getJSONObject(0);
-					travelTime = element.getJSONObject("duration").getString("text");
-					
+					if (jsonObj.getString("status").equalsIgnoreCase("OK")) {
+						JSONArray l = jsonObj.getJSONArray("rows");
+						jsonObj = l.getJSONObject(0);
+						l = jsonObj.getJSONArray("elements");
+						JSONObject element = l.getJSONObject(0);
+						travelTime = element.getJSONObject("duration").getString("text");
+					}else {
+						travelTime = ((distance/1.2)/60) + " mins";
+					}
 					in.close();		
 			}else {
 				//debug info
