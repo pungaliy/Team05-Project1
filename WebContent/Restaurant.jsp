@@ -42,7 +42,7 @@
                 </div>
                 <div class="mt-20">
                 	<!-- might need to change this -->
-                    <button class="btn btn-secondary wth" onclick="toResult();">To Results</button>
+                    <button class="btn btn-secondary wth" onclick="toResult();">Return To Results</button>
                 </div>
                 <form action="" onsubmit="return add();" method="get">
                     <div class="mt-20">
