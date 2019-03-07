@@ -164,18 +164,11 @@
     	
     	var restList = document.getElementById('restList');
 		var recList = document.getElementById('recList');
+		
     	
     	function create(){
-    	
     		
-            //set restaurantt
-            var restaurant = JSON.parse('<%= session.getAttribute("restaurantResults") %>');
-            var recipe = JSON.parse(removeToken('<%= session.getAttribute("recipeResults") %>'));
-            
-            console.log(restaurant);
-            console.log(recipe);
-          
-            var head = document.createElement('h2');
+    		var head = document.createElement('h2');
             head.classList.add('text-center');
             var u = document.createElement('u');
             u.innerHTML = "Restaurant";
@@ -190,15 +183,30 @@
             head2.appendChild(u2);
             
             recList.appendChild(head2);
+    	
+    		
+            //set restaurantt
+            var restaurant = JSON.parse('<%= session.getAttribute("restaurantResults") %>');
+            var recipe = JSON.parse('<%= session.getAttribute("recipeResults") %>');
+            var query = '<%= session.getAttribute("query") %>';
+            var thisUser = JSON.parse('<%= session.getAttribute("user") %>');
+            console.log(thisUser);
             
+            
+         
             for (let num = 0; num < restaurant.length; num++){
             	var res = restaurant[num];
-            	createRestaurant(res.name, res.rating, res.distance.toFixed(3), res.price, res.uniqueID, num);
+            	
+            		createRestaurant(res.name, res.rating, res.distance.toFixed(3), res.price, res.uniqueID, num);
+            
             }
             
+            var color = 0;
             for (let num = 0; num < recipe.length; num++){
             	var rec = recipe[num];
-            	createRecipe(rec.recipeName, rec.rating, rec.prepTime, rec.cookTime, rec.price, num);
+            	
+            		createRecipe(rec.recipeName, rec.rating, rec.prepTime, rec.cookTime, rec.price, num);
+            
             }
           
             

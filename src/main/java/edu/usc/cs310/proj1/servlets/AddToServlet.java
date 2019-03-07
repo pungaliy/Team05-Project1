@@ -52,11 +52,14 @@ public class AddToServlet extends HttpServlet {
 		
 		
 		User thisUser = (User) session.getAttribute("userObj");
+		ArrayList<Restaurant> resList = (ArrayList<Restaurant>) session.getAttribute("resList");
+		ArrayList<Recipe> recList = (ArrayList<Recipe>) session.getAttribute("recList");
+		
 		
 		
 		if(item.equals("Restaurant")) {
 			
-			ArrayList<Restaurant> resList = (ArrayList<Restaurant>) session.getAttribute("resList");
+			//ArrayList<Restaurant> resList = (ArrayList<Restaurant>) session.getAttribute("resList");
 			session.setAttribute("list", resList);
 			Restaurant rs = null;
 			for(int i = 0; i < resList.size(); i++) {
@@ -68,10 +71,16 @@ public class AddToServlet extends HttpServlet {
 			session.setAttribute("check", rs);
 			thisUser.addRestaurant(rs, list);
 			
+			resList.remove(rs);
+			resList.add(0, rs);
 		}
 		else {
-			ArrayList<Recipe> rec = (ArrayList<Recipe>) session.getAttribute("recList");
-			thisUser.addRecipe(rec.get(Integer.parseInt(id)), list);
+			//ArrayList<Recipe> rec = (ArrayList<Recipe>) session.getAttribute("recList");
+			Recipe rc = recList.get(Integer.parseInt(id));
+			thisUser.addRecipe(rc, list);
+			
+			recList.remove(rc);
+			recList.add(0, rc);
 		}
 		
 		
@@ -79,10 +88,16 @@ public class AddToServlet extends HttpServlet {
 		
 		Gson gson = new Gson();
 		String userJSON = gson.toJson(thisUser);
+		String resJSON = gson.toJson(resList);
+		String recJSON = gson.toJson(recList);
+		
 		
 		
 	    session.setAttribute("user", userJSON);
-		
+	    session.setAttribute("resList", resList);
+	    session.setAttribute("recList", recList);
+	    session.setAttribute("restaurantResults", resJSON);
+	    session.setAttribute("recipeResults", recJSON);
 		
 	}
 }

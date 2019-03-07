@@ -63,6 +63,10 @@ public class ReturnResults extends HttpServlet {
 			ArrayList<Recipe> recipeResults = new ArrayList<Recipe>();
 			ArrayList<String> imageResults = new ArrayList<String>();
 			
+//			for(Recipe r : recipeResults) {
+//				r.uniqueID = ""
+//			}
+			
 			thisUser.query(query, numOptions, restaurantResults, recipeResults, imageResults);
 			
 			YelpRequest y = new YelpRequest(query, numOptions);
@@ -76,8 +80,8 @@ public class ReturnResults extends HttpServlet {
 			
 			
 			
-			thisUser.addRestaurant(restaurantResults.get(0), "favorite");
-			thisUser.addRecipe(recipeResults.get(0), "favorite");
+			//thisUser.addRestaurant(restaurantResults.get(0), "favorite");
+			//thisUser.addRecipe(recipeResults.get(0), "favorite");
 			
 			Gson gson = new Gson();
 			
@@ -90,7 +94,6 @@ public class ReturnResults extends HttpServlet {
 		    String restJson = gson.toJson(restaurantResults);
 		    String recipeJson = gson.toJson(recipeResults);
 		    String imageJSON = gson.toJson(imageResults);
-		   
 		    String userJSON =  gson.toJson(thisUser);
 			
 			session.setAttribute("restaurantResults", restJson);
