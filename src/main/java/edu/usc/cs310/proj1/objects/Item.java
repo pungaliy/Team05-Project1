@@ -8,6 +8,8 @@ public class Item {
 	public double rating;
 	public String websiteLink;
 	public String name;
+	public String query;
+	
 	public String getUniqueId() {
 		return uniqueID;
 	}

@@ -34,7 +34,7 @@
         <div style="color:red" id="error"></div>
             <div class="container mt-20">
                 <!-- change this -->
-                <form method="get" action="/ReturnResults" id="searchForm">
+                <form method="get" action="/ReturnResults" onsubmit="return check();" id="searchForm">
                     <div class="form-row">
                         <div class="col-10">
                             <input type="text" class="form-control" placeholder="Search...." name="query" value="" id="query">
@@ -77,10 +77,10 @@
 
             if (query === "" || !query) {
                 document.getElementById("error").innerHTML = "*Please enter a valid query";
-                return true;
+                return false;
             }
 
-            return false;
+            return true;
         }
     </script>
 

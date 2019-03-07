@@ -181,6 +181,7 @@ public class YelpRequest {
 		for(int i= 0; i < contents.length(); i++) {
 			JSONObject res = contents.getJSONObject(i);
 			Restaurant r = new Restaurant();
+			r.query = term;
 			r.name = res.getString("name");
 			r.websiteLink = res.getString("url"); 
 			r.websiteLink = seeWebsite(r.websiteLink);

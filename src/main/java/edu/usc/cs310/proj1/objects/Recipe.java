@@ -10,11 +10,12 @@ public class Recipe extends Item {
 	public String ingredients[];
 	public String instructions[];
 	
-	Recipe(String recipename, String imagelink, String preptime, String cooktime,ArrayList<String> ingredient,ArrayList<String> instruction) {
+	Recipe(String recipename, String imagelink, String preptime, String cooktime,ArrayList<String> ingredient,ArrayList<String> instruction, String q) {
 		recipeName = recipename;
 		imageLink = imagelink;
 		prepTime = preptime;
 		cookTime = cooktime;
+		query = q;
 		ingredients = new String[ingredient.size()];
 		instructions = new String[instruction.size()];
 		for(int i = 0; i < ingredient.size(); i++) {
