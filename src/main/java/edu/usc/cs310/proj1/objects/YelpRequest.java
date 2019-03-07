@@ -1,4 +1,5 @@
 package edu.usc.cs310.proj1.objects;
+import java.util.List;
 import java.awt.PageAttributes.MediaType;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -11,9 +12,18 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+import okhttp3.OkHttpClient;
+import okhttp3.Request.Builder;
+import okhttp3.RequestBody;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.omg.CORBA.Request;
+
+import com.gargoylesoftware.htmlunit.WebClient;
+import com.gargoylesoftware.htmlunit.html.HtmlAnchor;
+import com.gargoylesoftware.htmlunit.html.HtmlElement;
+import com.gargoylesoftware.htmlunit.html.HtmlPage;
 
 /*   -----README-----
 
@@ -44,8 +54,8 @@ public class YelpRequest {
 	public int limit = 5; //recieve from search result
 	public String sort_by = "distance";
 	public boolean isCategory = false;
-	
-	//general request format
+	public String xPath = "//*[@id=\"wrap\"]/div[2]/div/div[1]/div/div[4]/div[1]/div/div[2]/ul/li[4]/span[2]/a";
+	//general request format 
 	public String HOST_URL = "https://api.yelp.com";
 	public String SEARCH_PATH = "/v3/businesses/search";
 	public String CUSTOM_PATH = "/v3/businesses/";
@@ -84,6 +94,38 @@ public class YelpRequest {
 		this.term = newq.substring(0, newq.length()-1);
 		scan.close();
 	}
+	
+	public String seeWebsite(String searchURL) {
+		String website = "None";
+		WebClient client = new WebClient();  
+		client.getOptions().setCssEnabled(false); 
+		client.getOptions().setJavaScriptEnabled(false);
+		
+		HtmlPage page = null;
+		try {  
+		  page = client.getPage(searchURL);
+		}catch(Exception e){
+		  e.printStackTrace();
+		}
+		
+		List<HtmlElement> items =  (List<HtmlElement>)page.getByXPath(xPath);
+		if (items.size() > 0) {
+			HtmlElement item = items.get(0);
+			System.out.println(item.asText());
+//			HtmlAnchor itemAnchor = ((HtmlAnchor)item.getFirstByXPath(".//a"));
+//			try {
+//				System.out.println(itemAnchor.toString());
+//				page = client.getPage(itemAnchor.getHrefAttribute());
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+			website = item.asText();
+		}
+		client.close();
+
+		return website;
+	}
+	
 	public void request () throws IOException {
 		//set up
 		String url = HOST_URL + SEARCH_PATH;
@@ -137,6 +179,7 @@ public class YelpRequest {
 			Restaurant r = new Restaurant();
 			r.name = res.getString("name");
 			r.websiteLink = res.getString("url"); 
+			r.websiteLink = seeWebsite(r.websiteLink);
 			r.uniqueID = res.getString("id");
 			if (res.has("price")) {
 				r.price = res.getString("price");			
