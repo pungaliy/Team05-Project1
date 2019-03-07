@@ -69,7 +69,7 @@
                     </div>
                 </form>
                 <div class="mt-20">
-                    <button class="btn btn-secondary wth" onclick="toResult();">Back to Results</button>
+                    <button class="btn btn-secondary wth" onclick="toResult();">Results Page</button>
                 </div>
                 <div class="mt-20">
                     <button class="btn btn-secondary wth" onclick="toSearch();">Return to Search</button>
