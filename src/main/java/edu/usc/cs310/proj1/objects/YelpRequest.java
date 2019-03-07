@@ -5,7 +5,6 @@ import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.lang.reflect.Array;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -14,6 +13,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+import okhttp3.OkHttpClient;
+import okhttp3.Request.Builder;
+import okhttp3.RequestBody;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -182,7 +184,6 @@ public class YelpRequest {
 		for(int i= 0; i < contents.length(); i++) {
 			JSONObject res = contents.getJSONObject(i);
 			Restaurant r = new Restaurant();
-			r.query = term;
 			r.name = res.getString("name");
 			r.websiteLink = res.getString("url"); 
 			r.websiteLink = seeWebsite(r.websiteLink);
@@ -260,11 +261,19 @@ public class YelpRequest {
 	}
 	public String parseAddress (JSONObject a) {
 		JSONArray add = a.getJSONArray("display_address");
-		String s = "";
-		for(int n = 0; n < add.length(); n++) {
-			s += add.getString(n);
+		//System.out.println(add.toString());
+		if (add.length()==0) {
+			System.out.println("special case");
+			return "UNKNOWN ADDRESS";
 		}
-		return s;
+		String total = "";
+		for (int i = 0; i < add.length(); i++) {
+			total+=add.get(i);
+			if (i!= add.length()-1) {
+				total+=", ";
+			}
+		}
+		return total;
 	}
 	
 	public String addParameter (String URL, String param, String paramValue) {
