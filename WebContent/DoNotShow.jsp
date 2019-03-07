@@ -60,14 +60,10 @@
                     </div>
                 </form>
                 <div class="mt-20">
-                    <button class="btn btn-secondary wth" onclick="toResult();">Results Page</button>
+                    <button class="btn btn-secondary wth" onclick="toResult();">Back to Results</button>
                 </div>
                 <div class="mt-20">
-<<<<<<< HEAD
                     <button class="btn btn-secondary wth" onclick="toSearch();">Back to Search</button>
-=======
-                    <button class="btn btn-secondary wth" onclick="toSearch();">Return to Search Page</button>
->>>>>>> bbc1ab82ee36e236db20a4c72cf2503c55bb129f
                 </div>
 
             </div>
