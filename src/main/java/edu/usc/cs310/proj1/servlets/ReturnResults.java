@@ -91,7 +91,7 @@ public class ReturnResults extends HttpServlet {
 			imageRequest.add("https://cdn.pixabay.com/photo/2017/12/09/23/04/bread-3008950_960_720.jpg");
 			imageRequest.add("https://as1.ftcdn.net/jpg/00/43/43/08/500_F_43430821_7k8NyDsH7mWQscufbxbrw8wKezDhAKv7.jpg");
 			imageRequest.add("https://media.istockphoto.com/photos/tasty-burgers-on-wooden-table-picture-id860251286");
-			imageRequest.add("https://media.istockphoto.com/photos/cheeseburger-and-fries-on-restaurant-table-picture-id507636912");
+			
 			
 			
 			//thisUser.addRestaurant(restaurantResults.get(0), "favorite");
