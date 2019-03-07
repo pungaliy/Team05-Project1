@@ -163,12 +163,20 @@
     <script>
     	
     	var restList = document.getElementById('restList');
-		var recList = document.getElementById('recList');
+	var recList = document.getElementById('recList');
 		
     	
     	function create(){
     		
-    		var head = document.createElement('h2');
+
+            //set restaurantt
+            var restaurant = JSON.parse('<%= session.getAttribute("restaurantResults") %>');
+            var recipe = JSON.parse('<%= session.getAttribute("recipeResults") %>');
+            
+            console.log(restaurant);
+            console.log(recipe);
+          
+            var head = document.createElement('h2');
             head.classList.add('text-center');
             var u = document.createElement('u');
             u.innerHTML = "Restaurant";
@@ -189,8 +197,8 @@
             var restaurant = JSON.parse('<%= session.getAttribute("restaurantResults") %>');
             var recipe = JSON.parse('<%= session.getAttribute("recipeResults") %>');
             var query = '<%= session.getAttribute("query") %>';
-            var thisUser = JSON.parse('<%= session.getAttribute("user") %>');
-            console.log(thisUser);
+            //var thisUser = JSON.parse('<%= session.getAttribute("user") %>');
+            //console.log(thisUser);
             
             
          
