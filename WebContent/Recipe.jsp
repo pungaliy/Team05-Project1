@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Recipe</title>
+    <title>Recipe Page</title>
 
     <!-- maxcdn -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
@@ -41,12 +41,12 @@
                     <a href="javascript:window.print();"><button class="btn btn-secondary wth" >Printable View</button></a>
                 </div>
                 <div class="mt-20">
-                    <button class="btn btn-secondary wth" onclick="toResult();">Results Page</button>
+                    <button class="btn btn-secondary wth" onclick="toResult();">Return to Results</button>
                 </div>
                 <form action="" onsubmit="return add();" method="get" id="myform">
                     <div class="mt-20">
                         <select name="list" class="btn bg-secondary wth" id="list">
-                            <option value="nil" selected>_______________________</option>
+                            <option value="nil" selected></option>
                             <option value="favorite">Favorite List</option>
                             <option value="explore">To Explore List</option>
                             <option value="not">Do Not Show List</option>
@@ -56,12 +56,12 @@
                         <button class="btn btn-secondary wth" type="submit">Add to List</button>
                     </div>
                 </form>
-
+				<div id="response" style="margin-top: 20px;color: red; width: 150px;"></div>
             </div>
            </div>
     
       
-      <div class="row">
+      <div class="row" style="margin-left: 5px; margin-bottom: 10px; margin-top: 10px;">
       
                 <!-- content -->
                 <img id="image" src="" width="200">
@@ -102,9 +102,17 @@
     			xhttp.onreadystatechange = function(){
     				if(this.readyState == 4 && this.status == 200){
     					console.log("return");
-    					var tmp = '<%= session.getAttribute("user") %>';
-    		            var user = JSON.parse(tmp);
-    		            console.log(user);
+    					var r = document.getElementById('response');
+    					if(list == "favorite"){
+    						list = "Favorite List";
+    					}
+    					else if(list == "explore"){
+    						list = "To Explore List";
+    					}
+    					else{
+    						list = "Do Not Show List";
+    					}
+    					r.innerHTML = "Added to " + list;
     				}
     			}
     			xhttp.open("POST", "AddToServlet?id=" + id + "&item=r&list=" + list, true);

@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Results</title>
+    <title>Results Page</title>
 
     <!-- maxcdn -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
@@ -36,7 +36,7 @@
         function getResults() {
 
             var q = '<%= session.getAttribute("query") %>';
-            document.getElementById('title').innerHTML = "Search Results for " + q + "";
+            document.getElementById('title').innerHTML = "Results for '" + q + "'";
             
             
             url = JSON.parse('<%= session.getAttribute("imageURLs") %>');
@@ -123,7 +123,7 @@
                 <form action="/ToList"  method="get">
                     <div class="mt-20">
                         <select name="list" class="btn bg-secondary wth" id="list">
-                            <option value="nil" selected>_______________________</option>
+                            <option value="nil" selected></option>
                             <option value="favorite">Favorite List</option>
                             <option value="explore">To Explore List</option>
                             <option value="not">Do Not Show List</option>

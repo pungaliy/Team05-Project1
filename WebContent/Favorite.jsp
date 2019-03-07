@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Favorites</title>
+    <title>Favorite List</title>
 
     <!-- maxcdn -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
@@ -52,8 +52,7 @@
                 <form action="/ToList" method="get">
                     <div class="mt-20">
                         <select name="list" class="btn bg-secondary wth">
-                            <option value="nil" selected>_______________________</option>
-                            <option value="favorite">Favorite List</option>
+                            <option value="nil" selected></option>
                             <option value="explore">To Explore List</option>
                             <option value="not">Do Not Show List</option>
                         </select>
@@ -66,7 +65,7 @@
                     <button class="btn btn-secondary wth" onclick="toResult();">Back to Results</button>
                 </div>
                 <div class="mt-20">
-                    <button class="btn btn-secondary wth" onclick="toSearch();">Return to Search</button>
+                    <button class="btn btn-secondary wth" onclick="toSearch();">Back to Search</button>
                 </div>
 
             </div>

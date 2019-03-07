@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Restaurant</title>
+    <title>Restaurant Page</title>
 
     <!-- maxcdn -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
@@ -42,37 +42,38 @@
                 </div>
                 <div class="mt-20">
                 	<!-- might need to change this -->
-                    <button class="btn btn-secondary wth" onclick="toResult();">Back to Results</button>
+                    <button class="btn btn-secondary wth" onclick="toResult();">Return to Results</button>
                 </div>
                 <form action="" onsubmit="return add();" method="get">
                     <div class="mt-20">
                         <select name="list" class="btn bg-secondary wth" id="list">
-                            <option value="nil" selected>_______________________</option>
+                            <option value="nil" selected></option>
                             <option value="favorite">Favorite List</option>
                             <option value="explore">To Explore List</option>
                             <option value="not">Do Not Show List</option>
                         </select>
                     </div>
                     <div class="mt-20">
-                        <button class="btn btn-secondary wth" type="submit">Add to List</button>
+                        <button class="btn btn-secondary wth" type="submit" id="addButton">Add to List</button>
                     </div>
                 </form>
-
+				<div id="response" style="margin-top: 20px;color: red; width: 150px;"></div>
             </div>
            </div>
             
-            <div class="row">
+            <div class="row" style="margin-left: 5px; margin-bottom: 10px; margin-top: 10px;">
                 <!-- content -->
-                <div style="font-size: 40px;">
-                    <div class="mt-20" id="phone">
-                       
+                <div >
+                    <div class="mt-20">
+                    	<h4>Phone Number:</h4>
+                       	<div id="phone"></div>
                     </div>
                     <div class="mt-20" style="width: 300px;font-size: 18px;">
-                    	<h3>Website:</h3>
+                    	<h4>Website:</h4>
                         <a id="link" href=""></a>
                     </div>
                     <div class="mt-20" style="width: 300px;font-size: 18px;">
-                    	<h3>Address:</h3>
+                    	<h4>Address:</h4>
                       <a href="" id="address">
                       	
                       </a>
@@ -94,6 +95,7 @@
     var link = window.location.href;
 	var url = new URL(link);
 	var id = url.searchParams.get("id");
+	var addButton = document.getElementById('addButton');
 	console.log(id)
 	
 	var restaurant = JSON.parse('<%= session.getAttribute("restaurantResults") %>');
@@ -114,9 +116,11 @@
     	
     	//adding
     	function add(){
+    		
     		console.log("adding");
     		var list = document.getElementById("list").value;
     		if(list == null || list == "nil"){
+    			
     			return false;
     		}
     		else{
@@ -124,15 +128,24 @@
     			xhttp.onreadystatechange = function(){
     				if(this.readyState == 4 && this.status == 200){
     					console.log("return");
-    					var user = JSON.parse('<%= session.getAttribute("user") %>');
-    					
-    		            console.log(user);
+    					var r = document.getElementById('response');
+    					if(list == "favorite"){
+    						list = "Favorite List";
+    					}
+    					else if(list == "explore"){
+    						list = "To Explore List";
+    					}
+    					else{
+    						list = "Do Not Show List";
+    					}
+    					r.innerHTML = "Added to " + list;
     				}
     			}
     			xhttp.open("POST", "AddToServlet?id=" + id + "&item=Restaurant&list=" + list, true);
         		xhttp.send();
     		}
     		
+    	
     		return false;
     		
     	}
