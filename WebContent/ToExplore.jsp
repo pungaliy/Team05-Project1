@@ -7,6 +7,7 @@
 
     <title>To Explore List</title>
 
+
     <!-- maxcdn -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -63,7 +64,11 @@
                     <button class="btn btn-secondary wth" onclick="toResult();">Back to Results</button>
                 </div>
                 <div class="mt-20">
+<<<<<<< HEAD
                     <button class="btn btn-secondary wth" onclick="toSearch();">Back to Search</button>
+=======
+                    <button class="btn btn-secondary wth" onclick="toSearch();">Return to Search Page</button>
+>>>>>>> bbc1ab82ee36e236db20a4c72cf2503c55bb129f
                 </div>
 
             </div>

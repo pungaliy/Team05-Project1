@@ -135,7 +135,7 @@
                 </form>
 
                 <div class="mt-20">
-                    <button class="btn btn-secondary wth" onclick="toSearch();">Return to Search</button>
+                    <button class="btn btn-secondary wth" onclick="toSearch();">Return to Search Page</button>
                 </div>
             </div>
         </div>
