@@ -127,7 +127,7 @@
     			xhttp.onreadystatechange = function(){
     				if(this.readyState == 4 && this.status == 200){
     					console.log("return");
-    					var user = JSON.parse(removeToken('<%= session.getAttribute("user") %>'));
+    					var user = JSON.parse('<%= session.getAttribute("user") %>');
     					
     		            console.log(user);
     				}

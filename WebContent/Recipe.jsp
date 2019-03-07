@@ -61,7 +61,7 @@
 
             <div col="col-2">
                 <div class="mt-20">
-                    <button class="btn btn-secondary wth">Printable View</button>
+                    <button class="btn btn-secondary wth" onclick="print();">Printable View</button>
                 </div>
                 <div class="mt-20">
                     <button class="btn btn-secondary wth" onclick="toResult();">Back to Results</button>
@@ -102,17 +102,6 @@
     				if(this.readyState == 4 && this.status == 200){
     					console.log("return");
     					var tmp = '<%= session.getAttribute("user") %>';
-    		            // preserve newlines, etc - use valid JSON
-    		            tmp = tmp.replace(/\\n/g, "\\n")  
-    		                           .replace(/\\'/g, "\\'")
-    		                           .replace(/\\"/g, '\\"')
-    		                           .replace(/\\&/g, "\\&")
-    		                           .replace(/\\r/g, "\\r")
-    		                           .replace(/\\t/g, "\\t")
-    		                           .replace(/\\b/g, "\\b")
-    		                           .replace(/\\f/g, "\\f");
-    		            // remove non-printable and other non-valid JSON chars
-    		            tmp = tmp.replace(/[\u0000-\u0019]+/g,""); 
     		            var user = JSON.parse(tmp);
     		            console.log(user);
     				}
@@ -125,6 +114,10 @@
     		
     	}
       
+      function print(){
+    	  window.print();
+      }
+      
     	var form = document.getElementById("myform"); 
     	function handleForm(event) { 
     		event.preventDefault(); 
@@ -136,18 +129,7 @@
 	var id = url.searchParams.get("id");
 	console.log(id)
 	
-	var tmp = '<%= session.getAttribute("recipeResults") %>';
-    // preserve newlines, etc - use valid JSON
-    tmp = tmp.replace(/\\n/g, "\\n")  
-                   .replace(/\\'/g, "\\'")
-                   .replace(/\\"/g, '\\"')
-                   .replace(/\\&/g, "\\&")
-                   .replace(/\\r/g, "\\r")
-                   .replace(/\\t/g, "\\t")
-                   .replace(/\\b/g, "\\b")
-                   .replace(/\\f/g, "\\f");
-    // remove non-printable and other non-valid JSON chars
-    tmp = tmp.replace(/[\u0000-\u0019]+/g,""); 
+	var tmp = '<%= session.getAttribute("recipeResults") %>'; 
     var recipe = JSON.parse(tmp);
 	var current = recipe[id];
 	console.log(current);

@@ -89,7 +89,7 @@
 		xhttp.onreadystatechange = function(){
 			if(this.readyState == 4 && this.status == 200){
 				console.log("return");
-				var user = JSON.parse(removeToken('<%= session.getAttribute("user") %>'));
+				var user = JSON.parse('<%= session.getAttribute("user") %>');
 				
 	            console.log(user);
 	            location.reload();
@@ -109,7 +109,7 @@
 		xhttp.onreadystatechange = function(){
 			if(this.readyState == 4 && this.status == 200){
 				console.log("return");
-				var user = JSON.parse(removeToken('<%= session.getAttribute("user") %>'));
+				var user = JSON.parse('<%= session.getAttribute("user") %>');
 				var check = '<%= session.getAttribute("check") %>';
 				var type = '<%= session.getAttribute("type") %>';
 				var list = '<%= session.getAttribute("list") %>';
@@ -131,21 +131,8 @@
     }
     
     
-    function removeToken(tmp){
-		tmp = tmp.replace(/\\n/g, "\\n")  
-        .replace(/\\'/g, "\\'")
-        .replace(/\\"/g, '\\"')
-        .replace(/\\&/g, "\\&")
-        .replace(/\\r/g, "\\r")
-        .replace(/\\t/g, "\\t")
-        .replace(/\\b/g, "\\b")
-        .replace(/\\f/g, "\\f");
-		// remove non-printable and other non-valid JSON chars
-		return tmp.replace(/[\u0000-\u0019]+/g,""); 
-	}
-    
 	    var restaurant = JSON.parse('<%= session.getAttribute("favRes") %>');
-	    var recipe = JSON.parse(removeToken('<%= session.getAttribute("favRec") %>'));
+	    var recipe = JSON.parse('<%= session.getAttribute("favRec") %>');
 	    console.log(restaurant);
 	    console.log(recipe);
 	    

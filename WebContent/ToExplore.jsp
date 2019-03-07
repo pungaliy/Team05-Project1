@@ -88,7 +88,7 @@ function mv(list2, itemType, index){
 		xhttp.onreadystatechange = function(){
 			if(this.readyState == 4 && this.status == 200){
 				console.log("return");
-				var user = JSON.parse(removeToken('<%= session.getAttribute("user") %>'));
+				var user = JSON.parse('<%= session.getAttribute("user") %>');
 				
 	            console.log(user);
 	            location.reload();
@@ -108,7 +108,7 @@ function mv(list2, itemType, index){
 		xhttp.onreadystatechange = function(){
 			if(this.readyState == 4 && this.status == 200){
 				console.log("return");
-				var user = JSON.parse(removeToken('<%= session.getAttribute("user") %>'));
+				var user = JSON.parse('<%= session.getAttribute("user") %>');
 				var check = '<%= session.getAttribute("check") %>';
 				var type = '<%= session.getAttribute("type") %>';
 				var list = '<%= session.getAttribute("list") %>';
@@ -144,7 +144,7 @@ function mv(list2, itemType, index){
     
     	
 	    var restaurant = JSON.parse('<%= session.getAttribute("expRes") %>');
-	    var recipe = JSON.parse(removeToken('<%= session.getAttribute("expRec") %>'));
+	    var recipe = JSON.parse('<%= session.getAttribute("expRec") %>');
 	    console.log(restaurant);
 	    console.log(recipe);
 	    

@@ -202,7 +202,7 @@ public class RecipeRequest {
 				f = f.replaceAll("\"","\\\\\"");
 			}
 			
-			recipeName = recipeName.replaceAll("\'", "\\\\'");
+			
 			recipeName = recipeName.replaceAll("\"","\\\\\"");
 			
 			recipeResults.add(new Recipe(recipeName, imageLink, prepTime, cookTime, ingredients, instructions));
