@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet implementation class searchUser
  */
-@WebServlet({"/home", "/index", "/search"})
+@WebServlet({"/home", "/index", "/search", "/index.html"})
 public class HomeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

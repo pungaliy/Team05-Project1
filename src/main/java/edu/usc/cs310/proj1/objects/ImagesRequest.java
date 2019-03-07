@@ -55,17 +55,13 @@ public class ImagesRequest {
 		
 		JsonObject jsonObject = new JsonParser().parse(storeJson).getAsJsonObject();
 
-        JsonArray arr = jsonObject.getAsJsonArray("items");
-        
-        for (int i = 0; i < arr.size(); i++) {
-            String link = arr.get(i).getAsJsonObject().get("link").getAsString();
-            imageResultURLs.add(link);
-        }
-        
-	}
+		JsonArray arr = jsonObject.getAsJsonArray("items");
 
-	public static void main (String args []) {
-		ImagesRequest ir = new ImagesRequest("chicken");
+		for (int i = 0; i < arr.size(); i++) {
+		    String link = arr.get(i).getAsJsonObject().get("link").getAsString();
+		    imageResultURLs.add(link);
+		}
+
 	}
 
 }
