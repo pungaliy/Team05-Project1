@@ -78,6 +78,9 @@ public class ReturnResults extends HttpServlet {
 			ImagesRequest ir = new ImagesRequest(query);
 			imageResults = ir.imageResultURLs;
 			
+			for (int i = 0; i < 10; i++) {
+				imageResults.add("#");
+			}
 			
 			
 			//thisUser.addRestaurant(restaurantResults.get(0), "favorite");
