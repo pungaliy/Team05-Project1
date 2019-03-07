@@ -170,7 +170,7 @@
     		
             //set restaurantt
             var restaurant = JSON.parse('<%= session.getAttribute("restaurantResults") %>');
-            var recipe = JSON.parse(removeToken('<%= session.getAttribute("recipeResults") %>'));
+            var recipe = JSON.parse('<%= session.getAttribute("recipeResults") %>');
             
             console.log(restaurant);
             console.log(recipe);
