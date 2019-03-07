@@ -104,7 +104,7 @@ public class ReturnResults extends HttpServlet {
 			session.setAttribute("query", query);
 			session.setAttribute("imageURLs", imageJSON);
 			session.setAttribute("user", userJSON);
-			session.setAttribute(("options", options);
+			session.setAttribute("options", options);
 		}
 		
 		RequestDispatcher dispatch = request.getRequestDispatcher("/Results.jsp?query=" + query);
