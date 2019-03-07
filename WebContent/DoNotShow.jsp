@@ -33,9 +33,9 @@
     	}
     	
     	function check(){
-    				console.log("checking");
+    			console.log("checking");
         		var list = document.getElementById("list").value;
-        		if(list == null || list == "nil"){
+        		if(list == null || list == "nil" || list == "not"){
         			
         			return false;
         		}
@@ -60,12 +60,13 @@
                 <div class="listTitle text-center" style="margin-bottom: 150px;">Do Not Show List</div>
             </div>
             <div col="col-2">
-                <form action="/ToList" onsubmit="return check();" method="get">
+                <form action="/ToList" onsubmit="return check();" method="get" id="list">
                     <div class="mt-20">
                         <select name="list" class="btn bg-secondary wth">
                             <option value="nil" selected></option>
                             <option value="favorite">Favorite List</option>
                             <option value="explore">To Explore List</option>
+                            <option value="not">Do Not Show</option>
                         </select>
                     </div>
                     <div class="mt-20">
