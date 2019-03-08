@@ -40,7 +40,7 @@ public class ReturnResults extends HttpServlet {
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-
+		
 		HttpSession session = request.getSession();
 				
 		String query = request.getParameter("query");
@@ -129,6 +129,7 @@ public class ReturnResults extends HttpServlet {
 		}
 		
 		RequestDispatcher dispatch = request.getRequestDispatcher("/Results.jsp?query=" + query);
+		System.out.println(dispatch == null);
 		dispatch.forward(request,  response);
 	}
 }

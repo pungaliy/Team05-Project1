@@ -9,15 +9,4 @@ public class Item {
 	public String websiteLink;
 	public String name;
 	public String query;
-	
-	public String getUniqueId() {
-		return uniqueID;
-	}
-	public String getPrice () {
-		return price;
-	}
-	public String getLink() {
-		return websiteLink;
-	}
-	
 }

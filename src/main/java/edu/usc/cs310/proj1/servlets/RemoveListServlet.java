@@ -38,7 +38,7 @@ public class RemoveListServlet extends HttpServlet {
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
 		HttpSession session = request.getSession();
-				
+			
 		String list1 = request.getParameter("list");
 		String type = request.getParameter("itemType");
 		session.setAttribute("type", type);

@@ -42,12 +42,12 @@ public class MoveListServlet extends HttpServlet {
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-
 		HttpSession session = request.getSession();
 				
 		String list1 = request.getParameter("list1");
 		String list2 = request.getParameter("list2");
 		String type = request.getParameter("itemType");
+		
 		int index = Integer.parseInt(request.getParameter("index"));
 		
 		ArrayList<Restaurant> resList = (ArrayList<Restaurant>) session.getAttribute("resList");
@@ -68,6 +68,8 @@ public class MoveListServlet extends HttpServlet {
 	        	}
         	}
         	else if(list1.equals("favorite")) {
+        		System.out.println(u.favoriteRestaurant.size());
+        		
         		Restaurant res = u.favoriteRestaurant.get(index);
         		if(list2.equals("not")) {
         			resList.remove(res);

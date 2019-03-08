@@ -43,26 +43,25 @@ public class AddToServlet extends HttpServlet {
 		String item = request.getParameter("item");
 		String list = request.getParameter("list");
 		
+	
 		session.setAttribute("id", id);
 		if(item.equals("Restaurant")) {
 			session.setAttribute("item", item);
 		}
 		session.setAttribute("list", list);
 		
-		
-		
 		User thisUser = (User) session.getAttribute("userObj");
 		ArrayList<Restaurant> resList = (ArrayList<Restaurant>) session.getAttribute("resList");
 		ArrayList<Recipe> recList = (ArrayList<Recipe>) session.getAttribute("recList");
-		
-		
 		
 		if(item.equals("Restaurant")) {
 			
 			//ArrayList<Restaurant> resList = (ArrayList<Restaurant>) session.getAttribute("resList");
 			session.setAttribute("list", resList);
 			Restaurant rs = null;
+	
 			for(int i = 0; i < resList.size(); i++) {
+				
 				if(resList.get(i).uniqueID.equals(id)) {
 					session.setAttribute("in", "IHSDIDSHI");
 					rs = resList.get(i);

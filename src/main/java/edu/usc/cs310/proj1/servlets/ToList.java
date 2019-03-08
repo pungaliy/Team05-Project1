@@ -68,9 +68,5 @@ public class ToList extends HttpServlet {
 			RequestDispatcher dispatch = request.getRequestDispatcher("/DoNotShow.jsp");
 			dispatch.forward(request,  response);
 		}
-		
-		
-		
-		
 	}
 }
