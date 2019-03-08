@@ -50,8 +50,9 @@ end
 
 Then(/^a restaurant should have a Name, Address, Stars, Minutes, and Price Range$/) do
   rl = page.find('div#restList')
-  expect(rl).to have_content('$')
-  expect(rl).to have_content('Distance:')  
+  expect(rl).to have_content('Address:')  
+  expect(rl).to have_content('Distance:')
+  expect(rl).to have_content('☆')
 end
 
 When(/^I click on a Restaurant$/) do

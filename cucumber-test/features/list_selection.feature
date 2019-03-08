@@ -4,10 +4,10 @@ Feature: List Selection
 
 	Scenario Outline: Empty Selection
 		Given I am on the <Page> Page
-	    When I press the "Manage List" Button
-	    Then I should be on the <Page> Page 
+		When I press the "Manage List" Button
+		Then I should be on the <Page> Page 
 
-	    Examples:
+		Examples:
 		| Page |
 		| Results | 
 		| Favorite |
@@ -40,7 +40,7 @@ Feature: List Selection
 
 	Scenario Outline: Dropdown Exists
 		Given I am on the <Page> Page
-	    Then I should see a dropdown menu
+		Then I should see a dropdown menu
 
 	Examples:
 		| Page |
@@ -62,7 +62,7 @@ Feature: List Selection
 
 	Scenario Outline: Manage List Button Exists
 		Given I am on the <Page> Page
-	    Then I should see a button labeled "Manage List"
+		Then I should see a button labeled "Manage List"
 
 	Examples:
 		| Page |

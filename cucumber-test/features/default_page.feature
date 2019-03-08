@@ -3,9 +3,9 @@ Feature: Default Page
 	Upon receiving any of the following URLs
 
 	Scenario Outline: 
-	    When I visit <Page>
-	    Then I should be on the Search page
+		When I visit <Page>
+		Then I should be on the Search page
 
 	Examples:
-	    | Page |
-	    | |
+		| Page |
+		| |

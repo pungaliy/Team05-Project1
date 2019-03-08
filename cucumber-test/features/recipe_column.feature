@@ -6,11 +6,11 @@ Feature: Recipe Column
 		Given I am on the Results Page
 
 	Scenario: Title Exists
-	    Then I should see the "Recipe" title
+		Then I should see the "Recipe" title
 
 	Scenario: Recipe Values Correct
 		Then a recipe should have a Name, Stars, Prep time, Cook time
 
 	Scenario: Recipe Redirection
-	    When I click on a Recipe
-	    Then I should be redirected to that Recipe's page
+		When I click on a Recipe
+		Then I should be redirected to that Recipe's page

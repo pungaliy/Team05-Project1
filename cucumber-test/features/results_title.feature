@@ -5,9 +5,9 @@ Feature: Results Title
 		Given I am on the Search Page
 
 	Scenario Outline: Correct Title
-	    When I enter "<value>" into the search box
-	    And I click the "Feed Me!" button
-	    Then I should see the title "Results for <value>"
+		When I enter "<value>" into the search box
+		And I click the "Feed Me!" button
+		Then I should see the title "Results for <value>"
 
 	Examples:
 		| value |
