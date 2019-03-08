@@ -66,7 +66,7 @@
                             <option value="nil" selected></option>
                             <option value="favorite">Favorite List</option>
                             <option value="explore">To Explore List</option>
-                            <option value="not">Do Not Show</option>
+                            <option value="not">Do Not Show List</option>
                         </select>
                     </div>
                     <div class="mt-20">
