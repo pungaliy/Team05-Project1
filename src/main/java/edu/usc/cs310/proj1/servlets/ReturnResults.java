@@ -51,8 +51,7 @@ public class ReturnResults extends HttpServlet {
         
 		
 		//check if the same search, then return the same results
-		if(session.getAttribute("query") == null || !session.getAttribute("query").equals(query) ||
-				(session.getAttribute("query").equals(query) && (int)session.getAttribute("options") != numOptions)) {
+		if(session.getAttribute("query") == null || !session.getAttribute("query").equals(query) || (session.getAttribute("query").equals(query) && (int)session.getAttribute("options") != numOptions)) {
 			 
 			//create new instances of Results
 			ArrayList<Restaurant> restaurantResults = new ArrayList<Restaurant>();
@@ -119,7 +118,8 @@ public class ReturnResults extends HttpServlet {
 		}
 		
 		RequestDispatcher dispatch = request.getRequestDispatcher("/Results.jsp?query=" + query);
-		System.out.println(dispatch == null);
-		dispatch.forward(request,  response);
+		if (!(dispatch == null)) {
+			dispatch.forward(request,  response);
+		}
 	}
 }
