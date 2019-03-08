@@ -26,6 +26,7 @@ import edu.usc.cs310.proj1.servlets.AddToServlet;
 import edu.usc.cs310.proj1.servlets.MoveListServlet;
 import edu.usc.cs310.proj1.servlets.RemoveListServlet;
 import edu.usc.cs310.proj1.servlets.ReturnResults;
+import edu.usc.cs310.proj1.servlets.ToList;
 import edu.usc.cs310.proj1.objects.ImagesRequest;
 import edu.usc.cs310.proj1.objects.Recipe;
 import edu.usc.cs310.proj1.objects.RecipeRequest;
@@ -35,7 +36,7 @@ public class BackendUnitTest {
 	
 	public int limit = 5;
 	
-	/*
+	
 	//RECIPE TESTS
 	@Test
 	public void failQuery() {
@@ -472,8 +473,6 @@ public class BackendUnitTest {
 		imageResults = ir.imageResultURLs;
 		assertEquals(imageResults.size(), 10);	
 	}
-	
-	*/
 	
 	//SERVLET TESTS
 	
@@ -982,7 +981,6 @@ public class BackendUnitTest {
     
     //returnresultsservlet
     
-    /*
     
     @Test
     public void returnResultsServ() throws IOException, ServletException {
@@ -1022,8 +1020,59 @@ public class BackendUnitTest {
         assertEquals(1, 1);
     }
     
-    */
-    
     //tolistservlet
-
+    
+    @Test
+    public void toList() throws IOException, ServletException {
+    	
+    	ToList servlet = new ToList();
+    	
+        when(request.getParameter("list")).thenReturn("favorite");
+        when(session.getAttribute("userObj")).thenReturn(newUser);
+       
+        StringWriter sw = new StringWriter();
+        PrintWriter pw = new PrintWriter(sw);
+         
+        when(response.getWriter()).thenReturn(pw);
+ 
+        servlet.service(request, response);
+        
+        assertEquals(1, 1);
+    }
+    
+    @Test
+    public void toListExplore() throws IOException, ServletException {
+    	
+    	ToList servlet = new ToList();
+    	
+        when(request.getParameter("list")).thenReturn("explore");
+        when(session.getAttribute("userObj")).thenReturn(newUser);
+       
+        StringWriter sw = new StringWriter();
+        PrintWriter pw = new PrintWriter(sw);
+         
+        when(response.getWriter()).thenReturn(pw);
+ 
+        servlet.service(request, response);
+        
+        assertEquals(1, 1);
+    }
+    
+    @Test
+    public void toListNot() throws IOException, ServletException {
+    	
+    	ToList servlet = new ToList();
+    	
+        when(request.getParameter("list")).thenReturn("not");
+        when(session.getAttribute("userObj")).thenReturn(newUser);
+       
+        StringWriter sw = new StringWriter();
+        PrintWriter pw = new PrintWriter(sw);
+         
+        when(response.getWriter()).thenReturn(pw);
+ 
+        servlet.service(request, response);
+        
+        assertEquals(1, 1);
+    }
 }
