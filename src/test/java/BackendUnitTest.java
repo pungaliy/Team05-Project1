@@ -1,9 +1,13 @@
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+
+import java.util.ArrayList;
+
 import org.junit.Test;
 
 import edu.usc.cs310.proj1.objects.Restaurant;
 import edu.usc.cs310.proj1.objects.YelpRequest;
+import edu.usc.cs310.proj1.objects.ImagesRequest;
 import edu.usc.cs310.proj1.objects.RecipeRequest;
 
 
@@ -214,6 +218,25 @@ public class BackendUnitTest {
 			assertNotNull(s.address);
 			assertNotNull(s.googleMapsLink);
 		}
+	}
+	
+	//IMAGES REQUEST
+	@Test
+	public void imageRequestSize() {
+		String query = "hamburger";
+		ImagesRequest ir = new ImagesRequest(query);
+		ArrayList<String> imageResults = new ArrayList<String>();
+		imageResults = ir.imageResultURLs;
+		assertEquals(imageResults.size(), 10);	
+	}
+	
+	@Test
+	public void imageRequestOtherQuery() {
+		String query = "chicken";
+		ImagesRequest ir = new ImagesRequest(query);
+		ArrayList<String> imageResults = new ArrayList<String>();
+		imageResults = ir.imageResultURLs;
+		assertEquals(imageResults.size(), 10);	
 	}
 	
 }
