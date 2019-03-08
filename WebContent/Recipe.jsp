@@ -21,6 +21,7 @@
     <link href="./css/main.css?version=5" rel="stylesheet">
     
     <script>
+    //to navigate to results page
     	function toResult(){
     		window.location.href = "/Results.jsp";
     	}
@@ -34,9 +35,11 @@
     <div class="container-fluid">
         <div class="row ">
             <div class="col-8">
+            	<!--  --> title -->
                 <div class="listTitle" style="margin-bottom: 50px;" id="title"></div>
-               </div>
-               <div col="col-4">
+             </div>
+               <!-- navigation bar -->
+             <div col="col-4">
                 <div class="mt-20">
                     <a href="javascript:window.print();"><button class="btn btn-secondary wth" >Printable View</button></a>
                 </div>
@@ -58,7 +61,7 @@
                 </form>
 				<div id="response" style="margin-top: 20px;color: red; width: 150px;"></div>
             </div>
-           </div>
+        </div>
     
       
       <div class="row" style="margin-left: 5px; margin-bottom: 10px; margin-top: 10px;">
@@ -67,20 +70,18 @@
                 <img id="image" src="" width="200">
                 <div style="font-size: 20px;">
                     <div class="mt-20" id="prep">
-                        
+                        <!-- show prep time here -->
                     </div>
                     <div class="mt-20" id="cook">
-              
+              			<!--  show cook time here -->
                     </div>
                     <div class="mt-20" id="ingredients">
-
+						<!--  show ingredients here -->
                     </div>
                     <div class="mt-20" id="instructions">
- 
+ 						<!-- show instructions here -->
                     </div>
                 </div>
-
-
 
             <!-- end of content -->
 	</div>
@@ -88,11 +89,11 @@
 	</div>
     
     
-        <script>
+    <script>
         
-      //adding
+      //this sends the id of recipe and which list to add it to the AddToServlet
     	function add(){
-    		console.log("adding");
+    		
     		var list = document.getElementById("list").value;
     		if(list == null || list == "nil"){
     			return false;
@@ -101,7 +102,7 @@
     			var xhttp = new XMLHttpRequest();
     			xhttp.onreadystatechange = function(){
     				if(this.readyState == 4 && this.status == 200){
-    					console.log("return");
+    					
     					var r = document.getElementById('response');
     					if(list == "favorite"){
     						list = "Favorite List";
@@ -123,50 +124,51 @@
     		
     	}
       
-      
+      	//this prevents reloading when submitting forms
     	var form = document.getElementById("myform"); 
     	function handleForm(event) { 
     		event.preventDefault(); 
     	} 
     	form.addEventListener('submit', handleForm);
       
-    var link = window.location.href;
-	var url = new URL(link);
-	var id = url.searchParams.get("id");
-	console.log(id)
-	
-	var tmp = '<%= session.getAttribute("recipeResults") %>'; 
-    var recipe = JSON.parse(tmp);
-	var current = recipe[id];
-	console.log(current);
-	
-	document.getElementById('title').innerHTML = current.recipeName;
-
-	document.getElementById('prep').innerHTML = "Prep Time: " + current.prepTime;
-	document.getElementById('cook').innerHTML = "Cook Time: " + current.cookTime;
-	document.getElementById('image').src = current.imageLink;
-	var ingre = document.getElementById('ingredients');
-	var u = document.createElement('u');
-	u.innerHTML = "Ingredients: ";
-	ingre.appendChild(u);
-	var ul = document.createElement('ul');
-	for(var i = 0; i < current.ingredients.length; i++){
-		var li = document.createElement("li");
-		li.innerHTML = current.ingredients[i];
-		ingre.appendChild(li);
-	}
-	
-	var instr = document.getElementById('instructions');
-	var u2 = document.createElement('u');
-	u2.innerHTML = "Instructions:";
-	
-	instr.appendChild(u2);
-	var ul = document.createElement('ol');
-	for(var i = 0; i < current.instructions.length; i++){
-		var li = document.createElement("li");
-		li.innerHTML = current.instructions[i];
-		instr.appendChild(li);
-	}
+    	
+    	//get the id of recipe
+	    var link = window.location.href;
+		var url = new URL(link);
+		var id = url.searchParams.get("id");
+		
+		//get the recipe object
+		var tmp = '<%= session.getAttribute("recipeResults") %>'; 
+	    var recipe = JSON.parse(tmp);
+		var current = recipe[id];
+		
+		//fill up the html with required information
+		document.getElementById('title').innerHTML = current.recipeName;
+		document.getElementById('prep').innerHTML = "Prep Time: " + current.prepTime;
+		document.getElementById('cook').innerHTML = "Cook Time: " + current.cookTime;
+		document.getElementById('image').src = current.imageLink;
+		var ingre = document.getElementById('ingredients');
+		var u = document.createElement('u');
+		u.innerHTML = "Ingredients: ";
+		ingre.appendChild(u);
+		var ul = document.createElement('ul');
+		for(var i = 0; i < current.ingredients.length; i++){
+			var li = document.createElement("li");
+			li.innerHTML = current.ingredients[i];
+			ingre.appendChild(li);
+		}
+		
+		var instr = document.getElementById('instructions');
+		var u2 = document.createElement('u');
+		u2.innerHTML = "Instructions:";
+		
+		instr.appendChild(u2);
+		var ul = document.createElement('ol');
+		for(var i = 0; i < current.instructions.length; i++){
+			var li = document.createElement("li");
+			li.innerHTML = current.instructions[i];
+			instr.appendChild(li);
+		}
 	
 
     

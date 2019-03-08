@@ -42,43 +42,31 @@ public class ReturnResults extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		HttpSession session = request.getSession();
-				
+		//get parameters and user query
 		String query = request.getParameter("query");
 		String options = request.getParameter("options");	
 		int numOptions = Integer.parseInt(options);
 		
 		User thisUser = new User();
-        //User u = (User) request.getSession().getAttribute("User");
-		session.setAttribute("enter", "out");
+        
 		
-		//check if already search
+		//check if the same search, then return the same results
 		if(session.getAttribute("query") == null || !session.getAttribute("query").equals(query) ||
 				(session.getAttribute("query").equals(query) && (int)session.getAttribute("options") != numOptions)) {
 			 
-			//((session.getAttribute("options") != null) && (session.getAttribute("options") != options))
-			
-			session.setAttribute("enter", "in");
-		
+			//create new instances of Results
 			ArrayList<Restaurant> restaurantResults = new ArrayList<Restaurant>();
 			ArrayList<Recipe> recipeResults = new ArrayList<Recipe>();
 			ArrayList<String> imageResults = new ArrayList<String>();
 			
-//			for(Recipe r : recipeResults) {
-//				r.uniqueID = ""
-//			}
-			
-			//thisUser.query(query, numOptions, restaurantResults, recipeResults, imageResults);
-			
+			//API Calls to get restaurant and recipe results
 			YelpRequest y = new YelpRequest(query, numOptions);
 			restaurantResults = y.restaurantResults;
 			
 			RecipeRequest r = new RecipeRequest(query, numOptions);
 			recipeResults = r.recipeResults;
 			
-
-			
-
-
+			//for testing purposes
 			if(query.contentEquals("hamburger")) {
 				imageResults.add("https://upload.wikimedia.org/wikipedia/commons/9/9a/Big_Mac_hamburger.jpg");
 				imageResults.add("https://www.recipetineats.com/wp-content/uploads/2016/02/Beef-Hamburgers_7-2.jpg");
@@ -107,6 +95,7 @@ public class ReturnResults extends HttpServlet {
 			//thisUser.addRecipe(recipeResults.get(0), "favorite");
 			
 
+			//setting session variable
 			Gson gson = new Gson();
 			
 			
@@ -114,7 +103,8 @@ public class ReturnResults extends HttpServlet {
 			session.setAttribute("recList", recipeResults);
 			session.setAttribute("imgList", imageResults);
 			session.setAttribute("userObj", thisUser);
-		      
+		     
+			//use JSON for javascript readability
 		    String restJson = gson.toJson(restaurantResults);
 		    String recipeJson = gson.toJson(recipeResults);
 		    String imageJSON = gson.toJson(imageResults);

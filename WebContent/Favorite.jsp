@@ -16,37 +16,9 @@
     <!-- bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-
-    <!-- fav icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
     <!-- style  -->
     <link href="./css/main.css?version=5" rel="stylesheet">
     
-    <script>
-    	function toSearch(){
-    		window.location.href = "/Search.html";
-    	}
-    	function toResult(){
-    		window.location.href = "/Results.jsp";
-    	}
-    	function check(){
-			console.log("checking");
-		var list = document.getElementById("list").value;
-		if(list == null || list == "nil" || list == "favorite"){
-			
-			return false;
-		}
-	
-		return true;
-		
-	
-		}
-    
-    
-    </script>
-    
-
 
 
 </head>
@@ -56,10 +28,11 @@
     <div class="container-fluid">
         <div class="row ">
             <div class="col-10">
+            <!--  title -->
                 <div class="listTitle text-center" style="margin-bottom: 150px;">Favorites List</div>
-                
-                <!-- end of content-->
+
             </div>
+            <!--  navigation bar -->
             <div class="col-2">
                 <form action="/ToList" onsubmit="return check();" method="get">
                     <div class="mt-20">
@@ -87,7 +60,7 @@
         <div class="row" style="padding-top: 50px;">
         <!-- content -->
                 <div class="container-fluid" id="listResult">
-                
+                	<!-- this is where the items will be shown -->
 
                 </div>
         </div>
@@ -95,16 +68,32 @@
     
     <script>
     
+    //for redirection purposes 
+    function toSearch(){
+		window.location.href = "/Search.html";
+	}
+	function toResult(){
+		window.location.href = "/Results.jsp";
+	}
+	
+	//check if moving to another list is legal
+	function check(){
+		var list = document.getElementById("list").value;
+		if(list == null || list == "nil" || list == "favorite"){
+			
+			return false;
+		}
+	
+		return true;
+
+	}
+    
+    //send data to MoveListServlet to move items to another lists
     function mv(list2, itemType, index){
-    	
-    	console.log("moving");
     	var xhttp = new XMLHttpRequest();
 		xhttp.onreadystatechange = function(){
 			if(this.readyState == 4 && this.status == 200){
-				console.log("return");
-				var user = JSON.parse('<%= session.getAttribute("user") %>');
-				
-	            console.log(user);
+
 	            location.reload();
 			}
 		}
@@ -115,27 +104,14 @@
     
     }
     
+    //send data to RemoveListServlet to remove items
 	function rm(itemType, index){
-    	
-    	console.log("remove");
     	var xhttp = new XMLHttpRequest();
 		xhttp.onreadystatechange = function(){
 			if(this.readyState == 4 && this.status == 200){
-				console.log("return");
-				var user = JSON.parse('<%= session.getAttribute("user") %>');
-				var check = '<%= session.getAttribute("check") %>';
-				var type = '<%= session.getAttribute("type") %>';
-				var list = '<%= session.getAttribute("list") %>';
-				var index = '<%= session.getAttribute("index") %>';
-				console.log(type);
-				console.log(list);
-				console.log(index);
-				console.log(check);
-	            console.log(user);
 	            location.reload();
 			}
 		}
-		//changethis
 		xhttp.open("POST", "RemoveListServlet?list=favorite&itemType=" + itemType + "&index=" + index, true);
 		xhttp.send();
     	
@@ -143,16 +119,16 @@
     
     }
     
-  
+  		//get session favorite lists
 	    var restaurant = JSON.parse('<%= session.getAttribute("favRes") %>');
 	    var recipe = JSON.parse('<%= session.getAttribute("favRec") %>');
-	    console.log(restaurant.length);
-	    console.log(recipe.length);
 	    
 	    var num = 0;
 	    var i;
 	    var li = document.getElementById('listResult');
 	    var alt = "alt";
+	    
+	    //create the restaurant boxes in the html
 	    for(i = 0;i < restaurant.length; i++){
 	    	var res = restaurant[i];
 	    	if(num % 2 == 0){
@@ -172,6 +148,7 @@
 				num += 1;
 	    }
 	    
+	    //create the recipe boxes in the html
 	    for(i = 0;i < recipe.length; i++){
 	    	var rec = recipe[i];
 	    	if(num % 2 == 0){
@@ -191,8 +168,8 @@
 	    
 	    
     
-	    
-function createRecipe(name, star, prep, cook, price, num){
+	    //for every recipe items on the favorite list, create it
+		function createRecipe(name, star, prep, cook, price, num){
             
             var div1 = document.createElement('div');
             
@@ -260,11 +237,11 @@ function createRecipe(name, star, prep, cook, price, num){
             
             div2.appendChild(div3);
             div1.appendChild(div2);
-            //recList.appendChild(div1);
             return div1.innerHTML;
             
         }
         
+	    //for restaurnat items on the favorite list, create it
         function createRestaurant(name, star, dist, price, id, num){
         	
         	var div1 = document.createElement('div');

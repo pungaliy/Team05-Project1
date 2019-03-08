@@ -16,23 +16,18 @@
 
     <!-- bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-
-    <!-- fav icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
 
     <!-- style  -->
     <link href="./css/main.css?version=5" rel="stylesheet">
 
     <script>
     
-    	var enter = '<%= session.getAttribute("enter") %>';
-    	console.log(enter);
     	
     	var url;
     	var user;
     	
-    
+    	//get the image results and create the images
         function getResults() {
 
             var q = '<%= session.getAttribute("query") %>';
@@ -41,14 +36,12 @@
             
             url = JSON.parse('<%= session.getAttribute("imageURLs") %>');
             
-            //user = JSON.parse('<%= session.getAttribute("user") %>');
-            //console.log(user);
             
             var min = 0;
             var max = 8;
             var ran = 0
 
-            //set random angle to images
+            //set random angle to images and create the images
             for (let i = 1; i < 11; i++) {
             	var image = document.getElementById(i);
             	image.src = url[i - 1];
@@ -60,6 +53,7 @@
 
         }
 
+        //set angle of the image based on random number
         function setAngel(image, num, id) {
             if (num == 0) {
                 image.classList.add("rt-45");
@@ -82,10 +76,12 @@
             return;
         }
         
+        //redirect to search page
         function toSearch(){
         	window.location.href = "/Search.html";
         }
         
+        //check that redirection to list management page is legal
 		function check(){
     		
     		console.log("checking");
@@ -109,7 +105,7 @@
 
     <div class="container-fluid">
         <div class="row justify-content-center" style="padding-left: 100px;margin-top: 100px; margin-bottom: 100px;">
-            <!-- image -->
+            <!-- images -->
             <div class="col-12 col-sm-9">
                 <div class="container" id="collage" style="
 				    width: 50vw;
@@ -176,20 +172,19 @@
     <script>
     	
     	var restList = document.getElementById('restList');
-	var recList = document.getElementById('recList');
+		var recList = document.getElementById('recList');
 		
     	
+		//create all the html elemnts for the page
     	function create(){
     		
-
-            //set restaurantt
+    		//get session information about restaurant and recipe lists
             var restaurant = JSON.parse('<%= session.getAttribute("restaurantResults") %>');
-            //var json = '<%= session.getAttribute("recipeResults") %>'.to_json;
             var recipe = JSON.parse('<%= session.getAttribute("recipeResults") %>');
-            
-            console.log(restaurant);
-            console.log(recipe);
+            var query = '<%= session.getAttribute("query") %>';
           
+            
+          	
             var head = document.createElement('h2');
             head.classList.add('text-center');
             var u = document.createElement('u');
@@ -206,35 +201,15 @@
             
             recList.appendChild(head2);
     	
-    		
-            //set restaurantt
-            var restaurant = JSON.parse('<%= session.getAttribute("restaurantResults") %>');
-            var recipe = JSON.parse('<%= session.getAttribute("recipeResults") %>');
-            var query = '<%= session.getAttribute("query") %>';
-            //var thisUser = JSON.parse('<%= session.getAttribute("user") %>');
-            //console.log(thisUser);
-            
-            
-            //var num;
-            //for(res in restaurant){
-            
-            	//createRestaurant(res.name, res.rating, res.distance, res.price, res.uniqueID, num);
-            	//num += 1;
-            //}
-         
+			//for every restaurant create it
             for (let num = 0; num < restaurant.length; num++){
             	var res = restaurant[num];
-            	
-            		createRestaurant(res.name, res.rating, res.distance.toFixed(3), res.price, res.uniqueID, num);
+            	createRestaurant(res.name, res.rating, res.distance.toFixed(3), res.price, res.uniqueID, num);
             
             }
-            //num = 0
-            //for(rec in recipe){
-            	//createRecipe(rec.recipeName, rec.rating, rec.prepTime, rec.cookTime, rec.price, num);
-            	//num += 1;
-            //}
+            
+            //for every recipe create it
             for (let num = 0; num < recipe.length; num++){
-            	
             	var rec = recipe[num];
             	createRecipe(rec.recipeName, rec.rating, rec.prepTime, rec.cookTime, rec.price, num);
             
@@ -243,9 +218,9 @@
             
     	}
     	
-    	//delete box
     	
-function createRecipe(name, star, prep, cook, price, num){
+    	//function to create the recipe boxes in the recipe list
+		function createRecipe(name, star, prep, cook, price, num){
             
             var div1 = document.createElement('div');
             if(num % 2 == 0){
@@ -333,6 +308,7 @@ function createRecipe(name, star, prep, cook, price, num){
             
         }
         
+    	//function to add a restaurant box to the restaurant list
         function createRestaurant(name, star, dist, price, id, num){
         	
         	var div1 = document.createElement('div');
@@ -405,8 +381,8 @@ function createRecipe(name, star, prep, cook, price, num){
         	
         }
     
-    
-create();
+    //create all the html elements for images, restaurants and recipes
+	create();
     
     </script>
 

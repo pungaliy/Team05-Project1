@@ -20,6 +20,7 @@
     <link href="./css/main.css?version=5" rel="stylesheet">
     
     <script>
+    //to navigate to the results page
     	function toResult(){
     		window.location.href = "/Results.jsp";
     	}
@@ -34,8 +35,10 @@
     <div class="container-fluid">
         <div class="row ">
             <div class="col-8">
+            <!--  title -->
                 <div class="listTitle" style="margin-bottom: 50px;" id="title"></div>
               </div>
+              <!--  navigation bar -->
                <div col="col-4">
                 <div class="mt-20">
                     <a href="javascript:window.print();"><button class="btn btn-secondary wth" >Printable View</button></a>
@@ -92,12 +95,13 @@
     
     <script>
     
+    //get the current id of the restaurant item
     var link = window.location.href;
 	var url = new URL(link);
 	var id = url.searchParams.get("id");
 	var addButton = document.getElementById('addButton');
-	console.log(id)
 	
+	//find and get the current restaurant item from the list
 	var restaurant = JSON.parse('<%= session.getAttribute("restaurantResults") %>');
 	var current;
 	for(var i = 0; i < restaurant.length; i++){
@@ -105,8 +109,8 @@
 			current = restaurant[i];
 		}
 	}
-	console.log(current);
 	
+	//update the the html elements with information
 	document.getElementById('title').innerHTML = current.name;
 	document.getElementById('phone').innerHTML = current.phoneNumber;
 	document.getElementById('link').href = current.websiteLink;
@@ -114,10 +118,9 @@
 	document.getElementById('address').href = current.googleMapsLink;
 	document.getElementById('address').innerHTML = current.address;
     	
-    	//adding
+    	//Sends the id of restaurant item and which list to add to the AddToSevlet
     	function add(){
     		
-    		console.log("adding");
     		var list = document.getElementById("list").value;
     		if(list == null || list == "nil"){
     			
@@ -127,7 +130,6 @@
     			var xhttp = new XMLHttpRequest();
     			xhttp.onreadystatechange = function(){
     				if(this.readyState == 4 && this.status == 200){
-    					console.log("return");
     					var r = document.getElementById('response');
     					if(list == "favorite"){
     						list = "Favorite List";
@@ -145,7 +147,7 @@
         		xhttp.send();
     		}
     		
-    	
+
     		return false;
     		
     	}
