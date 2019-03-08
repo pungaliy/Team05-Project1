@@ -477,7 +477,8 @@ public class RecipeRequest {
 	}
 	
 	
-
+	/*
+	 
 	public static void main (String args []) {
 		
 		Scanner scan = new Scanner(System.in);
@@ -509,7 +510,7 @@ public class RecipeRequest {
 		}
 		
 	}
-	
+	*/
 	
 
 }

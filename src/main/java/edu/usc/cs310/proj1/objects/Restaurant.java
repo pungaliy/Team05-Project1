@@ -6,6 +6,8 @@ public class Restaurant extends Item{
 	public String googleMapsLink;
 	public double distance;
 	public String travelTime;
+	
+	/*
 	public String prettyPrint() {
 		String s = "name: " + name;
 		s+="\n";
@@ -26,6 +28,9 @@ public class Restaurant extends Item{
 		s+= "Maps link url: " + googleMapsLink + "\n";
 		return s;
 	}
+	
+	*/
+	
 	@Override
 	public String toString() {
 		return name;

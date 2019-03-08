@@ -276,6 +276,8 @@ public class YelpRequest {
 		return (URL + "&" + param + "=" + paramValue);
 	}
 	
+	/*
+	
 	public static void main (String args []) {
 		Scanner scan = new Scanner(System.in);
 		while(true) {
@@ -303,5 +305,6 @@ public class YelpRequest {
 		}
 	}
 	
+	*/
 	
 }
