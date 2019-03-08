@@ -269,13 +269,13 @@
             p.className = "col-12 col-sm-6";
             var h3 =  document.createElement('div');
             
-            h3.innerHTML = "Prep Time: " + prep + "in";
+            h3.innerHTML = "Prep Time: " + prep;
             p.appendChild(h3);
             
             var c = document.createElement('div');
             c.className = "col-12 col-sm-6";
             var h4 =  document.createElement('div');
-            h4.innerHTML = "Cook Time: " + cook + "in";
+            h4.innerHTML = "Cook Time: " + cook;
             c.appendChild(h4);
            
             

@@ -32,17 +32,19 @@ public class RecipeRequest {
 		for (Recipe r : recipeResults) {
 			Scanner getTime = new Scanner (r.prepTime);
 			int totalTime = 0;
-			boolean done = true;
-			while(!done) {
-				int time = getTime.nextInt();
+			boolean done = false;
+			while(!done && getTime.hasNext()) {
+				int time = Integer.parseInt(getTime.next());
 				String s = getTime.next();
-				if (s.equalsIgnoreCase("H")) {
+				System.out.println(time + " , " + s);
+				if (s.trim().equalsIgnoreCase("h")) {
 					time *= 60;
 				} else {
 					done = true;
 				}
 				totalTime +=time;
 			}
+			System.out.println(r.name + " of " + r.prepTime + " calculated " + totalTime);
 			byTime.put(r, totalTime);
 		}
 		ArrayList<Recipe> newlist = new ArrayList<>();
@@ -57,6 +59,13 @@ public class RecipeRequest {
 				}
 			}
 			byTime.remove(smallest);
+			if (min_time ==0) {
+				smallest.prepTime = "N/A";
+				smallest.cookTime = "N/A";
+			} else {
+				smallest.prepTime+= "in";
+				smallest.cookTime+= "in";
+			}
 			newlist.add(smallest);
 			
 		}
@@ -526,7 +535,7 @@ public class RecipeRequest {
 	
 	
 	
-	/*
+	
 	 
 	public static void main (String args []) {
 		
@@ -559,7 +568,7 @@ public class RecipeRequest {
 		}
 		
 	}
-	*/
+	
 	
 
 }
