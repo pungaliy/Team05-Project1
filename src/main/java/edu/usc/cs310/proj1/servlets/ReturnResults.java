@@ -40,7 +40,7 @@ public class ReturnResults extends HttpServlet {
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-
+		
 		HttpSession session = request.getSession();
 		//get parameters and user query
 		String query = request.getParameter("query");
@@ -51,8 +51,7 @@ public class ReturnResults extends HttpServlet {
         
 		
 		//check if the same search, then return the same results
-		if(session.getAttribute("query") == null || !session.getAttribute("query").equals(query) ||
-				(session.getAttribute("query").equals(query) && (int)session.getAttribute("options") != numOptions)) {
+		if(session.getAttribute("query") == null || !session.getAttribute("query").equals(query) || (session.getAttribute("query").equals(query) && (int)session.getAttribute("options") != numOptions)) {
 			 
 			//create new instances of Results
 			ArrayList<Restaurant> restaurantResults = new ArrayList<Restaurant>();
@@ -117,8 +116,10 @@ public class ReturnResults extends HttpServlet {
 			session.setAttribute("user", userJSON);
 			session.setAttribute("options", numOptions);
 		}
-		
+	
 		RequestDispatcher dispatch = request.getRequestDispatcher("/Results.jsp?query=" + query);
-		dispatch.forward(request,  response);
+		if (!(dispatch == null)) {
+			dispatch.forward(request,  response);
+		}
 	}
 }

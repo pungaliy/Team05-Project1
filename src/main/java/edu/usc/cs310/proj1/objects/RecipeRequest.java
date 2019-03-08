@@ -3,7 +3,9 @@ package edu.usc.cs310.proj1.objects;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 import com.gargoylesoftware.htmlunit.WebClient;
@@ -24,6 +26,52 @@ public class RecipeRequest {
 	String urlOfSearch;
 	String searchTerm;
 	Integer numResults;
+	
+	public void reorganizeList() {
+		Map <Recipe, Integer> byTime = new HashMap <>();
+		for (Recipe r : recipeResults) {
+			Scanner getTime = new Scanner (r.prepTime);
+			int totalTime = 0;
+			boolean done = false;
+			while(!done && getTime.hasNext()) {
+				int time = Integer.parseInt(getTime.next());
+				String s = getTime.next();
+				System.out.println(time + " , " + s);
+				if (s.trim().equalsIgnoreCase("h")) {
+					time *= 60;
+				} else {
+					done = true;
+				}
+				totalTime +=time;
+			}
+			System.out.println(r.name + " of " + r.prepTime + " calculated " + totalTime);
+			byTime.put(r, totalTime);
+		}
+		ArrayList<Recipe> newlist = new ArrayList<>();
+		int size = recipeResults.size();
+		for (int i = 0; i < size; i++) {
+			Recipe smallest = null;
+			int min_time = 1000;
+			for(Recipe r : byTime.keySet()) {
+				if (byTime.get(r)< min_time) {
+					smallest = r; 
+					min_time = byTime.get(r);
+				}
+			}
+			byTime.remove(smallest);
+			if (min_time ==0) {
+				smallest.prepTime = "N/A";
+				smallest.cookTime = "N/A";
+			} else {
+				smallest.prepTime+= "in";
+				smallest.cookTime+= "in";
+			}
+			newlist.add(smallest);
+			
+		}
+		this.recipeResults = newlist;
+	}
+	
 	
 	public RecipeRequest(String query, int options) {
 		
@@ -289,6 +337,7 @@ public class RecipeRequest {
 		
 			if (!searchTerm.equals(".")) {
 				this.request();
+				reorganizeList();
 			}
 		}
 		
@@ -486,7 +535,7 @@ public class RecipeRequest {
 	
 	
 	
-	/*
+	
 	 
 	public static void main (String args []) {
 		
@@ -519,7 +568,7 @@ public class RecipeRequest {
 		}
 		
 	}
-	*/
+	
 	
 
 }

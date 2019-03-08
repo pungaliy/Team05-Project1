@@ -204,7 +204,7 @@
 			//for every restaurant create it
             for (let num = 0; num < restaurant.length; num++){
             	var res = restaurant[num];
-            	createRestaurant(res.name, res.rating, res.distance.toFixed(3), res.price, res.uniqueID, num);
+            	createRestaurant(res.name, res.rating, res.travelTime, res.price, res.uniqueID, num);
             
             }
             
@@ -269,13 +269,13 @@
             p.className = "col-12 col-sm-6";
             var h3 =  document.createElement('div');
             
-            h3.innerHTML = "Prep Time: " + prep + "in";
+            h3.innerHTML = "Prep Time: " + prep;
             p.appendChild(h3);
             
             var c = document.createElement('div');
             c.className = "col-12 col-sm-6";
             var h4 =  document.createElement('div');
-            h4.innerHTML = "Cook Time: " + cook + "in";
+            h4.innerHTML = "Cook Time: " + cook;
             c.appendChild(h4);
            
             
@@ -352,8 +352,7 @@
            
             var div6 = document.createElement('div');
             var h3 =  document.createElement('div');
-            var f = parseFloat(dist);
-            h3.innerHTML = "Distance: " + Math.floor(f/10) + " min";
+            h3.innerHTML = "Distance: " + dist;
             div6.appendChild(h3);
           
             

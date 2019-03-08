@@ -43,7 +43,7 @@ public class ToList extends HttpServlet {
 		String list = request.getParameter("list");
 		User myuser = (User) session.getAttribute("userObj");
 		Gson gson = new Gson();
-		
+	
 		//checks which list to go to
 		if(list.equals("favorite")){
 			//set the favorite lists as session variable and send to the front end
@@ -52,7 +52,9 @@ public class ToList extends HttpServlet {
 			session.setAttribute("favRes", favRes);
 			session.setAttribute("favRec", favRec);
 			RequestDispatcher dispatch = request.getRequestDispatcher("/Favorite.jsp");
-			dispatch.forward(request,  response);
+			if (!(dispatch == null)) {
+				dispatch.forward(request,  response);
+			}
 		}
 		else if(list.equals("explore")){
 			//set the explore lists as session variable and send to the front end
@@ -61,7 +63,9 @@ public class ToList extends HttpServlet {
 			session.setAttribute("expRes", expRes);
 			session.setAttribute("expRec", expRec);
 			RequestDispatcher dispatch = request.getRequestDispatcher("/ToExplore.jsp");
-			dispatch.forward(request,  response);	
+			if (!(dispatch == null)) {
+				dispatch.forward(request,  response);
+			}
 		}
 		else {
 			//set the do not show lists as session variable and send to the front end
@@ -70,11 +74,9 @@ public class ToList extends HttpServlet {
 			session.setAttribute("notRes", notRes);
 			session.setAttribute("notRec", notRec);
 			RequestDispatcher dispatch = request.getRequestDispatcher("/DoNotShow.jsp");
-			dispatch.forward(request,  response);
+			if (!(dispatch == null)) {
+				dispatch.forward(request,  response);
+			}
 		}
-		
-		
-		
-		
 	}
 }
