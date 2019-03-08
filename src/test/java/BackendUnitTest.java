@@ -9,6 +9,7 @@ import org.junit.Test;
 import edu.usc.cs310.proj1.objects.Restaurant;
 import edu.usc.cs310.proj1.objects.User;
 import edu.usc.cs310.proj1.objects.YelpRequest;
+import edu.usc.cs310.proj1.objects.ImagesRequest;
 import edu.usc.cs310.proj1.objects.Recipe;
 import edu.usc.cs310.proj1.objects.RecipeRequest;
 
@@ -433,6 +434,26 @@ public class BackendUnitTest {
 	public void moveFalseRecipe() {
 		User u = new User ();
 		assertFalse(u.moveRecipe("nota", "asdf", 2));
+	}
+	
+	//IMAGE REQUEST TESTS
+	
+	@Test
+	public void imageRequestSize() {
+		String query = "hamburger";
+		ImagesRequest ir = new ImagesRequest(query);
+		ArrayList<String> imageResults = new ArrayList<String>();
+		imageResults = ir.imageResultURLs;
+		assertEquals(imageResults.size(), 10);	
+	}
+	
+	@Test
+	public void imageRequestOtherQuery() {
+		String query = "chicken";
+		ImagesRequest ir = new ImagesRequest(query);
+		ArrayList<String> imageResults = new ArrayList<String>();
+		imageResults = ir.imageResultURLs;
+		assertEquals(imageResults.size(), 10);	
 	}
 
 }
