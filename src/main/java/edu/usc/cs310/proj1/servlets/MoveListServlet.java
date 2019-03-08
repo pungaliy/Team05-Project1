@@ -59,29 +59,29 @@ public class MoveListServlet extends HttpServlet {
         	
         	if(list1.equals("explore")) {
         		Restaurant res = u.exploreRestaurant.get(index);
-//	        	if(list2.equals("not")) {
-//	        		resList.remove(res);
-//	        	}
+	        	if(list2.equals("not")) {
+	        		resList.remove(res);
+	        	}
 	        	 if(list2.equals("favorite")) {
 	        		resList.remove(res);
 	        		resList.add(0, res);
 	        	}
         	}
         	else if(list1.equals("favorite")) {
-//        		Restaurant res = u.favoriteRestaurant.get(index);
-//        		if(list2.equals("not")) {
-//        			resList.remove(res);
-//        		}
+        		Restaurant res = u.favoriteRestaurant.get(index);
+        		if(list2.equals("not")) {
+        			resList.remove(res);
+        		}
         	}
-//        	else { // from not
-//        		Restaurant res = u.notRestaurant.get(index);
-//        		if(list2.equals("favorite")) {
-//        			resList.add(0,res);
-//        		}
-//        		else {
-//        			resList.add(res);
-//        		}
-//        	}
+        	else { // from not
+        		Restaurant res = u.notRestaurant.get(index);
+        		if(list2.equals("favorite")) {
+        			resList.add(0,res);
+        		}
+        		else {
+        			resList.add(res);
+        		}
+        	}
         	u.moveRestaurant(list1, list2, index);
         	
         	
@@ -89,29 +89,29 @@ public class MoveListServlet extends HttpServlet {
         else if(type.equals("recipe")) {
         	if(list1.equals("explore")) {
         		Recipe res = u.exploreRecipe.get(index);
-//	        	if(list2.equals("not")) {
-//	        		recList.remove(res);
-//	        	}
+	        	if(list2.equals("not")) {
+	        		recList.remove(res);
+	        	}
 	        	if(list2.equals("favorite")) {
 	        		recList.remove(res);
 	        		recList.add(0,res);
 	        	}
         	}
         	else if(list1.equals("favorite")) {
-//        		Recipe res = u.favoriteRecipe.get(index);
-//        		if(list2.equals("not")) {
-//        			recList.remove(res);
-//        		}
+        		Recipe res = u.favoriteRecipe.get(index);
+        		if(list2.equals("not")) {
+        			recList.remove(res);
+        		}
         	}
-//        	else { // from not
-//        		Recipe res = u.notRecipe.get(index);
-//        		if(list2.equals("favorite")) {
-//        			recList.add(0,res);
-//        		}
-//        		else {
-//        			recList.add(res);
-//        		}
-//        	}
+        	else { // from not
+        		Recipe res = u.notRecipe.get(index);
+        		if(list2.equals("favorite")) {
+        			recList.add(0,res);
+        		}
+        		else {
+        			recList.add(res);
+        		}
+        	}
         	u.moveRecipe(list1, list2, index);
         }
         

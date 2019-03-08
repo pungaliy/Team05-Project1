@@ -75,10 +75,10 @@ public class AddToServlet extends HttpServlet {
 				resList.remove(rs);
 				resList.add(0, rs);
 			}
-//			else if (list.equals("not")) {
-//				resList.remove(rs);
-//				rs.isDoNotExplore = true;
-//			}
+			else if (list.equals("not")) {
+				resList.remove(rs);
+				rs.isDoNotExplore = true;
+			}
 		}
 		else {
 			//ArrayList<Recipe> rec = (ArrayList<Recipe>) session.getAttribute("recList");
@@ -89,10 +89,10 @@ public class AddToServlet extends HttpServlet {
 				recList.remove(rc);
 				recList.add(0, rc);
 			}
-//			else if (list.equals("not")){
-//				recList.remove(rc);
-//				rc.isDoNotExplore = true;
-//			}
+			else if (list.equals("not")){
+				recList.remove(rc);
+				rc.isDoNotExplore = true;
+			}
 		}
 		
 		
