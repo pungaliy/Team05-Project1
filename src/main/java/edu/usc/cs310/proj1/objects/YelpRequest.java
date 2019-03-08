@@ -232,6 +232,9 @@ public class YelpRequest {
 				r.rating = 3.0; //basic restaurant rating
 			}
 			r.phoneNumber = res.getString("phone");
+			if (r.phoneNumber.length()<1) {
+				r.phoneNumber = "None";
+			}
 			r.distance = res.getDouble("distance");
 			try {
 				r.travelTime = getDistance("Tommy+Trojan",r.address,r.distance);
@@ -306,8 +309,8 @@ public class YelpRequest {
 	public String addParameter (String URL, String param, String paramValue) {
 		return (URL + "&" + param + "=" + paramValue);
 	}
-	
-	/*public static void main (String args []) {
+	/*
+	public static void main (String args []) {
 		Scanner scan = new Scanner(System.in);
 		while(true) {
 			System.out.println("What would you like to search?");
