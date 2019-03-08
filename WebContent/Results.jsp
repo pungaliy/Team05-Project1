@@ -351,7 +351,7 @@
             
             var div6 = document.createElement('div');
             var h3 =  document.createElement('div');
-            h3.innerHTML = "Distnce: " + dist + "<br>Address: " + address;
+            h3.innerHTML = "Distance: " + dist + "<br>Address: " + address;
             div6.appendChild(h3);
           
             
