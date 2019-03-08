@@ -1,5 +1,7 @@
 package edu.usc.cs310.proj1.objects;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -71,7 +73,7 @@ public class RecipeRequest {
 		
 		rName = rName.replaceAll("\"","\\\\\"");
 		
-		ham1 = new Recipe(rName, iLink, pTime, cTime, ings, inst, searchTerm, 4.44871807098389);
+		ham1 = new Recipe(rName, iLink, pTime, cTime, ings, inst, searchTerm, 4.4);
 		
 		rName = "Best Hamburger Ever";
 		iLink = "https://images.media-allrecipes.com/userphotos/250x250/5563136.jpg";
@@ -112,7 +114,7 @@ public class RecipeRequest {
 		
 		rName = rName.replaceAll("\"","\\\\\"");
 		
-		ham2 = new Recipe(rName, iLink, pTime, cTime, ings, inst, searchTerm, 4.18847370147705);
+		ham2 = new Recipe(rName, iLink, pTime, cTime, ings, inst, searchTerm, 4.1);
 		
 		rName = "Big Smokey Burgers";
 		iLink = "https://images.media-allrecipes.com/userphotos/250x250/4045578.jpg";
@@ -150,7 +152,7 @@ public class RecipeRequest {
 		
 		rName = rName.replaceAll("\"","\\\\\"");
 		
-		ham3 = new Recipe(rName, iLink, pTime, cTime, ings, inst, searchTerm, 4.55932188034058);
+		ham3 = new Recipe(rName, iLink, pTime, cTime, ings, inst, searchTerm, 4.5);
 		
 		rName = "Garlic and Onion Burgers";
 		iLink = "https://images.media-allrecipes.com/userphotos/250x250/1055214.jpg";
@@ -184,7 +186,7 @@ public class RecipeRequest {
 		
 		rName = rName.replaceAll("\"","\\\\\"");
 		
-		ham4 = new Recipe(rName, iLink, pTime, cTime, ings, inst, searchTerm, 4.35880374908447);
+		ham4 = new Recipe(rName, iLink, pTime, cTime, ings, inst, searchTerm, 4.3);
 		
 		rName = "Slider-Style Mini Burgers";
 		iLink = "https://images.media-allrecipes.com/userphotos/250x250/415758.jpg";
@@ -218,7 +220,7 @@ public class RecipeRequest {
 		
 		rName = rName.replaceAll("\"","\\\\\"");
 		
-		ham5 = new Recipe(rName, iLink, pTime, cTime, ings, inst, searchTerm, 4.57405424118042);
+		ham5 = new Recipe(rName, iLink, pTime, cTime, ings, inst, searchTerm, 4.5);
 		
 		rName = "Stir-Fried Chicken With Pineapple and Peppers";
 		iLink = "https://images.media-allrecipes.com/userphotos/250x250/1816983.jpg";
@@ -257,7 +259,7 @@ public class RecipeRequest {
 		
 		rName = rName.replaceAll("\"","\\\\\"");
 		
-		ch1 = new Recipe(rName, iLink, pTime, cTime, ings, inst, searchTerm, 4.37735843658447);
+		ch1 = new Recipe(rName, iLink, pTime, cTime, ings, inst, searchTerm, 4.3);
 		
 		
 		
@@ -456,6 +458,11 @@ public class RecipeRequest {
 			} else {
 				starRating = 0.0;
 			}
+			
+			String rate = String.valueOf(starRating);
+			starRating = Double.parseDouble(rate.substring(0,3));
+			
+			
 
 			//clean data before adding
 			for (String f : ingredients) {
@@ -475,6 +482,8 @@ public class RecipeRequest {
 		}
 		
 	}
+	
+	
 	
 	
 	/*

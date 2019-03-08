@@ -11,7 +11,7 @@ public class User {
 	public ArrayList<Recipe> exploreRecipe;
 	public ArrayList<Restaurant> notRestaurant;
 	public ArrayList<Recipe> notRecipe;
-	public SearchResult searchResult;
+	//public SearchResult searchResult;
 	public String check;
 	
 	public User() {
@@ -23,13 +23,13 @@ public class User {
 		notRecipe = new ArrayList<Recipe>();
 	}
 	
-	public void query(String q, int i, ArrayList<Restaurant> res, ArrayList<Recipe> rec, ArrayList<String> img ) {
-		searchResult = new SearchResult();
-		searchResult.searchTerm = q;
-		searchResult.numItems = i;
-		searchResult.restaurantResults = res;
-		searchResult.recipeResults = rec;
-	}
+//	public void query(String q, int i, ArrayList<Restaurant> res, ArrayList<Recipe> rec, ArrayList<String> img ) {
+//		searchResult = new SearchResult();
+//		searchResult.searchTerm = q;
+//		searchResult.numItems = i;
+//		searchResult.restaurantResults = res;
+//		searchResult.recipeResults = rec;
+//	}
 	
 	public boolean addRestaurant(Restaurant i, String list) {
 		check = "Restaurant";

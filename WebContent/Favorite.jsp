@@ -189,7 +189,7 @@
 			num += 1;
 	    }
 	    
-	    console.log(li.innerHTML);
+	    
     
 	    
 function createRecipe(name, star, prep, cook, price, num){

@@ -67,7 +67,7 @@ public class ReturnResults extends HttpServlet {
 //				r.uniqueID = ""
 //			}
 			
-			thisUser.query(query, numOptions, restaurantResults, recipeResults, imageResults);
+			//thisUser.query(query, numOptions, restaurantResults, recipeResults, imageResults);
 			
 			YelpRequest y = new YelpRequest(query, numOptions);
 			restaurantResults = y.restaurantResults;
@@ -91,15 +91,15 @@ public class ReturnResults extends HttpServlet {
 				imageResults.add("https://cdn.vox-cdn.com/thumbor/rRLHMuiSwa6khLkqQg9gH-sGS30=/0x0:617x521/1200x800/filters:focal(320x235:418x333)/cdn.vox-cdn.com/uploads/chorus_image/image/59948629/hamburger_hamelet_facebook.0.png");
 				imageResults.add("https://thumbor.forbes.com/thumbor/1280x868/https%3A%2F%2Fspecials-images.forbesimg.com%2Fdam%2Fimageserve%2F1164175639%2F960x0.jpg%3Ffit%3Dscale");	
 					
-					imageResults.add("https://realfood.tesco.com/media/images/Burger-31LGH-a296a356-020c-4969-86e8-d8c26139f83f-0-1400x919.jpg");
+				imageResults.add("https://realfood.tesco.com/media/images/Burger-31LGH-a296a356-020c-4969-86e8-d8c26139f83f-0-1400x919.jpg");
 				imageResults.add("http://www.recipe4living.com/assets/itemimages/400/400/3/default_0dacefd503f9d9812f1221e5b670e95b_dreamstimesmall_50289207.jpg");
 				imageResults.add("https://amp.thisisinsider.com/images/5571cbb9ecad04ea3f1d2bad-480-248.jpg");
 				imageResults.add("https://cdn.pixabay.com/photo/2017/12/09/23/04/bread-3008950_960_720.jpg");
 				imageResults.add("https://as1.ftcdn.net/jpg/00/43/43/08/500_F_43430821_7k8NyDsH7mWQscufbxbrw8wKezDhAKv7.jpg");
 				imageResults.add("https://media.istockphoto.com/photos/tasty-burgers-on-wooden-table-picture-id860251286");
 			} else {
-				ImagesRequest ir = new ImagesRequest(query);
-				imageResults = ir.imageResultURLs;
+				//ImagesRequest ir = new ImagesRequest(query);
+				//imageResults = ir.imageResultURLs;
 			}
 			
 			
