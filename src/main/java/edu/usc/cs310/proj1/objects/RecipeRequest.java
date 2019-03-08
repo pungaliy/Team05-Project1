@@ -71,7 +71,7 @@ public class RecipeRequest {
 		
 		rName = rName.replaceAll("\"","\\\\\"");
 		
-		ham1 = new Recipe(rName, iLink, pTime, cTime, ings, inst, searchTerm);
+		ham1 = new Recipe(rName, iLink, pTime, cTime, ings, inst, searchTerm, 4.44871807098389);
 		
 		rName = "Best Hamburger Ever";
 		iLink = "https://images.media-allrecipes.com/userphotos/250x250/5563136.jpg";
@@ -112,7 +112,7 @@ public class RecipeRequest {
 		
 		rName = rName.replaceAll("\"","\\\\\"");
 		
-		ham2 = new Recipe(rName, iLink, pTime, cTime, ings, inst, searchTerm);
+		ham2 = new Recipe(rName, iLink, pTime, cTime, ings, inst, searchTerm, 4.18847370147705);
 		
 		rName = "Big Smokey Burgers";
 		iLink = "https://images.media-allrecipes.com/userphotos/250x250/4045578.jpg";
@@ -150,7 +150,7 @@ public class RecipeRequest {
 		
 		rName = rName.replaceAll("\"","\\\\\"");
 		
-		ham3 = new Recipe(rName, iLink, pTime, cTime, ings, inst, searchTerm);
+		ham3 = new Recipe(rName, iLink, pTime, cTime, ings, inst, searchTerm, 4.55932188034058);
 		
 		rName = "Garlic and Onion Burgers";
 		iLink = "https://images.media-allrecipes.com/userphotos/250x250/1055214.jpg";
@@ -184,7 +184,7 @@ public class RecipeRequest {
 		
 		rName = rName.replaceAll("\"","\\\\\"");
 		
-		ham4 = new Recipe(rName, iLink, pTime, cTime, ings, inst, searchTerm);
+		ham4 = new Recipe(rName, iLink, pTime, cTime, ings, inst, searchTerm, 4.35880374908447);
 		
 		rName = "Slider-Style Mini Burgers";
 		iLink = "https://images.media-allrecipes.com/userphotos/250x250/415758.jpg";
@@ -218,7 +218,7 @@ public class RecipeRequest {
 		
 		rName = rName.replaceAll("\"","\\\\\"");
 		
-		ham5 = new Recipe(rName, iLink, pTime, cTime, ings, inst, searchTerm);
+		ham5 = new Recipe(rName, iLink, pTime, cTime, ings, inst, searchTerm, 4.57405424118042);
 		
 		rName = "Stir-Fried Chicken With Pineapple and Peppers";
 		iLink = "https://images.media-allrecipes.com/userphotos/250x250/1816983.jpg";
@@ -257,7 +257,9 @@ public class RecipeRequest {
 		
 		rName = rName.replaceAll("\"","\\\\\"");
 		
-		ch1 = new Recipe(rName, iLink, pTime, cTime, ings, inst, searchTerm);
+		ch1 = new Recipe(rName, iLink, pTime, cTime, ings, inst, searchTerm, 4.37735843658447);
+		
+		
 		
 		if (searchTerm.equals("hamburger") && options == 5) {
 			recipeResults.add(ham1);
@@ -282,6 +284,7 @@ public class RecipeRequest {
 		} else if (searchTerm.equals("chinese") && options == 1) {
 			recipeResults.add(ch1);
 		} else {
+		
 			if (!searchTerm.equals(".")) {
 				this.request();
 			}
@@ -373,6 +376,8 @@ public class RecipeRequest {
 			
 			String imageLink;
 			
+			double starRating;
+			
 			String prepTime;
 			String cookTime;
 			ArrayList<String> ingredients = new ArrayList<String>();
@@ -407,7 +412,6 @@ public class RecipeRequest {
 			} else {
 				imageLink = "";
 			}
-			
 			
 			//ingredients
 			items = (List<HtmlElement>) page.getByXPath("//ul");
@@ -444,6 +448,15 @@ public class RecipeRequest {
 				//instructions.add(j.asText());
 			}
 			
+			//star rating
+			items = (List<HtmlElement>) page.getByXPath("//div[@class='rating-stars']");
+			
+			if (items.size() > 0) {
+				starRating = Double.parseDouble(items.get(0).getAttribute("data-ratingstars"));
+			} else {
+				starRating = 0.0;
+			}
+
 			//clean data before adding
 			for (String f : ingredients) {
 				f = f.replaceAll("\'", "\\\\'");
@@ -458,10 +471,12 @@ public class RecipeRequest {
 
 			recipeName = recipeName.replaceAll("\"","\\\\\"");
 			
-			recipeResults.add(new Recipe(recipeName, imageLink, prepTime, cookTime, ingredients, instructions, searchTerm));
+			recipeResults.add(new Recipe(recipeName, imageLink, prepTime, cookTime, ingredients, instructions, searchTerm, starRating));
 		}
 		
 	}
+	
+	
 
 	public static void main (String args []) {
 		
@@ -481,6 +496,7 @@ public class RecipeRequest {
 			System.out.println("Image URL: " + i.imageLink);
 			System.out.println("Prep Time: " + i.prepTime);
 			System.out.println("Cook Time: " + i.cookTime);
+			System.out.println("Star Rating: " + i.rating);
 			System.out.println("Ingredients: ");
 			for (String j : i.ingredients) {
 				System.out.println(j);
@@ -493,5 +509,7 @@ public class RecipeRequest {
 		}
 		
 	}
+	
+	
 
 }
