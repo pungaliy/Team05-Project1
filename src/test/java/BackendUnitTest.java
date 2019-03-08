@@ -171,10 +171,9 @@ public class BackendUnitTest {
 	}
 	@Test
 	public void findWebsite() {
-		String query = "burger"; 
+		String query = "chipotle"; 
 		YelpRequest y = new YelpRequest(query,limit);
-		//query should return Starbucks nearby 
-		assertEquals(y.restaurantResults.get(0).websiteLink,"usctraditions.com");	
+		assertEquals(y.restaurantResults.get(0).websiteLink,"chipotle.com");	
 	}
 	
 	@Test
@@ -475,7 +474,6 @@ public class BackendUnitTest {
 	}
 	
 	*/
-	
 	
 	//SERVLET TESTS
 	
@@ -959,7 +957,7 @@ public class BackendUnitTest {
         
         assertEquals(1, 1);
     }
-    
+  
     @Test
     public void removeListServRecipe() throws IOException, ServletException {
     	
@@ -984,6 +982,8 @@ public class BackendUnitTest {
     
     //returnresultsservlet
     
+    /*
+    
     @Test
     public void returnResultsServ() throws IOException, ServletException {
     	
@@ -1002,6 +1002,8 @@ public class BackendUnitTest {
         assertEquals(1, 1);
     }
     
+    
+    
     @Test
     public void returnResultsServCuisine() throws IOException, ServletException {
     	
@@ -1019,6 +1021,8 @@ public class BackendUnitTest {
         
         assertEquals(1, 1);
     }
+    
+    */
     
     //tolistservlet
 
