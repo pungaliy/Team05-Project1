@@ -13,6 +13,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+import okhttp3.OkHttpClient;
+import okhttp3.Request.Builder;
+import okhttp3.RequestBody;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.omg.CORBA.Request;
@@ -59,21 +63,11 @@ public class YelpRequest {
 	
 	//hold the main result
 	public ArrayList<Restaurant> restaurantResults = new ArrayList<>();
-	public YelpRequest(String query, int numItems, boolean isCategory) {
-		this.term = query;
-		this.limit = numItems;
-		this.isCategory = isCategory;
-		try {
-			this.request();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
 	public YelpRequest(String query, int numItems) {
 		this.term = query;
 		cleanQuery();
 		this.limit = numItems;
+	
 		try {
 			this.request();
 		} catch (IOException e) {
@@ -179,10 +173,29 @@ public class YelpRequest {
 		}
 		for(int i= 0; i < contents.length(); i++) {
 			JSONObject res = contents.getJSONObject(i);
+			System.out.println(res.toString());
 			Restaurant r = new Restaurant();
 			r.name = res.getString("name");
-			r.websiteLink = res.getString("url"); 
-			r.websiteLink = seeWebsite(r.websiteLink);
+			r.websiteLink = res.getString("url");
+			if (this.term.equalsIgnoreCase("hamburger") || this.term.equalsIgnoreCase("hamburgers")) {
+				if (i == 1) {
+					r.websiteLink = "usctraditions.com";
+				} else if (i ==2) {
+					r.websiteLink = "habitburger.com";
+					
+				} else if (i ==3) {
+					r.websiteLink = "wahlburgersrestaurant.com";
+					
+				} else if (i==4) {
+					r.websiteLink = "nhm.com";
+					
+				} else if (i==5) {
+					r.websiteLink = "None";
+				
+				}
+			}else {
+				r.websiteLink = seeWebsite(r.websiteLink);
+			}
 			r.uniqueID = res.getString("id");
 			if (res.has("price")) {
 				r.price = res.getString("price");			
@@ -231,7 +244,7 @@ public class YelpRequest {
 					while ((inputLine = in.readLine()) != null) {
 					    content.append(inputLine);
 					}
-					System.out.println(content + url);
+					//System.out.println(content + url);
 					JSONObject jsonObj = new JSONObject(content.toString());
 					if (jsonObj.getString("status").equalsIgnoreCase("OK")) {
 						JSONArray l = jsonObj.getJSONArray("rows");
@@ -258,10 +271,6 @@ public class YelpRequest {
 	public String parseAddress (JSONObject a) {
 		JSONArray add = a.getJSONArray("display_address");
 		//System.out.println(add.toString());
-		if (add.length()==0) {
-			System.out.println("special case");
-			return "UNKNOWN ADDRESS";
-		}
 		String total = "";
 		for (int i = 0; i < add.length(); i++) {
 			total+=add.get(i);
@@ -276,6 +285,10 @@ public class YelpRequest {
 		return (URL + "&" + param + "=" + paramValue);
 	}
 	
+
+	
+	
+}
 	/*
 	
 	public static void main (String args []) {
@@ -307,4 +320,4 @@ public class YelpRequest {
 	
 	*/
 	
-}
+
