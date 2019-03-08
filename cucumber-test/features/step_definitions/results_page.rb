@@ -35,6 +35,7 @@ Then(/^a recipe should have a Name, Stars, Prep time, Cook time$/) do
   rl = page.find('div#recList')
   expect(rl).to have_content('Prep Time:')  
   expect(rl).to have_content('Cook Time:')
+  expect(rl).to have_content('☆')
 
 end
 
@@ -74,6 +75,41 @@ When(/^I select "([^"]*)" from the dropdown$/) do |arg1|
   select arg1+" List", :from => 'list'
 end
 
-Then(/^I should no longer see the item$/) do
+Then(/^the rows should be alternating$/) do
+  rests = page.all('#restList > div')
+  recs = page.all('#recList > div')
+  for i in [0,2,4]
+    expect(rests[i][:class]).to have_content "alt"
+    expect(recs[i][:class]).to have_content ""
+  end
 
+  for i in [1,3]
+    expect(rests[i][:class]).to have_content ""
+    expect(recs[i][:class]).to have_content "alt"
+  end
+end
+
+Then(/^the restaurants should be sorted by driving time$/) do
+  rests = page.all('#restList > div')
+  previous = 0
+  for i in rests
+    mins = /(\d+) min/.match(i['innerHTML'])[1].to_i
+    expect(mins).to be >= previous
+    previous = mins
+  end
+
+end
+
+Given(/^I wait (\d+) seconds$/) do |arg1|
+  sleep arg1.to_i
+end
+
+Then(/^the recipes should be sorted by prep time$/) do
+  recs = page.all('#recList > div')
+  previous = 0
+  for i in recs
+    mins = /Prep Time: (\d+) min/.match(i['innerHTML'])[1].to_i
+    expect(mins).to be >= previous
+    previous = mins
+  end
 end

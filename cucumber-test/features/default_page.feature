@@ -9,6 +9,3 @@ Feature: Default Page
 	Examples:
 	    | Page |
 	    | |
-	    | home |
-	    | index.html |
-	    | search   |
