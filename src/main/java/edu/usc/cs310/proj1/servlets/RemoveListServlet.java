@@ -41,31 +41,33 @@ public class RemoveListServlet extends HttpServlet {
 				
 		String list1 = request.getParameter("list");
 		String type = request.getParameter("itemType");
-		session.setAttribute("type", type);
-		session.setAttribute("list", list1);
+		
 		
 		int index = Integer.parseInt(request.getParameter("index"));
-		session.setAttribute("index", index);
 		
+		//get User session and lists
         User thisUser = (User) session.getAttribute("userObj");
         ArrayList<Restaurant> resList = (ArrayList<Restaurant>) session.getAttribute("resList");
 		ArrayList<Recipe> recList = (ArrayList<Recipe>) session.getAttribute("recList");
         
+		//check which item to remove
         if(type.equals("restaurant")) {
-        	if(list1.equals("not")) {
+        	//check the list to remove from
+        	if(list1.equals("not")) { //add the items back from the Do Not Show list to the results list
         		Restaurant rc  = thisUser.notRestaurant.get(index);
         		resList.add(rc);
         	}
         	thisUser.removeRestaurant(list1, index);
         }
         else if(type.equals("recipe")) {
-        	if(list1.equals("not")) {
+        	if(list1.equals("not")) { //add the items back from the Do Not Show list to the results list
         		Recipe rc  = thisUser.notRecipe.get(index);
         		recList.add(rc);
         	}
         	thisUser.removeRecipe(list1, index);
         }
 
+        //resetting the session variable
 		session.setAttribute("userObj", thisUser);
 		
 		Gson gson = new Gson();

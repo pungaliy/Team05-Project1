@@ -45,19 +45,22 @@ public class MoveListServlet extends HttpServlet {
 
 		HttpSession session = request.getSession();
 				
+		//get parameters
 		String list1 = request.getParameter("list1");
 		String list2 = request.getParameter("list2");
 		String type = request.getParameter("itemType");
 		int index = Integer.parseInt(request.getParameter("index"));
 		
+		//get session variables and User session
 		ArrayList<Restaurant> resList = (ArrayList<Restaurant>) session.getAttribute("resList");
 		ArrayList<Recipe> recList = (ArrayList<Recipe>) session.getAttribute("recList");
 		
         User u = (User) request.getSession().getAttribute("userObj");
         
+        //check which item to move
         if(type.equals("restaurant")) {
-        	
-        	if(list1.equals("explore")) {
+        	//check from which list to remove and to which list to add to
+        	if(list1.equals("explore")) { //from To Explore list
         		Restaurant res = u.exploreRestaurant.get(index);
 	        	if(list2.equals("not")) {
 	        		resList.remove(res);
@@ -67,13 +70,13 @@ public class MoveListServlet extends HttpServlet {
 	        		resList.add(0, res);
 	        	}
         	}
-        	else if(list1.equals("favorite")) {
+        	else if(list1.equals("favorite")) { //from favorite list
         		Restaurant res = u.favoriteRestaurant.get(index);
         		if(list2.equals("not")) {
         			resList.remove(res);
         		}
         	}
-        	else { // from not
+        	else { // from Do Not Show list
         		Restaurant res = u.notRestaurant.get(index);
         		if(list2.equals("favorite")) {
         			resList.add(0,res);
@@ -86,8 +89,8 @@ public class MoveListServlet extends HttpServlet {
         	
         	
         }
-        else if(type.equals("recipe")) {
-        	if(list1.equals("explore")) {
+        else if(type.equals("recipe")) { //to move recipe items
+        	if(list1.equals("explore")) { //from to explore list
         		Recipe res = u.exploreRecipe.get(index);
 	        	if(list2.equals("not")) {
 	        		recList.remove(res);
@@ -97,13 +100,13 @@ public class MoveListServlet extends HttpServlet {
 	        		recList.add(0,res);
 	        	}
         	}
-        	else if(list1.equals("favorite")) {
+        	else if(list1.equals("favorite")) { //from favorite list
         		Recipe res = u.favoriteRecipe.get(index);
         		if(list2.equals("not")) {
         			recList.remove(res);
         		}
         	}
-        	else { // from not
+        	else { // from do not show list
         		Recipe res = u.notRecipe.get(index);
         		if(list2.equals("favorite")) {
         			recList.add(0,res);
@@ -115,8 +118,8 @@ public class MoveListServlet extends HttpServlet {
         	u.moveRecipe(list1, list2, index);
         }
         
+        //resetting session variable
         session.setAttribute("userObj", u);
-		
 		Gson gson = new Gson();
 		String userJSON = gson.toJson(u);
 		String resJSON = gson.toJson(resList);

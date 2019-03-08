@@ -43,8 +43,10 @@ public class ToList extends HttpServlet {
 		String list = request.getParameter("list");
 		User myuser = (User) session.getAttribute("userObj");
 		Gson gson = new Gson();
+		
+		//checks which list to go to
 		if(list.equals("favorite")){
-			
+			//set the favorite lists as session variable and send to the front end
 			String favRes = gson.toJson(myuser.favoriteRestaurant);
 			String favRec = gson.toJson(myuser.favoriteRecipe);
 			session.setAttribute("favRes", favRes);
@@ -53,6 +55,7 @@ public class ToList extends HttpServlet {
 			dispatch.forward(request,  response);
 		}
 		else if(list.equals("explore")){
+			//set the explore lists as session variable and send to the front end
 			String expRes = gson.toJson(myuser.exploreRestaurant);
 			String expRec = gson.toJson(myuser.exploreRecipe);
 			session.setAttribute("expRes", expRes);
@@ -61,6 +64,7 @@ public class ToList extends HttpServlet {
 			dispatch.forward(request,  response);	
 		}
 		else {
+			//set the do not show lists as session variable and send to the front end
 			String notRes = gson.toJson(myuser.notRestaurant);
 			String notRec = gson.toJson(myuser.notRecipe);
 			session.setAttribute("notRes", notRes);

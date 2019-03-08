@@ -17,38 +17,9 @@
     <!-- bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-
-    <!-- fav icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
     <!-- style  -->
     <link href="./css/main.css?version=5" rel="stylesheet">
     
-     <script>
-    	function toSearch(){
-    		window.location.href = "/Search.html";
-    	}
-    	function toResult(){
-    		window.location.href = "/Results.jsp";
-    	}
-    	
-    	function check(){
-    			console.log("checking");
-        		var list = document.getElementById("list").value;
-        		if(list == null || list == "nil" || list == "not"){
-        			
-        			return false;
-        		}
-        	
-        		return true;
-        		
-        	
-    	}
-    
-    
-    </script>
-
-
 
 </head>
 
@@ -56,9 +27,11 @@
 
     <div class="container-fluid">
         <div class="row ">
+        <!--  title -->
             <div class="col-10">
                 <div class="listTitle text-center" style="margin-bottom: 150px;">Do Not Show List</div>
             </div>
+            <!--  navbar -->
             <div class="col-2">
                 <form action="/ToList" onsubmit="return check();" method="get" >
                     <div class="mt-20">
@@ -85,8 +58,7 @@
         <div class="row" style="padding-top: 50px;">
         <!-- content -->
                 <div class="container-fluid" id="listResult">
-                
-                
+                <!--  list results will be shown here -->
                 </div>
         
         </div>
@@ -94,16 +66,32 @@
     
     <script>
     
-function mv(list2, itemType, index){
-    	
-    	console.log("moving");
+    
+  	//redirection from navbar
+	function toSearch(){
+		window.location.href = "/Search.html";
+	}
+	function toResult(){
+		window.location.href = "/Results.jsp";
+	}
+	
+	//checking if redirection to list is legal
+	function check(){
+   		var list = document.getElementById("list").value;
+   		if(list == null || list == "nil" || list == "not"){
+   			
+   			return false;
+   		}
+   	
+   		return true;
+	}
+    
+	//sending data to MoveListServlet to move items 
+	function mv(list2, itemType, index){
+
     	var xhttp = new XMLHttpRequest();
 		xhttp.onreadystatechange = function(){
 			if(this.readyState == 4 && this.status == 200){
-				console.log("return");
-				var user = JSON.parse('<%= session.getAttribute("user") %>');
-				
-	            console.log(user);
 	            location.reload();
 			}
 		}
@@ -114,44 +102,31 @@ function mv(list2, itemType, index){
     
     }
     
+	//sending data to RemoveListServlet to remove items
 	function rm(itemType, index){
-    	
-    	console.log("remove");
     	var xhttp = new XMLHttpRequest();
 		xhttp.onreadystatechange = function(){
 			if(this.readyState == 4 && this.status == 200){
-				console.log("return");
-				var user = JSON.parse('<%= session.getAttribute("user") %>');
-				var check = '<%= session.getAttribute("check") %>';
-				var type = '<%= session.getAttribute("type") %>';
-				var list = '<%= session.getAttribute("list") %>';
-				var index = '<%= session.getAttribute("index") %>';
-				console.log(type);
-				console.log(list);
-				console.log(index);
-				console.log(check);
-	            console.log(user);
+
 	            location.reload();
 			}
 		}
-		//changethis
+		
 		xhttp.open("POST", "RemoveListServlet?list=not&itemType=" + itemType + "&index=" + index, true);
-		xhttp.send();
-    	
+		xhttp.send();	
 		return false;
     
     }
     
-    	
+    	//get session do not show lists
 	    var restaurant = JSON.parse('<%= session.getAttribute("notRes") %>');
 	    var recipe = JSON.parse('<%= session.getAttribute("notRec") %>');
-	    console.log(restaurant);
-	    console.log(recipe);
-	    
 	    var num = 0;
 	    var i;
 	    var li = document.getElementById('listResult');
 	    var alt = "alt";
+	    
+	    //for every, restaurant create it
 	    for(i = 0;i < restaurant.length; i++){
 	    	var res = restaurant[i];
 	    	if(num % 2 == 0){
@@ -173,6 +148,7 @@ function mv(list2, itemType, index){
 				
 	    }
 	    
+	    //for every recipe create it
 	    for(i = 0;i < recipe.length; i++){
 	    	var rec = recipe[i];
 	    	if(num % 2 == 0){
@@ -192,8 +168,8 @@ function mv(list2, itemType, index){
 	    }
 	    
 	    
-	    
-function createRecipe(name, star, prep, cook, price, num){
+	    //functions to create the recipe boxes in the html
+		function createRecipe(name, star, prep, cook, price, num){
             
             var div1 = document.createElement('div');
             
@@ -261,11 +237,11 @@ function createRecipe(name, star, prep, cook, price, num){
             
             div2.appendChild(div3);
             div1.appendChild(div2);
-            //recList.appendChild(div1);
             return div1.innerHTML;
             
         }
         
+	    //function to create the restaurant boxes in the html
         function createRestaurant(name, star, dist, price, id, num){
         	
         	var div1 = document.createElement('div');

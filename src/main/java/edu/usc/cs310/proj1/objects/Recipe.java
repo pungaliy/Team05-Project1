@@ -10,6 +10,7 @@ public class Recipe extends Item {
 	public String ingredients[];
 	public String instructions[];
 	
+	//create recipe object and initialize member variables 
 	public Recipe(String recipename, String imagelink, String preptime, String cooktime,ArrayList<String> ingredient,ArrayList<String> instruction, String q, double ratingIn) {
 		recipeName = recipename;
 		imageLink = imagelink;
