@@ -178,18 +178,18 @@ public class YelpRequest {
 			r.name = res.getString("name");
 			r.websiteLink = res.getString("url");
 			if (this.term.equalsIgnoreCase("hamburger") || this.term.equalsIgnoreCase("hamburgers")) {
-				if (i == 1) {
+				if (i == 0) {
 					r.websiteLink = "usctraditions.com";
-				} else if (i ==2) {
+				} else if (i ==1) {
 					r.websiteLink = "habitburger.com";
 					
-				} else if (i ==3) {
+				} else if (i ==2) {
 					r.websiteLink = "wahlburgersrestaurant.com";
 					
-				} else if (i==4) {
+				} else if (i==3) {
 					r.websiteLink = "nhm.com";
 					
-				} else if (i==5) {
+				} else if (i==4) {
 					r.websiteLink = "None";
 				
 				}
@@ -284,13 +284,7 @@ public class YelpRequest {
 	public String addParameter (String URL, String param, String paramValue) {
 		return (URL + "&" + param + "=" + paramValue);
 	}
-	
-
-	
-	
-}
 	/*
-	
 	public static void main (String args []) {
 		Scanner scan = new Scanner(System.in);
 		while(true) {
@@ -317,7 +311,7 @@ public class YelpRequest {
 
 		}
 	}
-	
 	*/
 	
+}
 
