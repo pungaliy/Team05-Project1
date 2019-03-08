@@ -98,8 +98,8 @@ public class ReturnResults extends HttpServlet {
 				imageResults.add("https://as1.ftcdn.net/jpg/00/43/43/08/500_F_43430821_7k8NyDsH7mWQscufbxbrw8wKezDhAKv7.jpg");
 				imageResults.add("https://media.istockphoto.com/photos/tasty-burgers-on-wooden-table-picture-id860251286");
 			} else {
-				//ImagesRequest ir = new ImagesRequest(query);
-				//imageResults = ir.imageResultURLs;
+				ImagesRequest ir = new ImagesRequest(query);
+				imageResults = ir.imageResultURLs;
 			}
 			
 			
