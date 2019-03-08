@@ -10,6 +10,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -70,6 +71,30 @@ public class YelpRequest {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	public void reorganizeList() {
+		Map <Restaurant, Integer> byTime = new HashMap <>();
+		for (Restaurant r : restaurantResults) {
+			Scanner getTime = new Scanner (r.travelTime);
+			int time = getTime.nextInt();
+			byTime.put(r, time);
+		}
+		ArrayList<Restaurant> newlist = new ArrayList<>();
+		int size = restaurantResults.size();
+		for (int i = 0; i < size; i++) {
+			Restaurant smallest = new Restaurant();
+			int min_time = 1000;
+			for(Restaurant r : byTime.keySet()) {
+				if (byTime.get(r)< min_time) {
+					smallest = r; 
+					min_time = byTime.get(r);
+				}
+			}
+			byTime.remove(smallest);
+			newlist.add(smallest);
+			
+		}
+		this.restaurantResults = newlist;
 	}
 	public void cleanQuery() {
 		Scanner scan = new Scanner(this.term);
@@ -145,6 +170,7 @@ public class YelpRequest {
 					}
 					if (content.toString().length()>0) {
 						addToList(content.toString());
+						reorganizeList();
 					}
 					in.close();		
 			}else {
@@ -169,7 +195,7 @@ public class YelpRequest {
 		}
 		for(int i= 0; i < contents.length(); i++) {
 			JSONObject res = contents.getJSONObject(i);
-			System.out.println(res.toString());
+			//System.out.println(res.toString());
 			Restaurant r = new Restaurant();
 			r.name = res.getString("name");
 			r.websiteLink = res.getString("url");
@@ -249,7 +275,7 @@ public class YelpRequest {
 						JSONObject element = l.getJSONObject(0);
 						travelTime = element.getJSONObject("duration").getString("text");
 					}else {
-						travelTime = ((distance/1.2)/60) + " mins";
+						travelTime = ((int)(distance/1.2)/60) + " mins";
 					}
 					in.close();		
 			}else {
@@ -261,7 +287,7 @@ public class YelpRequest {
 			}
 
 		
-		
+		//System.out.println(travelTime);
 		return travelTime;
 	}
 	public String parseAddress (JSONObject a) {
@@ -280,8 +306,8 @@ public class YelpRequest {
 	public String addParameter (String URL, String param, String paramValue) {
 		return (URL + "&" + param + "=" + paramValue);
 	}
-	/*
-	public static void main (String args []) {
+	
+	/*public static void main (String args []) {
 		Scanner scan = new Scanner(System.in);
 		while(true) {
 			System.out.println("What would you like to search?");
