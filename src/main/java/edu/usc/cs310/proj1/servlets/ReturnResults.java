@@ -116,7 +116,7 @@ public class ReturnResults extends HttpServlet {
 			session.setAttribute("user", userJSON);
 			session.setAttribute("options", numOptions);
 		}
-		
+	
 		RequestDispatcher dispatch = request.getRequestDispatcher("/Results.jsp?query=" + query);
 		if (!(dispatch == null)) {
 			dispatch.forward(request,  response);
