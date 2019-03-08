@@ -275,7 +275,7 @@ function createRecipe(name, star, prep, cook, price, num){
             div5.appendChild(link);
             
             var newDiv = document.createElement('div');
-            var h2 = document.createElement('h4');
+            var h2 = document.createElement('div');
             if(star == 0){
             	h2.innerHTML = "no rating";
             }
@@ -292,13 +292,14 @@ function createRecipe(name, star, prep, cook, price, num){
             
             var p = document.createElement('div');
             p.className = "col-12 col-sm-6";
-            var h3 =  document.createElement('h6');
+            var h3 =  document.createElement('div');
+            
             h3.innerHTML = "Prep Time: " + prep + "in";
             p.appendChild(h3);
             
             var c = document.createElement('div');
             c.className = "col-12 col-sm-6";
-            var h4 =  document.createElement('h6');
+            var h4 =  document.createElement('div');
             h4.innerHTML = "Cook Time: " + cook + "in";
             c.appendChild(h4);
            
@@ -363,7 +364,7 @@ function createRecipe(name, star, prep, cook, price, num){
           
             
             var newDiv = document.createElement('div');
-            var h2 = document.createElement('h4');
+            var h2 = document.createElement('div');
             if(star == 0){
             	h2.innerHTML = "no rating";
             }
@@ -374,7 +375,7 @@ function createRecipe(name, star, prep, cook, price, num){
             
            
             var div6 = document.createElement('div');
-            var h3 =  document.createElement('h4');
+            var h3 =  document.createElement('div');
             var f = parseFloat(dist);
             h3.innerHTML = "Distance: " + Math.floor(f/10) + " min";
             div6.appendChild(h3);
