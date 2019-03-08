@@ -35,7 +35,6 @@
     <div class="container-fluid">
         <div class="row ">
             <div class="col-8">
-            <!--  title -->
                 <div class="listTitle" style="margin-bottom: 50px;" id="title"></div>
               </div>
               <!--  navigation bar -->

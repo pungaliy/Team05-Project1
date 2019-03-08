@@ -204,7 +204,7 @@
 			//for every restaurant create it
             for (let num = 0; num < restaurant.length; num++){
             	var res = restaurant[num];
-            	createRestaurant(res.name, res.rating, res.travelTime, res.price, res.uniqueID, num);
+            	createRestaurant(res.name, res.rating, res.travelTime, res.price, res.uniqueID, num,res.address);
             
             }
             
@@ -309,7 +309,7 @@
         }
         
     	//function to add a restaurant box to the restaurant list
-        function createRestaurant(name, star, dist, price, id, num){
+        function createRestaurant(name, star, dist, price, id, num, address){
         	
         	var div1 = document.createElement('div');
             if(num % 2 == 0){
@@ -337,7 +337,6 @@
             link.appendChild(h1);
             
             div5.appendChild(link);
-          
             
             var newDiv = document.createElement('div');
             var h2 = document.createElement('div');
@@ -349,10 +348,10 @@
             }
             newDiv.appendChild(h2);
             
-           
+            
             var div6 = document.createElement('div');
             var h3 =  document.createElement('div');
-            h3.innerHTML = "Distance: " + dist;
+            h3.innerHTML = "Distance: " + dist + "<br>Address: " + address;
             div6.appendChild(h3);
           
             

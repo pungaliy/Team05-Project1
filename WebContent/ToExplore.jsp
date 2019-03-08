@@ -140,7 +140,7 @@
 	    	li.innerHTML += 
 	    	    "<div class=\"row\"><div class=\"col-12 col-sm-8\"><!-- --><div class=\"" + alt + "\">"
 	    	    +
-	    	    createRestaurant(res.name, res.rating, res.distance.toFixed(3), res.price, res.uniqueID, num)
+	    	    createRestaurant(res.name, res.rating, res.travelTime, res.price, res.uniqueID, num, res.address)
 	    	    + "</div><!-- --></div><div class=\"col-12 col-sm-4 mt-20\"><div><button class=\"btn btn-primary wth\" onclick=\"rm(\'restaurant\',\'"+ i +"\')\">Remove</button>"
     	    + "</div><div class=\"mt-10\"><div class=\"dropdown\"><button class=\"btn btn-primary wth dropdown-toggle\" data-toggle=\"dropdown\">"
 			+ "Move To...</button><div class=\"dropdown-menu\"><button class=\"dropdown-item\" onclick=\"mv(\'favorite\',\'restaurant\',\'"+ i +"\');\">Favorite </button>"
@@ -245,7 +245,7 @@
         }
         
 	    //making the inner HTMl for restaurant items
-        function createRestaurant(name, star, dist, price, id, num){
+        function createRestaurant(name, star, dist, price, id, num, address){
         	
         	var div1 = document.createElement('div');
             if(num % 2 == 0){
@@ -288,7 +288,7 @@
            
             var div6 = document.createElement('div');
             var h3 =  document.createElement('h4');
-            h3.innerHTML = "Distance: " + dist + " m";
+            h3.innerHTML = "Distance: " + dist + " <br>Address: " + address;
             div6.appendChild(h3);
           
             
