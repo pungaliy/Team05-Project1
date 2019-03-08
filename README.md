@@ -1,4 +1,6 @@
-Critical Lines for deployment:
+How to run:
+
+Eclipse: Select Project, Run as, Maven Install
 cd /var/lib/tomcat8/webapps
 sudo mv ~/workspace/Team05-Project1/target/Team05-Project1-0.0.1-SNAPSHOT.war ROOT.war
 

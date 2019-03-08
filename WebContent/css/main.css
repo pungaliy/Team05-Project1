@@ -34,7 +34,7 @@ html {
 
 
 .wth {
-    width: 200px;
+    width: 140px;
 }
 
 #searchBtn {
@@ -48,9 +48,9 @@ html {
 }
 
 .googleImage {
-    width: 150px;
-    height: 150px;
-    border: 2px solid black;
+    width: 10vw;
+    height: 10vh;
+
 }
 
 .alt {
@@ -58,12 +58,8 @@ html {
     width: 100%;
 }
 
-.box {
-    height: 120px;
-}
-
 .listTitle {
-    font-size: 100px;
+    font-size: 43px;
 }
 
 .rt45 {
