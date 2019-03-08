@@ -4,7 +4,7 @@ end
 
 def go_to_page(page)
 	dictionary = { 
-		"Search" => "search", 
+		"Search" => "", 
 		"Results" => "ReturnResults?query=hamburger&options=5", 
 		"Restaurant" => "Restaurant.jsp?id=DXFhzx94myitMxmBhsdz8A",
 		"Recipe" => "Recipe.jsp?id=2",
